@@ -15,7 +15,6 @@ public class App extends Application {
         var gameScene = new Scene(root);
         class Player implements RacketController {
             State state = State.IDLE;
-
             @Override
             public State getState() {
                 return state;
