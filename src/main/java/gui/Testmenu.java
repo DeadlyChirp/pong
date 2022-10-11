@@ -79,11 +79,12 @@ public class Testmenu extends Application{
 	        
 	        Option.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent a) {
-	    	        JButton Commandes = new JButton("Commandes");
-	    	        JButton Esthetique = new JButton("Esthetique");
-	    	        JButton Stat = new JButton("Statistiques");     
-	    	        JButton Retour = new JButton("Retour");
-
+	    	       
+					Buttoncolor Commandes = new Buttoncolor("", "/home/jeremy/pong/src/main/java/gui/play.png", "/home/jeremy/pong/src/main/java/gui/play.png");
+	        		Buttoncolor Esthetique = new Buttoncolor("", "/home/jeremy/pong/src/main/java/gui/option.png", "/home/jeremy/pong/src/main/java/gui/option.png");
+	        		Buttoncolor Stat = new Buttoncolor("", "/home/jeremy/pong/src/main/java/gui/exit.png", "/home/jeremy/pong/src/main/java/gui/exit.png");   
+					Buttoncolor Retour = new Buttoncolor("", "/home/jeremy/pong/src/main/java/gui/play.png", "/home/jeremy/pong/src/main/java/gui/play.png");
+	       
 	    	        panel.remove(Quitter);
 	    	        panel.remove(Jouer);
 	    	        panel.remove(Option);
