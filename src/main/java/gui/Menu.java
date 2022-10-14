@@ -16,7 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Testmenu extends Application{
+public class Menu extends Application{
 
 	    public void start (Stage primaryStage) {
 
@@ -71,7 +71,11 @@ public class Testmenu extends Application{
 	    	        panel.remove(Quitter);
 	    	        panel.remove(Jouer);
 	    	        panel.remove(Option);
-					a.start(primaryStage);
+					var court = new Court(playerA, playerB, 1000, 600);
+					var gameView = new GameView(court, root, 1.0);
+					primaryStage.setScene(gameScene);
+					primaryStage.show();
+					gameView.animate();
 				}
 			});
 
