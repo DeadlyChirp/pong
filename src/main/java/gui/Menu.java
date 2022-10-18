@@ -1,32 +1,17 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.stage.Stage;
-import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
+import javafx.scene.layout.*;
+
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
 import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
 
 /* ------------------------------------------------------------------------------------------------------*/
 
@@ -79,10 +64,6 @@ public class Menu extends Application{
         BackgroundImage bImg = new BackgroundImage(image7, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background bGround = new Background(bImg);
         root.setBackground(bGround);
-
-       
-        
-    
 
        //Setting du Stage
         primaryStage.setWidth(1200);

@@ -118,7 +118,7 @@ public class Court {
     /**
      * @return true if a player lost
      */
-    private boolean updateBall(double deltaT) {
+    public boolean updateBall(double deltaT) {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;

@@ -1,6 +1,5 @@
 package gui;
 import java.io.File; 
-import java.util.Scanner; 
 import java.io.IOException; 
 
 import javax.sound.sampled.AudioSystem; 
