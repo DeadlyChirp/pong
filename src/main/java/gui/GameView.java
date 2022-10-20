@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import model.Court;
 
 public class GameView {
@@ -17,6 +18,14 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
+    private Text scoreP1, scoreP2;
+
+
+    public boolean finGame = false;
+
+    public boolean Pause = true;
+
+    int Timer = 180; //3sec
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -54,27 +63,64 @@ public class GameView {
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
+
+//        scoreP1 = new Text();
+//        scoreP2 = new Text();
+
+        court.score.s1.setX(30);
+        court.score.s1.setY(59);
+
+        court.score.s2.setX(1050);
+        court.score.s2.setY(50);
+
+//        scoreP1.setX(30);
+//        scoreP1.setY(50);
+//
+//        scoreP2.setX(1050);
+//        scoreP2.setY(50);
+//
+//
+//        scoreP1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+//        scoreP2.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+//        scoreP1.setFill(Color.RED);
+//        scoreP2.setFill(Color.BLUE);
+
+
+        gameRoot.getChildren().addAll(racketA, racketB, ball , court.score.s1,court.score.s2);
 
 
     }
 
     public void animate() {
-        new AnimationTimer() {
+        new AnimationTimer() { //generer seulement DeltaT
             long last = 0;
 
             @Override
             public void handle(long now) {
-                if (last == 0) { // ignore the first tick, just compute the first deltaT
+
+//                PAUSE game
+
+                    if (last == 0) { // ignore the first tick, just compute the first deltaT
+                        last = now;
+                        return;
+                    }
+                if (!Pause) {
+                    court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
-                    return;
+                    racketA.setY(court.getRacketA() * scale);
+                    racketB.setY(court.getRacketB() * scale);
+                    ball.setCenterX(court.getBallX() * scale + xMargin);
+                    ball.setCenterY(court.getBallY() * scale);
+
+//                scoreP1.setText(String.valueOf(getScoreP1()));
+//                scoreP2.setText(String.valueOf(getScoreP2()));
+
+
                 }
-                court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
-                last = now;
-                racketA.setY(court.getRacketA() * scale);
-                racketB.setY(court.getRacketB() * scale);
-                ball.setCenterX(court.getBallX() * scale + xMargin);
-                ball.setCenterY(court.getBallY() * scale);
+                Timer--;
+                if(Timer == 0){
+                    Pause = false;
+                }
             }
         }.start();
     }
