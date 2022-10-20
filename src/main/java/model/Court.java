@@ -4,9 +4,9 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // size of the application
-    private final double racketSpeed = 300.0; // m/s
+    private double racketSpeed = 300.0; // m/s
     private double racketSize = 100.0; // m
-    private final double ballRadius = 10.0; // ball radius/ size
+    private double ballRadius = 10.0; // ball radius/ size
     // instance state
     private double racketA; // playerOnePos.Y
     private double racketB; // playerOnePos.Y
@@ -27,7 +27,7 @@ public class Court {
 
 
     //TEST AVEC SAMI ISMA<3
-    public Score score;
+    public Score score; //score class
     public Court(RacketController playerA, RacketController playerB, double width, double height) {
         this.playerA = playerA;
         this.playerB = playerB;
@@ -64,6 +64,8 @@ public class Court {
     public double getBallY() {
         return ballY;
     }
+
+
 
 
     public void update(double deltaT) {
@@ -106,8 +108,9 @@ public class Court {
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY; //rebondir
-            nextBallY = ballY + deltaT * ballSpeedY; //eviter que la balle depasse en haut ou en bas
-        }
+            nextBallY = ballY + deltaT * ballSpeedY;
+//            nextBallY = ballY + deltaT * ballSpeedY + ((ballY < 0)?(-100*Math.random()):(100*Math.random())); //eviter que la balle depasse en haut ou en bas
+        } //? = if
         /*-------------------------------------------------------------------------width
         *
         *
@@ -124,7 +127,8 @@ public class Court {
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize) //
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
             ballSpeedX = -ballSpeedX;  //rebondir ball x balle tombe dans la raquette
-            nextBallX = ballX + deltaT * ballSpeedX; //nextball = new vitesse next position
+            nextBallX = ballX + deltaT * ballSpeedX;
+        //nextball = new vitesse next position
         } else if (nextBallX < 0) { //if en haut une des condition est fausse, balle a pas touche la raquette
             //player 1
 
@@ -138,11 +142,11 @@ public class Court {
 //                System.out.println(murle);
 //            }
 
-                score.addScore();
+            score.addScore1();
             return true;
         } else if (nextBallX > width) { //player 2
 
-            score.addScore();
+            score.addScore2();
             //racket size reduce size if loose
              return true;
 
