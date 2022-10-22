@@ -1,36 +1,94 @@
-// package gui;
-// import java.io.File; 
-// import java.io.IOException; 
-// import java.util.Scanner; 
-// import java.io.File;
-// import javafx.scene.media.Media;
-// import javafx.scene.media.MediaPlayer;
+package gui;
+import java.io.File; 
+import java.util.Scanner; 
+import java.io.IOException; 
 
-// public class Sound{
+import javax.sound.sampled.AudioSystem; 
+import javax.sound.sampled.AudioInputStream; 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.Clip;  
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-//     public String s1;
+import javafx.application.Application;
+import javafx.stage.Stage; 
 
-//     Sound(String s){
-//         this.s1 = s;
-//     }
-
-//     // public void audio(String s) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
-//     // Scanner scanner = new Scanner(System.in);
-//     // File file = new File(s1);
-//     // AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-//     // Clip clip = AudioSystem.getClip();
-//     // clip.open(audioStream);
-//     // clip.start();
-//     // String response = scanner.next();
-//     // }
+public class Sound extends Application { 
 
     
-//     public void audio(){
-//     // InputStream in = new FileInputStream(this.s1);
-//     // AudioStream as = new AudioStream(in);
-//     // AudioPlayer.player.start(as);
-//     Media hit = new Media(new File(s1).toURI().toString());
-//     MediaPlayer mediaPlayer = new MediaPlayer(hit);
-//     mediaPlayer.play();
-//     }
-// }
+	//define storage for start position
+	Long nowFrame; 
+	Clip clip; 
+	
+	// get the clip status 
+	String thestatus; 
+	
+	AudioInputStream audioStream; 
+	 
+
+	// initialize both the clip and streams 
+	public Sound(String thePath) 
+		throws UnsupportedAudioFileException, 
+		IOException, LineUnavailableException 
+	{ 
+		// the input stream object 
+		audioStream = 
+				AudioSystem.getAudioInputStream(
+				    new File(thePath)
+				    .getAbsoluteFile()); 
+		
+		// the reference to the clip 
+		clip = AudioSystem.getClip(); 
+ 
+		clip.open(audioStream); 
+		
+		clip.loop(Clip.LOOP_CONTINUOUSLY); 
+	} 
+
+	
+	
+	
+	// play 
+	public void play() 
+	{ 
+		//start the clip 
+		clip.start(); 
+		
+		thestatus = "play"; 
+	} 
+	
+	// Pause audio 
+	public void pause() 
+	{ 
+		if (thestatus.equals("paused")) 
+		{ 
+			System.out.println("audio is already paused"); 
+			return; 
+		} 
+		this.nowFrame = 
+		this.clip.getMicrosecondPosition(); 
+		clip.stop(); 
+		thestatus = "paused"; 
+	} 
+	
+	
+	
+	// stop audio 
+	public void stop() throws UnsupportedAudioFileException, 
+	IOException, LineUnavailableException 
+	{ 
+		nowFrame = 0L; 
+		clip.stop(); 
+		clip.close(); 
+	} 
+	
+	
+	
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // TODO Auto-generated method stub
+        
+    } 
+
+} 
