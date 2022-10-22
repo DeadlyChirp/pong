@@ -93,9 +93,6 @@ public class Menu extends Application{
         primaryStage.setScene(gameScene);
         primaryStage.show(); 
 
-       
-            
-
         option.setOnAction(ev2 ->{
             root.getChildren().removeAll(play, option, quitter);
             Button Commande= new Button("play") ;
@@ -132,11 +129,6 @@ public class Menu extends Application{
 
         //Action du bouton Play 
         play.setOnAction(ev1 -> {
-            // Pane root1 = new Pane();
-            // gameScene.setRoot(root1);
-            // App a = new App(root1, gameScene);
-            // a.start(primaryStage);
-
             Pane root1 = new Pane();
             gameScene.setRoot(root1);
             ModeDeJeu a = new ModeDeJeu(root1, gameScene);
