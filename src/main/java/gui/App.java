@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import model.Court; //plus tard pour paramétrer taille, etc
 import javafx.stage.Stage;
 import java.awt.Color;
+import javafx.scene.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javafx.scene.image.ImageView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -26,6 +27,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.scene.image.*;
+import javafx.scene.effect.ImageInput;
+
+
+
 
 //*************************************TEST*********** */
 import java.io.File; 
@@ -63,8 +69,6 @@ public class App extends Application {
                     }
                     var playerA = new Player();
                     var playerB = new Player();
-                    // var J1Code = new Code();
-                    // var J2Code = new Code();
                     Image img = new Image("file:src/Pictures/fond.png");
                     BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                     Background bGround = new Background(bImg);
@@ -74,28 +78,68 @@ public class App extends Application {
 
 
                     //pour pause 
-                    Rectangle Sq = new Rectangle();
-                    Sq.setX(355);
-                    Sq.setY(250);
-                    Sq.setWidth(500.0f);
-                    Sq.setHeight(300.0f);
-                    Sq.setArcHeight(35);
-                    Sq.setArcWidth(35);
-                    javafx.scene.control.Button Quitter= new Button("Quitter") ;
-                    Quitter.setLayoutX(425);
+                    // Rectangle Sq = new Rectangle();
+                    
+                    // Sq.setFill(new ImagePattern(image2)); 
+                    Image image2 = new Image(new File("src/Pictures/pause.gif").toURI().toString());
+
+                    ImageView imageV = new ImageView(image2);
+                    imageV.setX(290);
+                    imageV.setY(200);
+                    
+                    Button Quitter= new Button("Quitter") ;
+                    Quitter.setLayoutX(320);
                     Quitter.setLayoutY(350);
                     Quitter.setMinSize(80, 80);
-                    javafx.scene.control.Button Reprendre= new Button("Reprendre") ;
-                    Reprendre.setLayoutX(545);
+                    Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
+                    Quitter.setSkin(new MyButtonSkin(Quitter));
+                    Quitter.setOnMouseEntered(e -> {
+                        Image a = new Image("file:src/Pictures/1.png");
+                        ImageView image4 = new ImageView(a);
+                        image4.setX(320);
+                        image4.setY(430);
+                        root.getChildren().add(image4);
+                        Quitter.setOnMouseExited(ea ->{
+                            root.getChildren().remove(image4);
+                        });
+                    });
+                    
+
+
+
+                    Button Reprendre= new Button("Reprendre") ;
+                    Reprendre.setLayoutX(485);
                     Reprendre.setLayoutY(350);
                     Reprendre.setMinSize(80, 80);
-                    javafx.scene.control.Button Recommencer= new Button("Recommencer") ;
-                    Recommencer.setLayoutX(665);
+                    Reprendre.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
+                    Reprendre.setSkin(new MyButtonSkin(Reprendre));
+                    Reprendre.setOnMouseEntered(e -> {
+                        Image a = new Image("file:src/Pictures/3.png");
+                        ImageView image4 = new ImageView(a);
+                        image4.setX(485);
+                        image4.setY(450);
+                        root.getChildren().add(image4);
+                        Reprendre.setOnMouseExited(ea ->{
+                            root.getChildren().remove(image4);
+                        });
+                    });
+
+                    Button Recommencer= new Button("Recommencer") ;
+                    Recommencer.setLayoutX(695);
                     Recommencer.setLayoutY(350);
                     Recommencer.setMinSize(80, 80);
-
-                    
-                    // Sq.setFill(Color.BLUE);
+                    Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
+                    Recommencer.setSkin(new MyButtonSkin(Recommencer));
+                    Recommencer.setOnMouseEntered(e -> {
+                        Image a = new Image("file:src/Pictures/2.png");
+                        ImageView image4 = new ImageView(a);
+                        image4.setX(695);
+                        image4.setY(430);
+                        root.getChildren().add(image4);
+                        Recommencer.setOnMouseExited(ea ->{
+                            root.getChildren().remove(image4);
+                        });
+                    });
 
                     gameScene.setOnKeyPressed(ev -> {
                         switch (ev.getCode()) {
@@ -114,12 +158,11 @@ public class App extends Application {
                             case ESCAPE:
                                if(!gameView.pause){
                                 
-                                root.getChildren().add(Sq);
+                                root.getChildren().add(imageV);
                                 root.getChildren().addAll(Quitter, Reprendre, Recommencer);
                                 gameView.pause = true;
                                }else{
-                                root.getChildren().remove(Sq);
-                                root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
+                                root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                                 gameView.pause = false ; 
 
                                }
@@ -154,15 +197,15 @@ public class App extends Application {
                     });
 
                     Reprendre.setOnAction(ev1 ->{
-                        root.getChildren().remove(Sq);
+                        root.getChildren().remove(imageV);
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         gameView.pause = false ; 
                     });
 
                     Recommencer.setOnAction(ev1 ->{
-                        Pane root1 = new Pane();
-                        gameScene.setRoot(root1);
-                        App a = new App(root1, gameScene);
+                        Pane root2 = new Pane();
+                        gameScene.setRoot(root2);
+                        App a = new App(root2, gameScene);
                         a.start(primaryStage);
                     });
 				

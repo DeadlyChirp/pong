@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.util.Duration;
 
+//Class pour les boutons afin d'avoir une animation 
 public class MyButtonSkin extends ButtonSkin {
 
     public MyButtonSkin(Button control) {

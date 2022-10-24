@@ -45,22 +45,22 @@ public class Menu extends Application{
 
         //Bouton Play
         Button play = new Button("play") ;
-        play.setLayoutX(525);
-        play.setLayoutY(534);
+        play.setLayoutX(487);
+        play.setLayoutY(554);
         play.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
         play.setSkin(new MyButtonSkin(play));
 
         //Bouton Option
         Button option = new Button("option");
         option.setLayoutX(421);
-        option.setLayoutY(580);
+        option.setLayoutY(600);
         option.setEffect(new ImageInput(new Image("file:src/Pictures/option.png")));
         option.setSkin(new MyButtonSkin(option));
 
         //Bouton quitter
         Button quitter = new Button("quitter");
         quitter.setLayoutX(704);
-        quitter.setLayoutY(580);
+        quitter.setLayoutY(600);
         quitter.setEffect(new ImageInput(new Image("file:src/Pictures/exit.png")));
         quitter.setSkin(new MyButtonSkin(quitter));
 
@@ -84,7 +84,7 @@ public class Menu extends Application{
         primaryStage.setWidth(1200);
         primaryStage.setHeight(800);
         primaryStage.setResizable(false);
-        primaryStage.getIcons().add(new Image("file:src/Pictures/pong.png")) ;
+        primaryStage.getIcons().add(new Image("file:src/Pictures/pong1.png")) ;
         primaryStage.setTitle("Pong");
 
         //Ajout des boutons sur le stage
@@ -93,11 +93,12 @@ public class Menu extends Application{
         primaryStage.setScene(gameScene);
         primaryStage.show(); 
 
+        //Action du bouton option
         option.setOnAction(ev2 ->{
             root.getChildren().removeAll(play, option, quitter);
             Button Commande= new Button("play") ;
             Commande.setLayoutX(538);
-            Commande.setLayoutY(580);
+            Commande.setLayoutY(570);
             Commande.setEffect(new ImageInput(new Image("file:src/Pictures/commande2.png")));
             Commande.setSkin(new MyButtonSkin(Commande));
 
@@ -108,7 +109,6 @@ public class Menu extends Application{
             Stat.setEffect(new ImageInput(new Image("file:src/Pictures/stat.png")));
             Stat.setSkin(new MyButtonSkin(Stat));
 
-            //Bouton quitter
             Button Retour = new Button("quitter");
             Retour.setLayoutX(704);
             Retour.setLayoutY(580);

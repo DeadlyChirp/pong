@@ -50,25 +50,30 @@ public class ModeDeJeu extends Application {
 
         //Bouton Play
         Button oneVSone = new Button("1 VS 1") ;
-        oneVSone.setLayoutX(570);
-        oneVSone.setLayoutY(580);
+        oneVSone.setLayoutX(170);
+        oneVSone.setLayoutY(570);
+        oneVSone.setEffect(new ImageInput(new Image("file:src/Pictures/1vs1.png")));
         oneVSone.setSkin(new MyButtonSkin(oneVSone));
 
         //Bouton Option
         Button oneVSBot = new Button("1 VS Bot");
-        oneVSBot.setLayoutX(421);
-        oneVSBot.setLayoutY(580);
+        oneVSBot.setLayoutX(451);
+        oneVSBot.setLayoutY(570);
+        oneVSBot.setEffect(new ImageInput(new Image("file:src/Pictures/1vsbot.png")));
         oneVSBot.setSkin(new MyButtonSkin(oneVSBot));
 
         //Bouton quitter
         Button twoVStwo = new Button("2 VS 2");
-        twoVStwo.setLayoutX(704);
-        twoVStwo.setLayoutY(580);
+        twoVStwo.setLayoutX(754);
+        twoVStwo.setLayoutY(570);
+        twoVStwo.setEffect(new ImageInput(new Image("file:src/Pictures/2vs2.png")));
         twoVStwo.setSkin(new MyButtonSkin(twoVStwo));
 
         Button Retour= new Button("Retour") ;
         Retour.setLayoutX(1100);
         Retour.setLayoutY(25);
+        Retour.setEffect(new ImageInput(new Image("file:src/Pictures/retour.png")));
+        Retour.setSkin(new MyButtonSkin(Retour));
 
         Image img = new Image("file:src/Pictures/fond.png");
         BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
