@@ -111,7 +111,7 @@ public class Court {
         return ballRadius;
     }
 
-    void reset() {
+    public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
         this.ballSpeedX = 200.0;

@@ -57,7 +57,6 @@ public class App extends Application {
         gameScene = a;
     }
 
-    @Override
     public void start(Stage primaryStage)  {
 
                     class Player implements RacketController {
@@ -77,12 +76,8 @@ public class App extends Application {
                     var gameView = new GameView(court, root, 1);
 
 
-                    //pour pause 
-                    // Rectangle Sq = new Rectangle();
-                    
-                    // Sq.setFill(new ImagePattern(image2)); 
-                    Image image2 = new Image(new File("src/Pictures/pause.gif").toURI().toString());
-
+                    //pour le menu de pause
+                    Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
                     ImageView imageV = new ImageView(image2);
                     imageV.setX(290);
                     imageV.setY(200);
@@ -93,36 +88,15 @@ public class App extends Application {
                     Quitter.setMinSize(80, 80);
                     Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
                     Quitter.setSkin(new MyButtonSkin(Quitter));
-                    Quitter.setOnMouseEntered(e -> {
-                        Image a = new Image("file:src/Pictures/1.png");
-                        ImageView image4 = new ImageView(a);
-                        image4.setX(320);
-                        image4.setY(430);
-                        root.getChildren().add(image4);
-                        Quitter.setOnMouseExited(ea ->{
-                            root.getChildren().remove(image4);
-                        });
-                    });
+                  
                     
-
-
-
                     Button Reprendre= new Button("Reprendre") ;
                     Reprendre.setLayoutX(485);
                     Reprendre.setLayoutY(350);
                     Reprendre.setMinSize(80, 80);
                     Reprendre.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
                     Reprendre.setSkin(new MyButtonSkin(Reprendre));
-                    Reprendre.setOnMouseEntered(e -> {
-                        Image a = new Image("file:src/Pictures/3.png");
-                        ImageView image4 = new ImageView(a);
-                        image4.setX(485);
-                        image4.setY(450);
-                        root.getChildren().add(image4);
-                        Reprendre.setOnMouseExited(ea ->{
-                            root.getChildren().remove(image4);
-                        });
-                    });
+                   
 
                     Button Recommencer= new Button("Recommencer") ;
                     Recommencer.setLayoutX(695);
@@ -130,16 +104,7 @@ public class App extends Application {
                     Recommencer.setMinSize(80, 80);
                     Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
                     Recommencer.setSkin(new MyButtonSkin(Recommencer));
-                    Recommencer.setOnMouseEntered(e -> {
-                        Image a = new Image("file:src/Pictures/2.png");
-                        ImageView image4 = new ImageView(a);
-                        image4.setX(695);
-                        image4.setY(430);
-                        root.getChildren().add(image4);
-                        Recommencer.setOnMouseExited(ea ->{
-                            root.getChildren().remove(image4);
-                        });
-                    });
+                  
 
                     gameScene.setOnKeyPressed(ev -> {
                         switch (ev.getCode()) {
@@ -157,18 +122,17 @@ public class App extends Application {
                                 break;
                             case ESCAPE:
                                if(!gameView.pause){
-                                
                                 root.getChildren().add(imageV);
                                 root.getChildren().addAll(Quitter, Reprendre, Recommencer);
                                 gameView.pause = true;
                                }else{
                                 root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                                 gameView.pause = false ; 
-
                                }
                                break;
                         }
                     });
+
                     gameScene.setOnKeyReleased(ev -> {
                         switch (ev.getCode()) {
                             case A:
@@ -182,9 +146,7 @@ public class App extends Application {
                                 break;
                             case M:
                                 if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
-                                break;
-                            
-                                
+                                break; 
                         }
                     });
 
@@ -197,24 +159,16 @@ public class App extends Application {
                     });
 
                     Reprendre.setOnAction(ev1 ->{
-                        root.getChildren().remove(imageV);
-                        root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
+                        root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                         gameView.pause = false ; 
                     });
 
                     Recommencer.setOnAction(ev1 ->{
-                        Pane root2 = new Pane();
-                        gameScene.setRoot(root2);
-                        App a = new App(root2, gameScene);
-                        a.start(primaryStage);
-                    });
-				
-				}
+                        root.getChildren().remove(imageV);
+                        root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
+                       court.reset() ; 
+                       gameView.pause =false ; 
 
-
-			
-
-	        
-
-       
-    }
+                    });				
+	}       
+}
