@@ -1,6 +1,8 @@
 package model;
 
+/* ------------------------------------------------------------------------------------------------------*/
 
+//pas de modif de court pour l'instant
 
 public class Court {
     // instance parameters

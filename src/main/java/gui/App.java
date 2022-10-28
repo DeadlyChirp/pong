@@ -46,7 +46,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 //***************************************************** */
 
-//Jerem Menu Fichier
+//App, fichier du jeu in-game
+//Implémentation du menu pause : Fait
+//Implémentation du menu de fin de jeu : à faire (besoin du score et du timer)
+
 public class App extends Application {
 
     public Pane root;
@@ -76,7 +79,7 @@ public class App extends Application {
                     var gameView = new GameView(court, root, 1);
 
 
-                    //pour le menu de pause
+                    //Pour le menu de pause
                     Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
                     ImageView imageV = new ImageView(image2);
                     imageV.setX(290);
@@ -105,7 +108,7 @@ public class App extends Application {
                     Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
                     Recommencer.setSkin(new MyButtonSkin(Recommencer));
                   
-
+                    //Switch pour les boutons de jeu, in-game.
                     gameScene.setOnKeyPressed(ev -> {
                         switch (ev.getCode()) {
                             case A:
@@ -133,6 +136,8 @@ public class App extends Application {
                         }
                     });
 
+
+                    //Switch bouton in-game, uniquement pour les boutons de jeu. 
                     gameScene.setOnKeyReleased(ev -> {
                         switch (ev.getCode()) {
                             case A:
@@ -152,23 +157,26 @@ public class App extends Application {
 
                     gameView.animate();
 
+                    //Action du bouton Quitter
                     Quitter.setOnAction(ev1 -> {
                         primaryStage.close();
                         Menu q = new Menu();
                         q.start(primaryStage);
                     });
 
+                    //Action du bouton Reprendre
                     Reprendre.setOnAction(ev1 ->{
                         root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                         gameView.pause = false ; 
                     });
 
+                    //Action du bouton Recommencer
                     Recommencer.setOnAction(ev1 ->{
                         root.getChildren().remove(imageV);
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                        court.reset() ; 
                        gameView.pause =false ; 
+                    });			
 
-                    });				
-	}       
+    }       
 }

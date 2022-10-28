@@ -32,6 +32,8 @@ import java.util.Scanner;
 /*********************************************************************************************************************** */
 
 
+//Menu pour les différents modes de jeu. On implémentera plus tard les modes de jeu interne aux 1vs1, 1vsBot ou 2vs2.
+
 public class ModeDeJeu extends Application {
     public Pane root;
     public Scene gameScene;

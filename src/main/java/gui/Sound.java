@@ -12,6 +12,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javafx.application.Application;
 import javafx.stage.Stage; 
 
+/* ------------------------------------------------------------------------------------------------------*/
+
+//Test pour avoir un son lors du lancement du jeu. 
+
 public class Sound extends Application { 
 
     

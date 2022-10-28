@@ -6,7 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.skin.ButtonSkin;
 import javafx.util.Duration;
 
-//Class pour les boutons afin d'avoir une animation 
+/* ------------------------------------------------------------------------------------------------------*/
+
+
+//Class pour les boutons afin d'avoir une animation de fondu lors du passage de la souris.  
+
 public class MyButtonSkin extends ButtonSkin {
 
     public MyButtonSkin(Button control) {
@@ -21,7 +25,6 @@ public class MyButtonSkin extends ButtonSkin {
         fadeOut.setNode(control);
         fadeOut.setToValue(1);
         control.setOnMouseExited(e -> fadeOut.playFromStart());
-
         control.setOpacity(1);
     }
 

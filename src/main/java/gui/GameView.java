@@ -11,6 +11,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
 import model.Court;
 
+/* ------------------------------------------------------------------------------------------------------*/
+
+//Modification du terrain de jeu, nouvelles délimitations du terrain, etc
+
 public class GameView {
 
     // class parameters
