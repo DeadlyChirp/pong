@@ -110,7 +110,7 @@ public class Menu extends Application{
             Commande.setOnAction(ev1 -> {
                 Pane root1 = new Pane();
                 gameScene.setRoot(root1);
-                Commande a = new Commande(*root1, gameScene);
+                Commande a = new Commande(root1, gameScene);
                 a.start(primaryStage);
             });
 

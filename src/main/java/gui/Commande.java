@@ -56,28 +56,28 @@ public class Commande extends Application{
 
     public void start (Stage primaryStage) {
 
-    Button Retour= new Button("Retour") ;
-    Retour.setLayoutX(1100);
-    Retour.setLayoutY(25);
-    Retour.setEffect(new ImageInput(new Image("file:src/Pictures/retour.png")));
-    Retour.setSkin(new MyButtonSkin(Retour));
+        Button Retour= new Button("Retour") ;
+        Retour.setLayoutX(1100);
+        Retour.setLayoutY(25);
+        Retour.setEffect(new ImageInput(new Image("file:src/Pictures/retour.png")));
+        Retour.setSkin(new MyButtonSkin(Retour));
 
-    ObservableList<Button> l = FXCollections.observableArrayList(Q, S, D);
+        ObservableList<Button> l = FXCollections.observableArrayList(Q, S, D);
 
-    ChoiceBox<Button> choiceBox = new ChoiceBox<Button>(l);
-    Button Confirmer = new Button("Confirmer");
-   
+        ChoiceBox<Button> choiceBox = new ChoiceBox<Button>(l);
+        Button Confirmer = new Button("Confirmer");
+    
 
-    root.getChildren().addAll(choiceBox, Confirmer);
+        root.getChildren().addAll(choiceBox, Confirmer, Retour);
 
-    primaryStage.setScene(gameScene);
-    primaryStage.show();
+        primaryStage.setScene(gameScene);
+        primaryStage.show();
 
-    Retour.setOnAction(ev1 -> {
-        primaryStage.close();
-        Menu q = new Menu();
-        q.start(primaryStage);
-    });
+        Retour.setOnAction(ev1 -> {
+            primaryStage.close();
+            Menu q = new Menu();
+            q.start(primaryStage);
+        });
 
 
     }
