@@ -26,9 +26,7 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
-
-    private Text scoreP1, scoreP2;
-    public boolean finGame;
+    public static boolean finGame;
     public boolean pause ;
 
     int Timer = 60; //2sec
@@ -36,6 +34,7 @@ public class GameView {
     void setFin(boolean b){
         finGame = b;
     }
+    
     boolean getFin(){
         return finGame;
     }
@@ -100,39 +99,40 @@ public class GameView {
                 cadre.setStroke(Color.valueOf("#375745"));
                 cadre.setStrokeWidth(5);
                 cadre.setFill(null);      
+                inter.getChildren().addAll(cadre);
 
-            //     court.score.s1.setX(30);
-            //     court.score.s1.setY(59);
-    
-            //     court.score.s2.setX(1050);
-            //     court.score.s2.setY(50);
+                Line l1 = new Line();
+                l1.setStartX(Margin/2);
+                l1.setStartY(Interface + Margin/2 - ball.getRadius());
+                l1.setEndX(Margin + Margin/2 + court.getWidth());
+                l1.setEndY(Interface + Margin/2 - ball.getRadius());
+                l1.setStroke(Color.valueOf("#375745"));
+                l1.setStrokeWidth(5);
 
-            inter.getChildren().addAll(cadre);
+                Line l2 = new Line();
+                l2.setStartX(Margin/2);
+                l2.setStartY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
+                l2.setEndX(Margin + Margin/2 + court.getWidth());
+                l2.setEndY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
+                l2.setStroke(Color.valueOf("#375745"));
+                l2.setStrokeWidth(5);
 
-            Line l1 = new Line();
-            l1.setStartX(Margin/2);
-            l1.setStartY(Interface + Margin/2 - ball.getRadius());
-            l1.setEndX(Margin + Margin/2 + court.getWidth());
-            l1.setEndY(Interface + Margin/2 - ball.getRadius());
-            l1.setStroke(Color.valueOf("#375745"));
-            l1.setStrokeWidth(5);
+                Rectangle zoneDeJeu = new Rectangle();
+                zoneDeJeu.setX(Margin);
+                zoneDeJeu.setY(Interface + Margin/2);
+                zoneDeJeu.setWidth(court.getWidth());
+                zoneDeJeu.setHeight(court.getHeight());
+                zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
+                //Player1
+                court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+                court.getScore().getS1().setX(1030);
+                court.getScore().getS1().setY(95);
+                //Player2
+                court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+                court.getScore().getS2().setX(130);
+                court.getScore().getS2().setY(95);
 
-            Line l2 = new Line();
-            l2.setStartX(Margin/2);
-            l2.setStartY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
-            l2.setEndX(Margin + Margin/2 + court.getWidth());
-            l2.setEndY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
-            l2.setStroke(Color.valueOf("#375745"));
-            l2.setStrokeWidth(5);
-
-            Rectangle zoneDeJeu = new Rectangle();
-            zoneDeJeu.setX(Margin);
-            zoneDeJeu.setY(Interface + Margin/2);
-            zoneDeJeu.setWidth(court.getWidth());
-            zoneDeJeu.setHeight(court.getHeight());
-            zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
-        
-        gameRoot.getChildren().addAll(zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
+                gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
 
     }
 

@@ -121,6 +121,13 @@ public class Menu extends Application{
             Stat.setEffect(new ImageInput(new Image("file:src/Pictures/stat.png")));
             Stat.setSkin(new MyButtonSkin(Stat));
 
+            Stat.setOnAction(ev1 -> {
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                Stat a = new Stat(root1, gameScene);
+                a.start(primaryStage);
+            });
+
             Button Retour = new Button("quitter");
             Retour.setLayoutX(704);
             Retour.setLayoutY(580);

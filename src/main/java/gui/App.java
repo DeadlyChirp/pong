@@ -29,7 +29,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.image.*;
 import javafx.scene.effect.ImageInput;
-
+import model.Score;
 
 
 
@@ -75,7 +75,7 @@ public class App extends Application {
                     BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                     Background bGround = new Background(bImg);
                     root.setBackground(bGround);
-                    var court = new Court(playerA, playerB, 1000, 600);
+                    var court = new Court(playerA, playerB, 1000, 600, 5);
                     var gameView = new GameView(court, root, 1);
 
 
@@ -175,7 +175,8 @@ public class App extends Application {
                         root.getChildren().remove(imageV);
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                        court.reset() ; 
-                       gameView.pause =false ; 
+                       court.getScore().reset();
+                       gameView.pause = false ; 
                     });			
 
     }       
