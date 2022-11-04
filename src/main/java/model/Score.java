@@ -26,6 +26,10 @@ public class Score {
         this.limitePoint = limit ; 
     }
 
+    public int getLimit(){
+        return this.limitePoint;
+    }
+
     public void addScore1(){
         s1.setText(String.valueOf(Integer.valueOf(s1.getText())+1));
     }
