@@ -69,10 +69,10 @@ public class ModeDeJeu extends Application {
     root.getChildren().addAll(oneVSone, oneVSBot, twoVStwo, Retour);
 
     Retour.setOnAction(ev1 -> {
-        
-        primaryStage.close();
-        Menu q = new Menu();
-        q.start(primaryStage);
+        Pane root1 = new Pane();
+        gameScene.setRoot(root1);
+        Menu a = new Menu(root1, gameScene);
+        a.start(primaryStage);
     });
 
     oneVSone.setOnAction(ev1 -> {

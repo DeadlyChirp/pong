@@ -33,6 +33,15 @@ public class App extends Application {
         gameScene = a;
     }
 
+    public static String[] commandes = {"A", "Q", "P", "M"};
+
+        public static void setCommandes(String[] s){
+            commandes[0] = s[0];
+            commandes[1] = s[1];
+            commandes[2] = s[2];
+            commandes[3] = s[3];
+        }
+
     public void start(Stage primaryStage)  {
 
                     class Player implements RacketController {
@@ -48,7 +57,7 @@ public class App extends Application {
                     BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                     Background bGround = new Background(bImg);
                     root.setBackground(bGround);
-                    var court = new Court(playerA, playerB, 1000, 600, 5);
+                    var court = new Court(playerA, playerB, 1000, 600, 3);
                     var gameView = new GameView(court, root, 1);
 
 
@@ -83,20 +92,17 @@ public class App extends Application {
                   
                     //Switch pour les boutons de jeu, in-game.
                     gameScene.setOnKeyPressed(ev -> {
-                        switch (ev.getCode()) {
-                            case A:
+                        String s = ev.getCode().toString();
+
+                            if(s == commandes[0]){
                                 playerA.state = RacketController.State.GOING_UP;
-                                break;
-                            case Q:
+                            } else if(s == commandes[1]){
                                 playerA.state = RacketController.State.GOING_DOWN;
-                                break;
-                            case P:
+                            } else if(s == commandes[2]){
                                 playerB.state = RacketController.State.GOING_UP;
-                                break;
-                            case M:
+                            } else if(s == commandes[3]){
                                 playerB.state = RacketController.State.GOING_DOWN;
-                                break;
-                            case ESCAPE:
+                            } else if(s == "ESCAPE"){
                                if(!gameView.pause){
                                 root.getChildren().add(imageV);
                                 root.getChildren().addAll(Quitter, Reprendre, Recommencer);
@@ -105,36 +111,44 @@ public class App extends Application {
                                 root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                                 gameView.pause = false ; 
                                }
-                               break;
                         }
                     });
 
 
                     //Switch bouton in-game, uniquement pour les boutons de jeu. 
                     gameScene.setOnKeyReleased(ev -> {
-                        switch (ev.getCode()) {
-                            case A:
-                                if (playerA.state == RacketController.State.GOING_UP) playerA.state = RacketController.State.IDLE;
-                                break;
-                            case Q:
-                                if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
-                                break;
-                            case P:
-                                if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
-                                break;
-                            case M:
-                                if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
-                                break; 
+                        String s = ev.getCode().toString();
+
+                        if(s == commandes[0]){
+                            if (playerA.state == RacketController.State.GOING_UP) playerA.state = RacketController.State.IDLE;
+                        } else if(s == commandes[1]){
+                            if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
+                        } else if(s == commandes[2]){
+                            if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
+                        } else if(s == commandes[3]){
+                            if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                         }
                     });
+
+                  
+                        if(GameView.finGame == true ){
+                            Image fin = new Image("file:src/Pictures/WinJ1.png");
+                            ImageView finJ1 = new ImageView(fin);
+                            root.getChildren().add(finJ1);
+                            root.getChildren().addAll(Quitter, Reprendre, Recommencer);
+                            // imageV.setX(290);
+                            // imageV.setY(200);                   
+                        }
+                    
 
                     gameView.animate();
 
                     //Action du bouton Quitter
                     Quitter.setOnAction(ev1 -> {
-                        primaryStage.close();
-                        Menu q = new Menu();
-                        q.start(primaryStage);
+                        Pane root1 = new Pane();
+                    gameScene.setRoot(root1);
+                    Menu a = new Menu(root1, gameScene);
+                    a.start(primaryStage);
                     });
 
                     //Action du bouton Reprendre
@@ -150,6 +164,7 @@ public class App extends Application {
                        court.reset() ; 
                        court.getScore().reset();
                        gameView.pause = false ; 
+                       GameView.finGame = false;
                     });			
 
     }       

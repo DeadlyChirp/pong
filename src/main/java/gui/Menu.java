@@ -20,9 +20,15 @@ import java.io.File;
 
 public class Menu extends Application{
 
+    public Pane root;
+    public Scene gameScene;
+
+    Menu(Pane root, Scene a){
+        this.root = root;
+        gameScene = a;
+    }
+    
     public void start (Stage primaryStage) {
-        Pane root = new Pane() ;
-        Scene gameScene = new Scene(root) ;
 
         //Logo du millieu
         Image image = new Image("file:src/Pictures/pong1.png");
