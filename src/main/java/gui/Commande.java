@@ -38,7 +38,7 @@ import java.util.Scanner;
 
 import javafx.scene.control.TextField;
 
-/* ------------------------------------------------------------------------------------------------------*/
+/* ----------------------------------------------------------------------------------------------------------------------------------*/
 
 public class Commande extends Application{
 
@@ -65,9 +65,10 @@ public class Commande extends Application{
         Retour.setSkin(new MyButtonSkin(Retour));
 
         Retour.setOnAction(ev1 -> {
-            primaryStage.close();
-            Menu q = new Menu();
-            q.start(primaryStage);
+            Pane root1 = new Pane();
+            gameScene.setRoot(root1);
+            Menu a = new Menu(root1, gameScene);
+            a.start(primaryStage);
         });
         
         
@@ -79,8 +80,7 @@ public class Commande extends Application{
         });
         bUp1.setLayoutX(50);
         bUp1.setLayoutY(600);
-
-   
+        
         TextField bDown1 = new TextField(App.commandes[1]);
         bDown1.setEditable(false);
         bDown1.setOnKeyPressed(ev -> {
@@ -114,6 +114,10 @@ public class Commande extends Application{
         Button save = new Button("Sauvegarder");
         save.setOnAction(evl -> {
             App.setCommandes(com);
+            Pane root1 = new Pane();
+                    gameScene.setRoot(root1);
+                    Menu a = new Menu(root1, gameScene);
+                    a.start(primaryStage);
         });
         save.setLayoutX(550);
         save.setLayoutY(570);
