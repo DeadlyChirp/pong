@@ -2,47 +2,20 @@
 package gui;
 import javafx.application.Application;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import model.Court; //plus tard pour paramétrer taille, etc
 import javafx.stage.Stage;
-import java.awt.Color;
-import javafx.scene.*;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javafx.scene.image.ImageView;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import model.Court;
 import model.RacketController;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import javafx.scene.image.*;
 import javafx.scene.effect.ImageInput;
-import model.Score;
 
 
 
 //*************************************TEST*********** */
 import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner; 
-  
-import javax.sound.sampled.AudioInputStream; 
-import javax.sound.sampled.AudioSystem; 
-import javax.sound.sampled.Clip; 
-import javax.sound.sampled.LineUnavailableException; 
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 //***************************************************** */
 
