@@ -1,6 +1,18 @@
 package model;
 import gui.GameView;
-
+import javafx.scene.image.ImageView;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import model.Court;
+import model.RacketController;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import javafx.scene.image.*;
+import javafx.scene.effect.ImageInput;
 
 public class Court {
     // instance parameters
@@ -118,6 +130,13 @@ public class Court {
     /**
      * @return true if a player lost
      */
+    static Image fin = new Image("file:src/Pictures/WinJ2.png");
+    public static ImageView finJ2 = new ImageView(fin);
+    static Image fin1 = new Image("file:src/Pictures/WinJ1.png");
+    public static ImageView finJ1 = new ImageView(fin1);
+    static Image smoke = new Image("file:src/Pictures/whitesmoke.png");
+    public static ImageView whitesmoke = new ImageView(smoke);
+
     private boolean updateBall(double deltaT) {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
@@ -135,12 +154,26 @@ public class Court {
             score.addScore1();
             if (score.endGame() != -1){
                 GameView.finGame = true ;
+                gui.App.root.getChildren().add(whitesmoke);
+                gui.App.root.getChildren().add(finJ2);
+                gui.App.Quitter.setLayoutX(370);
+                gui.App.Recommencer.setLayoutX(695);
+                gui.App.Recommencer.setLayoutY(400);
+                gui.App.Quitter.setLayoutY(390);
+                gui.App.root.getChildren().addAll(gui.App.Quitter, gui.App.Recommencer);
             }
             return true;
         }else if (nextBallX > width) { 
             score.addScore2();
             if (score.endGame() != -1){
                 GameView.finGame = true ;
+                gui.App.root.getChildren().add(whitesmoke);
+                gui.App.root.getChildren().add(finJ1);
+                gui.App.Quitter.setLayoutX(370);
+                gui.App.Recommencer.setLayoutX(695);
+                gui.App.Recommencer.setLayoutY(400);
+                gui.App.Quitter.setLayoutY(390);
+                gui.App.root.getChildren().addAll(gui.App.Quitter,  gui.App.Recommencer);
             }
             return true;
         }
@@ -148,6 +181,7 @@ public class Court {
         ballY = nextBallY;
         return false;
     }
+    
 
     public double getBallRadius() {
         return ballRadius;

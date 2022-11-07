@@ -52,7 +52,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class App extends Application {
 
-    public Pane root;
+    public static Pane root;
     public Scene gameScene;
 
     App(Pane root, Scene a){
@@ -69,6 +69,12 @@ public class App extends Application {
             commandes[3] = s[3];
         }
 
+        public static Button Quitter= new Button("Quitter") ;
+        public static Button Reprendre= new Button("Reprendre") ;
+        public static Button Recommencer= new Button("Recommencer") ;
+
+
+
     public void start(Stage primaryStage)  {
 
                     class Player implements RacketController {
@@ -84,7 +90,7 @@ public class App extends Application {
                     BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                     Background bGround = new Background(bImg);
                     root.setBackground(bGround);
-                    var court = new Court(playerA, playerB, 1000, 600, 3);
+                    var court = new Court(playerA, playerB, 1000, 600, 2);
                     var gameView = new GameView(court, root, 1);
 
 
@@ -94,7 +100,6 @@ public class App extends Application {
                     imageV.setX(290);
                     imageV.setY(200);
                     
-                    Button Quitter= new Button("Quitter") ;
                     Quitter.setLayoutX(320);
                     Quitter.setLayoutY(350);
                     Quitter.setMinSize(80, 80);
@@ -102,7 +107,6 @@ public class App extends Application {
                     Quitter.setSkin(new MyButtonSkin(Quitter));
                   
                     
-                    Button Reprendre= new Button("Reprendre") ;
                     Reprendre.setLayoutX(485);
                     Reprendre.setLayoutY(350);
                     Reprendre.setMinSize(80, 80);
@@ -110,7 +114,6 @@ public class App extends Application {
                     Reprendre.setSkin(new MyButtonSkin(Reprendre));
                    
 
-                    Button Recommencer= new Button("Recommencer") ;
                     Recommencer.setLayoutX(695);
                     Recommencer.setLayoutY(350);
                     Recommencer.setMinSize(80, 80);
@@ -130,11 +133,11 @@ public class App extends Application {
                             } else if(s == commandes[3]){
                                 playerB.state = RacketController.State.GOING_DOWN;
                             } else if(s == "ESCAPE"){
-                               if(!gameView.pause){
+                               if(!gameView.pause && !GameView.getFin()){
                                 root.getChildren().add(imageV);
                                 root.getChildren().addAll(Quitter, Reprendre, Recommencer);
                                 gameView.pause = true;
-                               }else{
+                               }else if(!GameView.getFin()){
                                 root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                                 gameView.pause = false ; 
                                }
@@ -157,18 +160,9 @@ public class App extends Application {
                         }
                     });
 
-                  
-                        if(GameView.finGame == true ){
-                            Image fin = new Image("file:src/Pictures/WinJ1.png");
-                            ImageView finJ1 = new ImageView(fin);
-                            root.getChildren().add(finJ1);
-                            root.getChildren().addAll(Quitter, Reprendre, Recommencer);
-                            // imageV.setX(290);
-                            // imageV.setY(200);                   
-                        }
-                    
 
                     gameView.animate();
+                    
 
                     //Action du bouton Quitter
                     Quitter.setOnAction(ev1 -> {
@@ -186,12 +180,17 @@ public class App extends Application {
 
                     //Action du bouton Recommencer
                     Recommencer.setOnAction(ev1 ->{
+                        Quitter.setLayoutX(320);
+                        Recommencer.setLayoutX(695);
+                        Recommencer.setLayoutY(350);
+                        Quitter.setLayoutY(350);
                         root.getChildren().remove(imageV);
+                        root.getChildren().removeAll(Court.finJ1, Court.finJ2, Court.whitesmoke);
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
-                       court.reset() ; 
-                       court.getScore().reset();
-                       gameView.pause = false ; 
-                       GameView.finGame = false;
+                        court.reset() ; 
+                        court.getScore().reset();
+                        gameView.pause = false ; 
+                        GameView.finGame = false;
                     });			
 
     }       
