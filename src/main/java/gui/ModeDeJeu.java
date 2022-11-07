@@ -92,16 +92,13 @@ public class ModeDeJeu extends Application {
         a.start(primaryStage);
     });
 
-    oneVSone.setOnAction(ev1 -> {
-       Pane root1 = new Pane();
-            gameScene.setRoot(root1);
-            App a = new App(root1, gameScene);
-            a.start(primaryStage);
+    oneVSone.setOnAction(ev1 -> {    
+        Pane root1 = new Pane();
+        gameScene.setRoot(root1);
+        ModeDeJeuInt a = new ModeDeJeuInt(root1, gameScene);
+        a.start(primaryStage);
     });
-
-
-     
-
+    
     primaryStage.setScene(gameScene);
     primaryStage.show(); 
 

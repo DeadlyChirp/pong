@@ -34,7 +34,8 @@ public class GameView {
     void setFin(boolean b){
         finGame = b;
     }
-    
+
+
     public static boolean getFin(){
         return finGame;
     }
