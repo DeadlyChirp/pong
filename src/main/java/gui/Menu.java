@@ -123,6 +123,17 @@ public class Menu extends Application{
         option.setOnAction(ev2 ->{
             root.getChildren().removeAll(play, option, quitter);
             
+            Button Theme = new Button("Theme");
+            Theme.setLayoutX(704);
+            Theme.setLayoutY(590);
+            Theme.setEffect(new ImageInput(new Image("file:src/Pictures/Boutontheme.png")));
+            Theme.setSkin(new MyButtonSkin(Theme));
+            Theme.setOnAction(ev1->{
+                //Appeler Classe pour changer le thème
+                //Classe Theme à faire
+            });
+
+
             //Creation des boutons stats et commande pour les menus
             Button Commande= new Button("play") ;
             Commande.setLayoutX(538);
@@ -151,15 +162,15 @@ public class Menu extends Application{
             });
 
             Button Retour = new Button("quitter");
-            Retour.setLayoutX(704);
-            Retour.setLayoutY(580);
+            Retour.setLayoutX(1100);
+            Retour.setLayoutY(25);
             Retour.setEffect(new ImageInput(new Image("file:src/Pictures/retour.png")));
             Retour.setSkin(new MyButtonSkin(Retour));
 
-            root.getChildren().addAll(Commande, Stat, Retour) ;
+            root.getChildren().addAll(Commande, Stat, Retour, Theme) ;
 
             Retour.setOnAction(ev3 ->{
-                root.getChildren().removeAll(Commande, Stat, Retour);
+                root.getChildren().removeAll(Commande, Stat, Retour, Theme);
                 root.getChildren().addAll(play, option, quitter);
             });
 
