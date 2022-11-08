@@ -40,18 +40,21 @@ import java.util.Scanner;
 
 //Test pour le menu Commande, à refaire en entier. 
 
-public class Stat extends Application{
+public class Theme extends Application{
 
     public Pane root;
     public Scene gameScene;
    
-    Button D= new Button("Quitter") ;
-    Button S= new Button("Quitter") ;
-    Button Q= new Button("Quitter") ;
-
-    Stat(Pane root, Scene a){
+    Theme(Pane root, Scene a){
         this.root = root;
         gameScene = a;
+    }
+
+    public String Wallpaper(int a){
+        if(a == 1) return "file:src/Pictures/blabla.png";
+        if(a == 2) return "file:src/Pictures/blabla.png";
+        if(a == 3) return "file:src/Pictures/blabla.png";
+        return null;
     }
 
     public void start (Stage primaryStage) {
@@ -77,4 +80,5 @@ public class Stat extends Application{
 
 
     }
+
 }

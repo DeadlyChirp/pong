@@ -152,7 +152,7 @@ public class Court {
             nextBallX = ballX + deltaT * ballSpeedX ;
         }else if (nextBallX < 0) { 
             score.addScore1();
-            if (score.endGame() != -1){
+            if (score.endGame() == 1){
                 GameView.finGame = true ;
                 gui.App.root.getChildren().add(whitesmoke);
                 gui.App.root.getChildren().add(finJ2);
@@ -165,7 +165,7 @@ public class Court {
             return true;
         }else if (nextBallX > width) { 
             score.addScore2();
-            if (score.endGame() != -1){
+            if (score.endGame() == 1){
                 GameView.finGame = true ;
                 gui.App.root.getChildren().add(whitesmoke);
                 gui.App.root.getChildren().add(finJ1);

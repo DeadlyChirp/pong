@@ -96,7 +96,7 @@ public class Menu extends Application{
         Easter.setMinSize(100, 100);
         Easter.setOpacity(0);
 
-        // Image img = new Image("file:src/Pictures/fond.png");
+        //Mise en place du background animé
         Image image7 = new Image(new File("src/Pictures/fond1.gif").toURI().toString());
         BackgroundImage bImg = new BackgroundImage(image7, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background bGround = new Background(bImg);
@@ -129,8 +129,11 @@ public class Menu extends Application{
             Theme.setEffect(new ImageInput(new Image("file:src/Pictures/Boutontheme.png")));
             Theme.setSkin(new MyButtonSkin(Theme));
             Theme.setOnAction(ev1->{
-                //Appeler Classe pour changer le thème
-                //Classe Theme à faire
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                Theme a = new Theme(root1, gameScene);
+                a.start(primaryStage);
+
             });
 
 
