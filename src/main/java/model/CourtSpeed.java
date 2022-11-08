@@ -7,7 +7,7 @@ public class CourtSpeed extends Court {
         super(playerA, playerB, width, height , limit) ; 
     }
 
-    @Override
+    
     public boolean updateBall(double deltaT) {
 
         double nextBallX = super.getBallX() + deltaT * super.getBallSpeedX();
