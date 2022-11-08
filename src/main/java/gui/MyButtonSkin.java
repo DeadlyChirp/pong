@@ -1,6 +1,4 @@
 package gui;
-
-
 import javafx.animation.FadeTransition;
 import javafx.scene.control.Button;
 import javafx.scene.control.skin.ButtonSkin;
@@ -15,12 +13,10 @@ public class MyButtonSkin extends ButtonSkin {
 
     public MyButtonSkin(Button control) {
         super(control);
-
         final FadeTransition fadeIn = new FadeTransition(Duration.millis(100));
         fadeIn.setNode(control);
         fadeIn.setToValue(0.5);
         control.setOnMouseEntered(e -> fadeIn.playFromStart());
-
         final FadeTransition fadeOut = new FadeTransition(Duration.millis(100));
         fadeOut.setNode(control);
         fadeOut.setToValue(1);

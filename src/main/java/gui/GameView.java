@@ -32,8 +32,9 @@ public class GameView {
     void setFin(boolean b){
         finGame = b;
     }
-    
-    boolean getFin(){
+
+
+    public static boolean getFin(){
         return finGame;
     }
     void setPause(boolean b){

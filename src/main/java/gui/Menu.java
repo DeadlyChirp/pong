@@ -13,6 +13,22 @@ import javafx.scene.layout.*;
 import javafx.scene.image.ImageView;
 import java.io.File; 
 
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 /* ------------------------------------------------------------------------------------------------------*/
 
 //Menu principale du Jeu 
@@ -65,7 +81,7 @@ public class Menu extends Application{
         Easter.setMinSize(100, 100);
         Easter.setOpacity(0);
 
-        // Image img = new Image("file:src/Pictures/fond.png");
+        //Mise en place du background animé
         Image image7 = new Image(new File("src/Pictures/fond1.gif").toURI().toString());
         BackgroundImage bImg = new BackgroundImage(image7, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background bGround = new Background(bImg);
@@ -88,6 +104,20 @@ public class Menu extends Application{
         option.setOnAction(ev2 ->{
             root.getChildren().removeAll(play, option, quitter);
             
+            Button Theme = new Button("Theme");
+            Theme.setLayoutX(704);
+            Theme.setLayoutY(590);
+            Theme.setEffect(new ImageInput(new Image("file:src/Pictures/Boutontheme.png")));
+            Theme.setSkin(new MyButtonSkin(Theme));
+            Theme.setOnAction(ev1->{
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                Theme a = new Theme(root1, gameScene);
+                a.start(primaryStage);
+
+            });
+
+
             //Creation des boutons stats et commande pour les menus
             Button Commande= new Button("play") ;
             Commande.setLayoutX(538);
@@ -116,15 +146,15 @@ public class Menu extends Application{
             });
 
             Button Retour = new Button("quitter");
-            Retour.setLayoutX(704);
-            Retour.setLayoutY(580);
+            Retour.setLayoutX(1100);
+            Retour.setLayoutY(25);
             Retour.setEffect(new ImageInput(new Image("file:src/Pictures/retour.png")));
             Retour.setSkin(new MyButtonSkin(Retour));
 
-            root.getChildren().addAll(Commande, Stat, Retour) ;
+            root.getChildren().addAll(Commande, Stat, Retour, Theme) ;
 
             Retour.setOnAction(ev3 ->{
-                root.getChildren().removeAll(Commande, Stat, Retour);
+                root.getChildren().removeAll(Commande, Stat, Retour, Theme);
                 root.getChildren().addAll(play, option, quitter);
             });
 

@@ -35,24 +35,31 @@ public class ModeDeJeu extends Application {
 
         //Bouton Play
         Button oneVSone = new Button("1 VS 1") ;
-        oneVSone.setLayoutX(170);
+        oneVSone.setLayoutX(70);
         oneVSone.setLayoutY(570);
         oneVSone.setEffect(new ImageInput(new Image("file:src/Pictures/1vs1.png")));
         oneVSone.setSkin(new MyButtonSkin(oneVSone));
 
         //Bouton Option
         Button oneVSBot = new Button("1 VS Bot");
-        oneVSBot.setLayoutX(451);
+        oneVSBot.setLayoutX(351);
         oneVSBot.setLayoutY(570);
         oneVSBot.setEffect(new ImageInput(new Image("file:src/Pictures/1vsbot.png")));
         oneVSBot.setSkin(new MyButtonSkin(oneVSBot));
 
         //Bouton quitter
         Button twoVStwo = new Button("2 VS 2");
-        twoVStwo.setLayoutX(754);
+        twoVStwo.setLayoutX(660);
         twoVStwo.setLayoutY(570);
         twoVStwo.setEffect(new ImageInput(new Image("file:src/Pictures/2vs2.png")));
         twoVStwo.setSkin(new MyButtonSkin(twoVStwo));
+
+        //Bouton OneVSOneVSoneVSone
+        Button OneVSOneVSOneVSOne = new Button("1vs1vs1vs1");
+        OneVSOneVSOneVSOne.setLayoutX(950);
+        OneVSOneVSOneVSOne.setLayoutY(570);
+        OneVSOneVSOneVSOne.setEffect(new ImageInput(new Image("file:src/Pictures/1vs1vs1vs1.png")));
+        OneVSOneVSOneVSOne.setSkin(new MyButtonSkin(OneVSOneVSOneVSOne));
 
         Button Retour= new Button("Retour") ;
         Retour.setLayoutX(1100);
@@ -66,7 +73,7 @@ public class ModeDeJeu extends Application {
         root.setBackground(bGround);
 
     root.getChildren().add(imageView);
-    root.getChildren().addAll(oneVSone, oneVSBot, twoVStwo, Retour);
+    root.getChildren().addAll(oneVSone, oneVSBot, twoVStwo, Retour, OneVSOneVSOneVSOne);
 
     Retour.setOnAction(ev1 -> {
         Pane root1 = new Pane();
@@ -75,16 +82,13 @@ public class ModeDeJeu extends Application {
         a.start(primaryStage);
     });
 
-    oneVSone.setOnAction(ev1 -> {
-       Pane root1 = new Pane();
-            gameScene.setRoot(root1);
-            App a = new App(root1, gameScene);
-            a.start(primaryStage);
+    oneVSone.setOnAction(ev1 -> {    
+        Pane root1 = new Pane();
+        gameScene.setRoot(root1);
+        ModeDeJeuInt a = new ModeDeJeuInt(root1, gameScene);
+        a.start(primaryStage);
     });
-
-
-     
-
+    
     primaryStage.setScene(gameScene);
     primaryStage.show(); 
 
