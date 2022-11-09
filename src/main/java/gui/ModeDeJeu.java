@@ -27,8 +27,8 @@ public class ModeDeJeu extends Application {
     }
 
     public void start (Stage primaryStage) {
-     
-    Image image = new Image("file:src/Pictures/pong1.png");
+        
+        Image image = new Image("file:src/Pictures/pong1.png");
         ImageView imageView = new ImageView(image);
         imageView.setLayoutX(350);
         imageView.setLayoutY(10);
@@ -72,25 +72,25 @@ public class ModeDeJeu extends Application {
         Background bGround = new Background(bImg);
         root.setBackground(bGround);
 
-    root.getChildren().add(imageView);
-    root.getChildren().addAll(oneVSone, oneVSBot, twoVStwo, Retour, OneVSOneVSOneVSOne);
+        root.getChildren().add(imageView);
+        root.getChildren().addAll(oneVSone, oneVSBot, twoVStwo, Retour, OneVSOneVSOneVSOne);
 
-    Retour.setOnAction(ev1 -> {
-        Pane root1 = new Pane();
-        gameScene.setRoot(root1);
-        Menu a = new Menu(root1, gameScene);
-        a.start(primaryStage);
-    });
+        Retour.setOnAction(ev1 -> {
+            Pane root1 = new Pane();
+            gameScene.setRoot(root1);
+            Menu a = new Menu(root1, gameScene);
+            a.start(primaryStage);
+        });
 
-    oneVSone.setOnAction(ev1 -> {    
-        Pane root1 = new Pane();
-        gameScene.setRoot(root1);
-        ModeDeJeuInt a = new ModeDeJeuInt(root1, gameScene);
-        a.start(primaryStage);
-    });
-    
-    primaryStage.setScene(gameScene);
-    primaryStage.show(); 
+        oneVSone.setOnAction(ev1 -> {    
+            Pane root1 = new Pane();
+            gameScene.setRoot(root1);
+            ModeDeJeuInt a = new ModeDeJeuInt(root1, gameScene);
+            a.start(primaryStage);
+        });
+        
+        primaryStage.setScene(gameScene);
+        primaryStage.show(); 
 
     }
 

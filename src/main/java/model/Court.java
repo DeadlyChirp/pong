@@ -130,9 +130,9 @@ public class Court {
     /**
      * @return true if a player lost
      */
-    static Image fin = new Image("file:src/Pictures/WinJ2.png");
+    static Image fin = new Image("file:src/Pictures/WinJ22.png");
     public static ImageView finJ2 = new ImageView(fin);
-    static Image fin1 = new Image("file:src/Pictures/WinJ1.png");
+    static Image fin1 = new Image("file:src/Pictures/WinJ11.png");
     public static ImageView finJ1 = new ImageView(fin1);
     static Image smoke = new Image("file:src/Pictures/whitesmoke.png");
     public static ImageView whitesmoke = new ImageView(smoke);
