@@ -41,6 +41,15 @@ public class Court {
         reset();
     }
 
+    public Court(RacketController playerA, RacketController playerB, double width, double height) {
+        this.playerA = playerA;
+        this.playerB = playerB;
+        this.width = width;
+        this.height = height;
+        this.score = new Score(999999999); //à retravailler !!
+        reset();
+    }
+
     public void setBallX (double ballX) {
         this.ballX = ballX ; 
     }
