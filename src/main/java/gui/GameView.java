@@ -1,5 +1,5 @@
 package gui;
-
+import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
@@ -8,6 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
 import model.Court;
+import model.*;
 
 /* ------------------------------------------------------------------------------------------------------*/
 
@@ -15,6 +16,7 @@ import model.Court;
 
 public class GameView {
 
+   
     // class parameters
     private final Court court;
     private final Pane gameRoot; // main node of the game
@@ -25,7 +27,7 @@ public class GameView {
     private final Rectangle racketA, racketB;
     private final Circle ball;
     public static boolean finGame;
-    public boolean pause ;
+    public static boolean pause ;
 
     int Timer = 60; //2sec
 
@@ -131,7 +133,24 @@ public class GameView {
                 court.getScore().getS2().setX(130);
                 court.getScore().getS2().setY(95);
 
-                gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
+                if (court instanceof TimeMode) {
+                    TimeMode t = (TimeMode)court;
+                    t.getTmp().setStyle("-fx-font: 60 arial;");
+                    t.getTmp().setX(515);
+                    t.getTmp().setY(95);
+
+        
+                    t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+            
+
+                    gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp());
+                    
+
+                } else {
+                    gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
+
+                }
+
 
     }
 
