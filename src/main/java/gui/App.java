@@ -23,7 +23,7 @@ import java.io.File;
 
 //App, fichier du jeu in-game
 //Implémentation du menu pause : Fait
-//Implémentation du menu de fin de jeu : à faire (besoin du score et du timer)
+//Implémentation du menu de fin de jeu : fait
 
 public class App extends Application {
 
@@ -160,7 +160,10 @@ public class App extends Application {
                         Recommencer.setLayoutY(350);
                         Quitter.setLayoutY(350);
                         root.getChildren().remove(imageV);
-                        root.getChildren().removeAll(Court.finJ1, Court.finJ2, Court.whitesmoke);
+                        if (GameView.finGame){
+                            root.getChildren().remove(root.getChildren().size()-3) ; 
+                            root.getChildren().remove(root.getChildren().size()-3) ;  
+                        } 
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.reset() ; 
                         court.getScore().reset();
@@ -264,7 +267,9 @@ public class App extends Application {
             Pane root1 = new Pane();
             gameScene.setRoot(root1);
             Menu a = new Menu(root1, gameScene);
-            if(court instanceof TimeMode) court.closeTimer();
+            if(court instanceof TimeMode) {
+                court.closeTimer();
+            }
             a.start(primaryStage);
         });
 
@@ -276,9 +281,17 @@ public class App extends Application {
 
         //Action du bouton Recommencer
         Recommencer.setOnAction(ev1 ->{
+            Quitter.setLayoutX(320);
+            Recommencer.setLayoutX(695);
+            Recommencer.setLayoutY(350);
+            Quitter.setLayoutY(350);
             root.getChildren().remove(imageV);
+            if (GameView.finGame){
+                root.getChildren().remove(root.getChildren().size()-3) ; 
+                root.getChildren().remove(root.getChildren().size()-3) ;  
+            }           
             root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
-           court.reset() ; 
+            court.reset() ;  
            court.getScore().reset();
            gameView.pause = false ; 
            gameView.finGame = false;

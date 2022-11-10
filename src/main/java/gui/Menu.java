@@ -82,10 +82,9 @@ public class Menu extends Application{
         Easter.setOpacity(0);
 
         //Mise en place du background animé
-        Image image7 = new Image(new File("src/Pictures/fond1.gif").toURI().toString());
-        BackgroundImage bImg = new BackgroundImage(image7, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        root.setBackground(bGround);
+
+        root.setStyle("-fx-background-image: url('file:src/Pictures/fond1.gif');");
+        root.getStyleClass().addAll("root");
 
        //Setting du Stage
         primaryStage.setWidth(1200);
