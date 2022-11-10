@@ -109,14 +109,14 @@ public class ModeDeJeuInt extends Application {
         //Bouton SpeedMode
         Button speedmode = new Button("Speed Mode");
         speedmode.setLayoutX(520);
-        speedmode.setLayoutY(200);
+        speedmode.setLayoutY(400);
         speedmode.setEffect(new ImageInput(new Image("file:src/Pictures/speedmode.png")));
         speedmode.setSkin(new MyButtonSkin(speedmode));
 
         //Bouton ScoreMode
         Button scoreMode = new Button("Score Mode");
         scoreMode.setLayoutX(520);
-        scoreMode.setLayoutY(400);
+        scoreMode.setLayoutY(200);
         scoreMode.setEffect(new ImageInput(new Image("file:src/Pictures/scoremode.png")));
         scoreMode.setSkin(new MyButtonSkin(scoreMode));
 
