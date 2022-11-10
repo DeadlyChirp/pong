@@ -1,4 +1,6 @@
 package model;
+import java.util.Random;
+
 import gui.GameView;
 import javafx.scene.image.ImageView;
 import javafx.application.Application;
@@ -46,7 +48,7 @@ public class Court {
         this.playerB = playerB;
         this.width = width;
         this.height = height;
-        this.score = new Score(999999999); //à retravailler !!
+        this.score = new Score(-1); 
         reset();
     }
 
@@ -139,14 +141,8 @@ public class Court {
     /**
      * @return true if a player lost
      */
-    static Image fin = new Image("file:src/Pictures/WinJ22.png");
-    public static ImageView finJ2 = new ImageView(fin);
-    static Image fin1 = new Image("file:src/Pictures/WinJ11.png");
-    public static ImageView finJ1 = new ImageView(fin1);
-    static Image smoke = new Image("file:src/Pictures/whitesmoke.png");
-    public static ImageView whitesmoke = new ImageView(smoke);
-
-    private boolean updateBall(double deltaT) {
+    
+    public boolean updateBall(double deltaT) {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
@@ -154,35 +150,25 @@ public class Court {
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY; 
             nextBallY = ballY + deltaT * ballSpeedY ;
+            nextBallX = ballX + ((ballSpeedX<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedX)); 
         }
 
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)  || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) { 
             ballSpeedX = -ballSpeedX; 
             nextBallX = ballX + deltaT * ballSpeedX ;
+            nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
         }else if (nextBallX < 0) { 
             score.addScore1();
             if (score.endGame() == 1){
                 GameView.finGame = true ;
-                gui.App.root.getChildren().add(whitesmoke);
-                gui.App.root.getChildren().add(finJ2);
-                gui.App.Quitter.setLayoutX(370);
-                gui.App.Recommencer.setLayoutX(695);
-                gui.App.Recommencer.setLayoutY(400);
-                gui.App.Quitter.setLayoutY(390);
-                gui.App.root.getChildren().addAll(gui.App.Quitter, gui.App.Recommencer);
+                GameView.endGame(1);
             }
             return true;
         }else if (nextBallX > width) { 
             score.addScore2();
             if (score.endGame() == 1){
                 GameView.finGame = true ;
-                gui.App.root.getChildren().add(whitesmoke);
-                gui.App.root.getChildren().add(finJ1);
-                gui.App.Quitter.setLayoutX(370);
-                gui.App.Recommencer.setLayoutX(695);
-                gui.App.Recommencer.setLayoutY(400);
-                gui.App.Quitter.setLayoutY(390);
-                gui.App.root.getChildren().addAll(gui.App.Quitter,  gui.App.Recommencer);
+                GameView.endGame(2);
             }
             return true;
         }
@@ -199,8 +185,8 @@ public class Court {
     public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
-        this.ballSpeedX = 200.0;
-        this.ballSpeedY = 200.0;
+        this.ballSpeedX = (((int)(Math.random()*10))>5)?-200:200;
+        this.ballSpeedY = (((int)(Math.random()*10))>5)?200:-200;
         this.ballX = width / 2;
         this.ballY = height / 2;
     }

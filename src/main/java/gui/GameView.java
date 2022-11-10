@@ -2,8 +2,8 @@ package gui;
 import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
-import javafx.scene.text.Text;
-import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -24,6 +24,7 @@ public class GameView {
     private final Pane gameRoot; // main node of the game
     private final double scale;
     private final double Margin = 100.0, racketThickness = 10.0, Interface = 100.0; // pixels
+    public static String theme ; 
 
     // children of the game main node
     private final Rectangle racketA, racketB;
@@ -54,12 +55,13 @@ public class GameView {
      * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
      * @param scale le facteur d'échelle entre les distances du modèle et le nombre de pixels correspondants dans la vue
      */
-    public GameView(Court court, Pane root, double scale) {
+    public GameView(Court court, Pane root, double scale ) {
         this.court = court;
         this.gameRoot = root;
-        this.scale = scale;
-        this.pause = false ;
-        this.finGame = false ; 
+        this.scale = scale; 
+
+        pause = false ; 
+        finGame = false ; 
 
         root.setMinWidth(court.getWidth() * scale + 2 * Margin);
         root.setMinHeight(court.getHeight() * scale + Margin + Interface);
@@ -154,6 +156,24 @@ public class GameView {
                 }
 
 
+    }
+
+    public static void endGame (int player) {
+        System.out.println("lol");
+        Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":"file:src/Pictures/WinJ11.png");
+        ImageView finJ = new ImageView(fin);
+        Image smoke = new Image("file:src/Pictures/whitesmoke.png");
+        ImageView whitesmoke = new ImageView(smoke);
+        System.out.println("loll");
+        App.root.getChildren().add(whitesmoke);
+        App.root.getChildren().add(finJ);
+        System.out.println("lolll");
+        App.Quitter.setLayoutX(370);
+        App.Recommencer.setLayoutX(695);
+        App.Recommencer.setLayoutY(400);
+        App.Quitter.setLayoutY(390);
+        App.root.getChildren().addAll(gui.App.Quitter, gui.App.Recommencer);
+        System.out.println("lolllll");
     }
 
     public void animate() {

@@ -124,10 +124,9 @@ public class Commande extends Application{
         save.setEffect(new ImageInput(new Image("file:src/Pictures/enregistrer.png")));
         save.setSkin(new MyButtonSkin(save));
 
-        Image image7 = new Image(new File("src/Pictures/CommandeFond.gif").toURI().toString());
-        BackgroundImage bImg = new BackgroundImage(image7, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        root.setBackground(bGround);
+        //Set Background
+        root.setStyle("-fx-background-image: url('file:src/Pictures/CommandeFond.gif');");
+        root.getStyleClass().addAll("root");
 
         root.getChildren().addAll(Retour, save, bUp1, bDown1, bUp2, bDown2);
 

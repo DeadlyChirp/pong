@@ -181,19 +181,20 @@ public class ModeDeJeuInt extends Application {
 
         timermode.setOnAction(ev1->{
             ArrayList<Integer> duree = new ArrayList<Integer>();
+            duree.add(5);
             duree.add(15);
             duree.add(30);
             duree.add(60);
             duree.add(120);
     
             ArrayList<Integer> manche = new ArrayList<Integer>();
-            manche.add(5);
+            manche.add(2);
             manche.add(10);
             manche.add(15);
             manche.add(20);
     
     
-            ChoiceDialog<Integer> dialogManche = new ChoiceDialog<Integer>(5, manche);
+            ChoiceDialog<Integer> dialogManche = new ChoiceDialog<Integer>(2, manche);
             dialogManche.initOwner(primaryStage);
             dialogManche.setTitle("Limite de la partie");
             dialogManche.setHeaderText("Veuillez choisir un nombre de manches");
