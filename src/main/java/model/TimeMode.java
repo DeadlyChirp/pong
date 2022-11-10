@@ -43,6 +43,7 @@ public boolean updateBall(double deltaT) {
           if (nbManche == 0) {
             GameView.finGame = true;
             GameView.endGame(winner());
+            
             timer.cancel();
           }
           // first, compute possible next position if nothing stands in the way

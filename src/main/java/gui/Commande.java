@@ -115,9 +115,9 @@ public class Commande extends Application{
         save.setOnAction(evl -> {
             App.setCommandes(com);
             Pane root1 = new Pane();
-                    gameScene.setRoot(root1);
-                    Menu a = new Menu(root1, gameScene);
-                    a.start(primaryStage);
+            gameScene.setRoot(root1);
+            Menu a = new Menu(root1, gameScene);
+            a.start(primaryStage);
         });
         save.setLayoutX(550);
         save.setLayoutY(570);
