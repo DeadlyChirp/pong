@@ -152,15 +152,51 @@ public class ModeDeJeuInt extends Application {
         });
 
         scoreMode.setOnAction(ev1 -> {
-            Pane root1 = new Pane();
-            gameScene.setRoot(root1);
-            App a = new App(root1, gameScene); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
-            a.start(primaryStage);
+
+            ArrayList<Integer> limiteS = new ArrayList<Integer>();
+            limiteS.add(2);
+            limiteS.add(4);
+            limiteS.add(6);
+            limiteS.add(8);
+
+            ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(2, limiteS);
+            limiteScore.initOwner(primaryStage);
+            limiteScore.setTitle("Limite de Score");
+            limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");
+            limiteScore.setContentText("Nombre : ");
+
+            Optional<Integer> limitScore = limiteScore.showAndWait();
+
+            limitScore.ifPresent(limite -> {
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
+                a.start(primaryStage);
+            });   
         });
 
         speedmode.setOnAction(ev1->{
 
-            //Utilser pour speedmode de Samy
+            ArrayList<Integer> limiteS = new ArrayList<Integer>();
+            limiteS.add(2);
+            limiteS.add(4);
+            limiteS.add(6);
+            limiteS.add(8);
+
+            ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(2, limiteS);
+            limiteScore.initOwner(primaryStage);
+            limiteScore.setTitle("Limite de Score");
+            limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");
+            limiteScore.setContentText("Nombre : ");
+
+            Optional<Integer> limitScore = limiteScore.showAndWait();
+
+            limitScore.ifPresent(limite -> {
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
+                a.startSpeed(primaryStage);
+            });   
         });
 
         lifemode.setOnAction(ev1->{
@@ -201,6 +237,7 @@ public class ModeDeJeuInt extends Application {
             dialogManche.setContentText("Nombre : ");
     
             Optional<Integer> ecouteManche = dialogManche.showAndWait();
+
             ecouteManche.ifPresent(limit -> {
                 ChoiceDialog<Integer> dialogDuree = new ChoiceDialog<Integer>(15, duree);
                 dialogDuree.initOwner(primaryStage);
@@ -210,11 +247,10 @@ public class ModeDeJeuInt extends Application {
     
                 Optional<Integer> ecouteDuree = dialogDuree.showAndWait();
                 ecouteDuree.ifPresent(time -> {
-    
-                Pane root1 = new Pane();
-                gameScene.setRoot(root1);
-                App a = new App(root1, gameScene);
-                a.startTimer(primaryStage, limit, time);
+                    Pane root1 = new Pane();
+                    gameScene.setRoot(root1);
+                    App a = new App(root1, gameScene, -1);
+                    a.startTimer(primaryStage, limit, time);
                 });
             
             });

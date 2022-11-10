@@ -159,21 +159,17 @@ public class GameView {
     }
 
     public static void endGame (int player) {
-        System.out.println("lol");
         Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":"file:src/Pictures/WinJ11.png");
         ImageView finJ = new ImageView(fin);
         Image smoke = new Image("file:src/Pictures/whitesmoke.png");
         ImageView whitesmoke = new ImageView(smoke);
-        System.out.println("loll");
         App.root.getChildren().add(whitesmoke);
         App.root.getChildren().add(finJ);
-        System.out.println("lolll");
         App.Quitter.setLayoutX(370);
         App.Recommencer.setLayoutX(695);
         App.Recommencer.setLayoutY(400);
         App.Quitter.setLayoutY(390);
         App.root.getChildren().addAll(gui.App.Quitter, gui.App.Recommencer);
-        System.out.println("lolllll");
     }
 
     public void animate() {
