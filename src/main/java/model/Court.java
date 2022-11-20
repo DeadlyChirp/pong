@@ -2,19 +2,7 @@ package model;
 import java.util.Random;
 
 import gui.GameView;
-import javafx.scene.image.ImageView;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import model.Court;
-import model.RacketController;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-import javafx.scene.image.*;
-import javafx.scene.effect.ImageInput;
 
 public class Court {
     // instance parameters

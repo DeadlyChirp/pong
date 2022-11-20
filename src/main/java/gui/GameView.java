@@ -34,25 +34,12 @@ public class GameView {
 
     int Timer = 60; //2sec
 
-    void setFin(boolean b){
-        finGame = b;
-    }
 
-
-    public static boolean getFin(){
-        return finGame;
-    }
-    void setPause(boolean b){
-        pause = b;
-    }
-    boolean getPause(){
-        return pause;
-    }
 
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
-     * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
+     * @pic boolean pause ;aram root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
      * @param scale le facteur d'échelle entre les distances du modèle et le nombre de pixels correspondants dans la vue
      */
     public GameView(Court court, Pane root, double scale ) {
@@ -137,24 +124,19 @@ public class GameView {
                 court.getScore().getS2().setX(130);
                 court.getScore().getS2().setY(95);
 
-                if (court instanceof TimeMode) {
-                    TimeMode t = (TimeMode)court;
-                    t.getTmp().setStyle("-fx-font: 60 arial;");
-                    t.getTmp().setX(515);
-                    t.getTmp().setY(95);
+        if (court instanceof TimeMode) {
+            TimeMode t = (TimeMode)court;
+            t.getTmp().setStyle("-fx-font: 60 arial;");
+            t.getTmp().setX(515);
+            t.getTmp().setY(95);
 
-        
-                    t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+            t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
             
+            gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp()); 
+            return ;          
+        }
 
-                    gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp());
-                    
-
-                } else {
-                    gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
-
-                }
-
+        gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
 
     }
 

@@ -1,73 +1,22 @@
 package gui;
 import java.util.*;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.event.ActionEvent;
-import javafx.application.Application;
-import javafx.event.Event;
 import javafx.stage.Stage;
-import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import java.util.Optional;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
-
-
-import javafx.application.Application;
-import javafx.event.Event;
-import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.effect.ImageInput;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
-
 
 /*********************************************************************************************************************** */
 
 
 //Menu pour les différents modes de jeu interne. Il reste timer mode, fire mode et un autre mode à implémenter
 
-public class ModeDeJeuInt extends Application {
+public class ModeDeJeuInt {
 
     public Pane root;
     public Scene gameScene;
@@ -257,9 +206,6 @@ public class ModeDeJeuInt extends Application {
         
         });
         
-       
-        primaryStage.setScene(gameScene);
-        primaryStage.show(); 
         }
 
 }

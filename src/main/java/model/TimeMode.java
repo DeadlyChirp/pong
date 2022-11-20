@@ -1,15 +1,8 @@
 package model;
 
 import java.util.*;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import gui.App;
 import gui.GameView;
 import javafx.scene.text.*;
-
-import model.Court;
 
 
 public class TimeMode extends Court {

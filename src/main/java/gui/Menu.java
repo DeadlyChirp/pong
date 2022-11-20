@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
@@ -8,33 +7,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 
-import javafx.scene.layout.*;
-
 import javafx.scene.image.ImageView;
-import java.io.File; 
-
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.util.Duration;
 /* ------------------------------------------------------------------------------------------------------*/
 
 //Menu principale du Jeu 
 
 
-public class Menu extends Application{
+public class Menu {
 
     public Pane root;
     public Scene gameScene;
@@ -51,7 +30,6 @@ public class Menu extends Application{
         ImageView imageView = new ImageView(image);
         imageView.setLayoutX(350);
         imageView.setLayoutY(10);
-        
 
         //Bouton Play
         Button play = new Button("play") ;

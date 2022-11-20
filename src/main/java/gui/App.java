@@ -1,6 +1,5 @@
-
 package gui;
-import javafx.application.Application;
+
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import model.Court; //plus tard pour paramétrer taille, etc
@@ -12,7 +11,6 @@ import javafx.scene.layout.Pane;
 import model.RacketController;
 import javafx.scene.layout.*;
 import javafx.scene.effect.ImageInput;
-import model.Score;
 import model.TimeMode;
 
 
@@ -26,14 +24,14 @@ import java.io.File;
 //Implémentation du menu pause : Fait
 //Implémentation du menu de fin de jeu : fait
 
-public class App extends Application {
+public class App {
 
     public static Pane root;
     public Scene gameScene;
     public int limite;
 
     App(Pane root, Scene a, int limite){
-        this.root = root;
+        App.root = root;
         gameScene = a;
         this.limite=limite;
     }
@@ -84,7 +82,7 @@ public class App extends Application {
                     Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
                     Quitter.setSkin(new MyButtonSkin(Quitter));
                   
-                    
+ 
                     Reprendre.setLayoutX(485);
                     Reprendre.setLayoutY(350);
                     Reprendre.setMinSize(80, 80);
@@ -102,23 +100,25 @@ public class App extends Application {
                     gameScene.setOnKeyPressed(ev -> {
                         String s = ev.getCode().toString();
 
-                            if(s == commandes[0]){
-                                playerA.state = RacketController.State.GOING_UP;
-                            } else if(s == commandes[1]){
-                                playerA.state = RacketController.State.GOING_DOWN;
-                            } else if(s == commandes[2]){
-                                playerB.state = RacketController.State.GOING_UP;
-                            } else if(s == commandes[3]){
-                                playerB.state = RacketController.State.GOING_DOWN;
-                            } else if(s == "ESCAPE"){
-                               if(!gameView.pause && !GameView.getFin()){
+                        if(s == commandes[0]){
+                            playerA.state = RacketController.State.GOING_UP;
+                        } else if(s == commandes[1]){
+                            playerA.state = RacketController.State.GOING_DOWN;
+                        } else if(s == commandes[2]){
+                            playerB.state = RacketController.State.GOING_UP;
+                        } else if(s == commandes[3]){
+                            playerB.state = RacketController.State.GOING_DOWN;
+                        } else if(s == "ESCAPE"){
+                            if(!GameView.pause && !GameView.finGame){
                                 root.getChildren().add(imageV);
                                 root.getChildren().addAll(Quitter, Reprendre, Recommencer);
-                                gameView.pause = true;
-                               }else if(!GameView.getFin()){
-                                root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-                                gameView.pause = false ; 
-                               }
+                                GameView.pause = true;
+                           }else{
+                                if(!GameView.finGame){
+                                    root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
+                                    GameView.pause = false ; 
+                                }
+                            }    
                         }
                     });
 
@@ -145,15 +145,15 @@ public class App extends Application {
                     //Action du bouton Quitter
                     Quitter.setOnAction(ev1 -> {
                         Pane root1 = new Pane();
-                    gameScene.setRoot(root1);
-                    Menu a = new Menu(root1, gameScene);
-                    a.start(primaryStage);
+                        gameScene.setRoot(root1);
+                        Menu a = new Menu(root1, gameScene);
+                        a.start(primaryStage);
                     });
 
                     //Action du bouton Reprendre
                     Reprendre.setOnAction(ev1 ->{
                         root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-                        gameView.pause = false ; 
+                        GameView.pause = false ; 
                     });
 
                     //Action du bouton Recommencer
@@ -170,7 +170,7 @@ public class App extends Application {
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.reset() ; 
                         court.getScore().reset();
-                        gameView.pause = false ; 
+                        GameView.pause = false ; 
                         GameView.finGame = false;
                     });			
 
@@ -234,13 +234,13 @@ public class App extends Application {
                 } else if(s == commandes[3]){
                     playerB.state = RacketController.State.GOING_DOWN;
                 } else if(s == "ESCAPE"){
-                   if(!gameView.pause && !GameView.getFin()){
+                   if(!GameView.pause && !GameView.finGame){
                     root.getChildren().add(imageV);
                     root.getChildren().addAll(Quitter, Reprendre, Recommencer);
-                    gameView.pause = true;
-                   }else if(!GameView.getFin()){
+                    GameView.pause = true;
+                   }else if(!GameView.finGame){
                     root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-                    gameView.pause = false ; 
+                    GameView.pause = false ; 
                    }
             }
         });
@@ -280,7 +280,7 @@ public class App extends Application {
         //Action du bouton Reprendre
         Reprendre.setOnAction(ev1 ->{
             root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-            gameView.pause = false ; 
+            GameView.pause = false ; 
         });
 
         //Action du bouton Recommencer
@@ -297,8 +297,8 @@ public class App extends Application {
             root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
             court.reset() ;  
            court.getScore().reset();
-           gameView.pause = false ; 
-           gameView.finGame = false;
+           GameView.pause = false ; 
+           GameView.finGame = false;
            if(court instanceof TimeMode) court.commencerTimer();
         });	
     }
@@ -362,13 +362,13 @@ public class App extends Application {
                 } else if(s == commandes[3]){
                     playerB.state = RacketController.State.GOING_DOWN;
                 } else if(s == "ESCAPE"){
-                   if(!gameView.pause && !GameView.getFin()){
+                   if(!GameView.pause && !GameView.finGame){
                     root.getChildren().add(imageV);
                     root.getChildren().addAll(Quitter, Reprendre, Recommencer);
-                    gameView.pause = true;
-                   }else if(!GameView.getFin()){
+                    GameView.pause = true;
+                   }else if(!GameView.finGame){
                     root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-                    gameView.pause = false ; 
+                    GameView.pause = false ; 
                    }
             }
         });
@@ -404,7 +404,7 @@ public class App extends Application {
         //Action du bouton Reprendre
         Reprendre.setOnAction(ev1 ->{
             root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
-            gameView.pause = false ; 
+            GameView.pause = false ; 
         });
 
         //Action du bouton Recommencer
@@ -421,7 +421,7 @@ public class App extends Application {
             root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
             court.reset() ; 
             court.getScore().reset();
-            gameView.pause = false ; 
+            GameView.pause = false ; 
             GameView.finGame = false;
         });			
 
