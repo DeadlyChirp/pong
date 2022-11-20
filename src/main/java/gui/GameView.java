@@ -10,6 +10,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
 import model.Court;
+import model.CourtObstacles.Obstacle;
 import model.*;
 
 /* ------------------------------------------------------------------------------------------------------*/
@@ -23,7 +24,7 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double Margin = 100.0, racketThickness = 10.0, Interface = 100.0; // pixels
+    private final double margin = 100.0, racketThickness = 10.0, inTerface = 100.0; // pixels
     public static String theme ; 
 
     // children of the game main node
@@ -50,8 +51,8 @@ public class GameView {
         pause = false ; 
         finGame = false ; 
 
-        root.setMinWidth(court.getWidth() * scale + 2 * Margin);
-        root.setMinHeight(court.getHeight() * scale + Margin + Interface);
+        root.setMinWidth(court.getWidth() * scale + 2 * margin);
+        root.setMinHeight(court.getHeight() * scale + margin + inTerface);
 
         //Affichage de la balle et des raquettes
 
@@ -60,23 +61,23 @@ public class GameView {
             racketA.setWidth(racketThickness);
             racketA.setFill(Color.valueOf("#375745"));
 
-            racketA.setX(Margin - racketThickness);
-            racketA.setY(court.getRacketA() * scale + Interface + Margin/2);
+            racketA.setX(margin - racketThickness);
+            racketA.setY(court.getRacketA() * scale + inTerface + margin/2);
 
             racketB = new Rectangle();
             racketB.setHeight(court.getRacketSize() * scale);
             racketB.setWidth(racketThickness);
             racketB.setFill(Color.valueOf("#375745"));
 
-            racketB.setX(court.getWidth() * scale + Margin);
-            racketB.setY(court.getRacketB() * scale + Interface + Margin/2);
+            racketB.setX(court.getWidth() * scale + margin);
+            racketB.setY(court.getRacketB() * scale + inTerface + margin/2);
 
             ball = new Circle();
             ball.setRadius(court.getBallRadius());
             ball.setFill(Color.valueOf("#375745"));
 
-            ball.setCenterX(court.getBallX() * scale + Margin);
-            ball.setCenterY(court.getBallY() * scale + Interface +  Margin/2);
+            ball.setCenterX(court.getBallX() * scale + margin);
+            ball.setCenterY(court.getBallY() * scale + inTerface +  margin/2);
 
 
         //Affichage de l'interface
@@ -84,34 +85,34 @@ public class GameView {
             Group inter = new Group();
 
                 Rectangle cadre = new Rectangle();
-                cadre.setX(Margin/2);
-                cadre.setY(Margin/4);
-                cadre.setWidth(court.getWidth() + Margin );
-                cadre.setHeight(Interface);
+                cadre.setX(margin/2);
+                cadre.setY(margin/4);
+                cadre.setWidth(court.getWidth() + margin );
+                cadre.setHeight(inTerface);
                 cadre.setStroke(Color.valueOf("#375745"));
                 cadre.setStrokeWidth(5);
                 cadre.setFill(null);      
                 inter.getChildren().addAll(cadre);
 
                 Line l1 = new Line();
-                l1.setStartX(Margin/2);
-                l1.setStartY(Interface + Margin/2 - ball.getRadius());
-                l1.setEndX(Margin + Margin/2 + court.getWidth());
-                l1.setEndY(Interface + Margin/2 - ball.getRadius());
+                l1.setStartX(margin/2);
+                l1.setStartY(inTerface + margin/2 - ball.getRadius());
+                l1.setEndX(margin + margin/2 + court.getWidth());
+                l1.setEndY(inTerface + margin/2 - ball.getRadius());
                 l1.setStroke(Color.valueOf("#375745"));
                 l1.setStrokeWidth(5);
 
                 Line l2 = new Line();
-                l2.setStartX(Margin/2);
-                l2.setStartY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
-                l2.setEndX(Margin + Margin/2 + court.getWidth());
-                l2.setEndY(Interface + Margin/2 + court.getHeight() + ball.getRadius());
+                l2.setStartX(margin/2);
+                l2.setStartY(inTerface + margin/2 + court.getHeight() + ball.getRadius());
+                l2.setEndX(margin + margin/2 + court.getWidth());
+                l2.setEndY(inTerface + margin/2 + court.getHeight() + ball.getRadius());
                 l2.setStroke(Color.valueOf("#375745"));
                 l2.setStrokeWidth(5);
 
                 Rectangle zoneDeJeu = new Rectangle();
-                zoneDeJeu.setX(Margin);
-                zoneDeJeu.setY(Interface + Margin/2);
+                zoneDeJeu.setX(margin);
+                zoneDeJeu.setY(inTerface + margin/2);
                 zoneDeJeu.setWidth(court.getWidth());
                 zoneDeJeu.setHeight(court.getHeight());
                 zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
@@ -136,9 +137,55 @@ public class GameView {
             return ;          
         }
 
+        if (court instanceof CourtObstacles) {
+            ((CourtObstacles)court).setGameView(this);
+            Obstacle [] t = ((CourtObstacles)court).getObstacles() ; 
+            for (int i = 0; i < t.length; i++) {
+                addObst(t[i]);
+            }
+            return ; 
+        }
+
         gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
 
     }
+
+    public void addObst (Obstacle obst) {//done
+        obst.getShape().setStroke(Color.BLACK);
+        if (obst.isDestroyable()) {
+            // transparent avec bordures noires option 
+            // requires avis !
+            //obst.getShape().setFill(Color.rgb(0, 0, 0 , 0));
+            obst.getShape().setFill(Color.rgb(51, 204, 00 , 0.4));
+        }else{
+            obst.getShape().setFill(Color.rgb(240, 40, 14 , 0.4));            
+        }
+        if (obst.getId() == 0) {
+            Rectangle rec = ((Rectangle)obst.getShape()) ; 
+            rec.setX(obst.getPosX()*scale + margin);
+            rec.setY(obst.getPosY()*scale + margin/2 + inTerface);
+            gameRoot.getChildren().addAll(rec) ; 
+        }else{
+            Circle cir = ((Circle)obst.getShape()) ; 
+            cir.setCenterX(obst.getPosX()*scale + margin);
+            cir.setCenterY(obst.getPosY()*scale + margin/2 + inTerface);
+            gameRoot.getChildren().addAll(cir) ; 
+        }
+    }
+
+    public void destroyObst (Obstacle obst) {//done
+        gameRoot.getChildren().removeAll((obst.getId() == 0)?(Rectangle)obst.getShape():(Circle)obst.getShape()) ; 
+    }
+
+    public void updateObstacle (Obstacle obstacle) {//done
+        if (obstacle.getId() == 0 ) {
+            ((Rectangle)obstacle.getShape()).setY(obstacle.getPosY() + margin/2 + inTerface );
+            return ; 
+        }
+        ((Circle)obstacle.getShape()).setCenterY(obstacle.getPosY() + margin/2 + inTerface);
+    }
+
+
 
     public static void endGame (int player) {
         Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":"file:src/Pictures/WinJ11.png");
@@ -170,10 +217,10 @@ public class GameView {
                     
                     court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
-                    racketA.setY(court.getRacketA() * scale + Margin/2 + Interface);
-                    racketB.setY(court.getRacketB() * scale + Margin/2 + Interface);
-                    ball.setCenterX(court.getBallX() * scale + Margin);
-                    ball.setCenterY(court.getBallY() * scale + Margin/2 + Interface);
+                    racketA.setY(court.getRacketA() * scale + margin/2 + inTerface);
+                    racketB.setY(court.getRacketB() * scale + margin/2 + inTerface);
+                    ball.setCenterX(court.getBallX() * scale + margin);
+                    ball.setCenterY(court.getBallY() * scale + margin/2 + inTerface);
                 }else{
                     last = 0 ; 
                 }
