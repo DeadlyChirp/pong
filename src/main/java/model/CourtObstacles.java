@@ -12,26 +12,24 @@ public class CourtObstacles extends Court {
     private Obstacle [] obstacles ;
     private char tireur ; 
 
-
     public CourtObstacles (RacketController playerA, RacketController playerB, double width, double height, int limit) {
         super(playerA, playerB, width, height, limit) ;
         obstacles = new Obstacle [4] ;
         for (int i = 0 ; i<4 ; i++){
             obstacles[i] = genObstacle(this, i) ; 
-            System.out.println("Obstales[" + i + "].bonus = " + obstacles[i].bonus );
         }  
     }
 
-    public Obstacle[] getObstacles () {//oki
+    public Obstacle[] getObstacles () {
         return this.obstacles ; 
     }
 
-    public void setGameView (GameView gameView) {//oki
+    public void setGameView (GameView gameView) {
         this.gameView = gameView ; 
     }
 
     @Override
-    public void update (double deltaT) {//oki
+    public void update (double deltaT) {
         for (Obstacle x : obstacles) {
             if (x.mobile) {
                 x.updateObstacle(deltaT);
@@ -41,9 +39,8 @@ public class CourtObstacles extends Court {
         super.update(deltaT);
     }
 
-
     @Override
-    public boolean updateBall (double deltaT) { // !oki
+    public boolean updateBall (double deltaT) { 
         double nextBallX = getBallX() + getBallSpeedX()*deltaT ;
         double nextBallY = getBallY() + getBallSpeedY()*deltaT ; 
         Random rm = new Random() ; 
@@ -97,12 +94,14 @@ public class CourtObstacles extends Court {
                     getScore().addScore1();
                     if (getScore().endGame() != -1) {
                         GameView.finGame = true ; 
+                        GameView.endGame(1);
                     }
                     return true ; 
             }else if (nextBallX > getWidth()) {
                     getScore().addScore2();
                     if (getScore().endGame() != -1) {
                         GameView.finGame = true ; 
+                        GameView.endGame(2);
                     }
                     return true ; 
             }
@@ -184,9 +183,9 @@ public class CourtObstacles extends Court {
                     a.bonus = "null" ; 
                     break ;               
             } 
-
             return a ; 
         }
+    
     public class Obstacle {
         private Shape shape ; // rectangle || circle 
         private boolean mobile ; // true , false if not
@@ -206,7 +205,7 @@ public class CourtObstacles extends Court {
             this.id = (shape instanceof Rectangle)?0:1 ;  
         }
         
-        public double getPosY() {//oki
+        public double getPosY() {
             return posY;
         }
 
@@ -214,25 +213,26 @@ public class CourtObstacles extends Court {
             return pv != -1 ; 
         }
 
-        public double getPosX() {//oki
+        public double getPosX() {
             return posX;
         }
 
-        public Shape getShape () {//oki
+        public Shape getShape () {
             return this.shape ; 
         }
 
-        public int getId () {//oki
+        public int getId () {
             return this.id ; 
         }
 
-        public void damageObst () {//oki
+        public void damageObst () {
             pv-- ; 
         }
 
         private void activeBonus (int posTab) {
             switch (bonus) {
-                case "+1": 
+
+                case "+1":// ajoute 1pts 
                     if (tireur == 'd') {
                         getScore().addScore2() ; 
                     }else{
@@ -240,7 +240,7 @@ public class CourtObstacles extends Court {
                     }
                 break ; 
                 
-                case "-1" :
+                case "-1" ://fait perdre 1pts  
                     if (tireur == 'd') {
                         getScore().descreaseScore2();
                     }else{
@@ -248,24 +248,23 @@ public class CourtObstacles extends Court {
                     }
                 break ; 
                 
-                case "+V" :
+                case "+V" :// accelere la balle
                     setBallSpeedX(getBallSpeedX()*1.5);
                     setBallSpeedY(getBallSpeedY()*1.5);
                 break ; 
                 
-                case "+O" :
+                case "+O" :// genere un nouvel objet aleatoirement
                     int pos ; 
                     do{
                         pos = ((int)Math.random()*10)%4 ; 
                     }while(pos == posTab) ; 
-
                     Obstacle tmp = genObstacle(CourtObstacles.this, pos) ; 
                     gameView.destroyObst(obstacles[pos]);
                     obstacles[pos] = tmp ; 
                     gameView.addObst(tmp);
                 break ; 
 
-                case "+VO" :
+                case "+VO" :// accelere la vitesse des obstacles
                     for (Obstacle i : obstacles) {
                         i.vitesseObst*=1.25 ;
                     }
@@ -276,20 +275,15 @@ public class CourtObstacles extends Court {
             }
         }
 
-        private int ballMeetsObst (double nextBallX , double nextBallY) { // oki
+        private int ballMeetsObst (double nextBallX , double nextBallY) { 
             if (id == 0) {
                 Rectangle rec = (Rectangle)shape ;
-                if (( nextBallX >= posX && nextBallX <= posX + rec.getWidth() && nextBallY >= posY && nextBallY <= posY + rec.getHeight()) 
-                 ) {
-                    if (getBallX() <= posX || getBallX() >= posX + rec.getWidth()) {
-                        return 1 ;
-                    }     
-                    if (getBallY() <= posY || getBallY() >= posY + rec.getHeight()) {
-                        return 0 ;
-                    } 
+                // on check s'il y a colision
+                if (( nextBallX >= posX && nextBallX <= posX + rec.getWidth() && nextBallY >= posY && nextBallY <= posY + rec.getHeight())){
+                    if (getBallX() <= posX || getBallX() >= posX + rec.getWidth()) return 1 ;   
+                    if (getBallY() <= posY || getBallY() >= posY + rec.getHeight()) return 0 ; 
                     return ((int)(Math.random()*10))%3 ; 
-                 } 
-
+                } 
             }else{
                 Circle circ = (Circle)shape ; 
                 if ( Math.pow(nextBallX - posX, 2) + Math.pow(nextBallY - posY, 2) 
@@ -298,9 +292,7 @@ public class CourtObstacles extends Court {
             return -1 ; 
         }
 
-        
-    
-        private void updateObstacle (double deltaT) {//oki
+        private void updateObstacle (double deltaT) {
             double nextPosY = posY + vitesseObst*deltaT ; 
             if (id == 0) {
                 if (nextPosY <0 || nextPosY + ((Rectangle)shape).getHeight() > getHeight()) {
