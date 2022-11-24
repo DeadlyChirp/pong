@@ -127,19 +127,40 @@ public class GameView {
 
         if (court instanceof TimeMode) {
             TimeMode t = (TimeMode)court;
-            t.getTmp().setStyle("-fx-font: 60 arial;");
-            t.getTmp().setX(515);
+            Text afficheT = new Text("Temps : ");
+
+           afficheT.setStyle("-fx-font: 40 arial;");
+            afficheT.setX(265);
+            afficheT.setY(95);
+
+            t.getTmp().setStyle("-fx-font: 40 arial;");
+            t.getTmp().setX(455);
             t.getTmp().setY(95);
 
-            t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
-            
-            gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp()); 
-            return ;          
+            Text t1 = new Text("Manche : ");
+
+            t1.setStyle("-fx-font: 40 arial;");
+            t1.setX(655);
+            t1.setY(95);
+
+            t.getNbManche().setStyle("-fx-font: 40 arial;");
+            t.getNbManche().setX(855);
+            t.getNbManche().setY(95);
+
+
+
+
+            t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+    
+
+            gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp(), t1, t.getNbManche(), afficheT);
+            return;
         }
-        
+
         gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
 
-        if (court instanceof CourtObstacles) {
+
+         if (court instanceof CourtObstacles) {
             ((CourtObstacles)court).setGameView(this);
             Obstacle [] t = ((CourtObstacles)court).getObstacles() ; 
             for (int i = 0; i < t.length; i++) {
@@ -147,6 +168,7 @@ public class GameView {
             }
             return ; 
         }
+         gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
     }
 
     public void addObst (Obstacle obst) {//done
@@ -187,7 +209,7 @@ public class GameView {
 
 
     public static void endGame (int player) {
-        Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":(player ==2)?"file:src/Pictures/WinJ11.png":"lol");
+        Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":(player ==2)?"file:src/Pictures/WinJ11.png":"file:src/Pictures/egalite.png");
         ImageView finJ = new ImageView(fin);
         Image smoke = new Image("file:src/Pictures/whitesmoke.png");
         ImageView whitesmoke = new ImageView(smoke);

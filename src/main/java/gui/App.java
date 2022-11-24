@@ -37,6 +37,11 @@ public class App {
         this.limite=limite;
     }
 
+    App(Pane root, Scene a){
+        App.root = root;
+        gameScene = a;
+    }
+
     public static String[] commandes = {"A", "Q", "P", "M"};
 
     public static void setCommandes(String[] s){

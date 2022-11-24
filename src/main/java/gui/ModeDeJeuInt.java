@@ -1,6 +1,7 @@
 package gui;
 import java.util.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
@@ -213,14 +214,22 @@ public class ModeDeJeuInt {
             dialogManche.setHeaderText("Veuillez choisir un nombre de manches");
             dialogManche.setContentText("Nombre : ");
     
-            Optional<Integer> ecouteManche = dialogManche.showAndWait();
+            Optional<String> ecouteManche = dialogManche.showAndWait();
 
             ecouteManche.ifPresent(limit -> {
                 boolean b = false;
                 while(!b) {
                     try {
-                        Integer.valueOf(limit);
-                        b = true;
+                       int c = Integer.valueOf(limit);
+                       if (c > 0) b = true;
+                       else {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Erreur de saisie");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Vous devez saisir un entier strictement supérieur à 0.");
+                        alert.showAndWait();
+                        return;
+                       }
                      } catch (NumberFormatException e) {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Erreur de saisie");
@@ -240,16 +249,39 @@ public class ModeDeJeuInt {
     
                 Optional<String> ecouteDuree = dialogDuree.showAndWait();
                 ecouteDuree.ifPresent(time -> {
+                    boolean d = false;
+                    while(!d) {
+                        try {
+                           int k = Integer.valueOf(time);
+                           if (k > 0) d = true;
+                           else {
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Erreur de saisie");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Vous devez saisir un entier strictement supérieur à 0.");
+                            alert.showAndWait();
+                            return;
+                           }
+                         } catch (NumberFormatException e) {
+                            Alert alert = new Alert(AlertType.INFORMATION);
+                            alert.setTitle("Erreur de saisie");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Vous devez saisir un chiffre.");
+                            alert.showAndWait();
+                            return;
+                         }
+                        }
                     Pane root1 = new Pane();
                     gameScene.setRoot(root1);
-                    App a = new App(root1, gameScene, -1);
-                    a.startTimer(primaryStage, limit, time);
+                    App a = new App(root1, gameScene);
+                    a.startTimer(primaryStage, Integer.valueOf(limit), Integer.valueOf(time));
                 });
             
             });
         
         });
         
-        }
+        
 
+    }
 }
