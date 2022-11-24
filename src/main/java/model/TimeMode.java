@@ -1,15 +1,8 @@
 package model;
 
 import java.util.*;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import gui.App;
 import gui.GameView;
 import javafx.scene.text.*;
-
-import model.Court;
 
 
 public class TimeMode extends Court {
@@ -43,6 +36,7 @@ public boolean updateBall(double deltaT) {
           if (Integer.valueOf(nbManche.getText()) == nbMancheInitial+1) {
             GameView.finGame = true;
             GameView.endGame(winner());
+            
             timer.cancel();
           }
           // first, compute possible next position if nothing stands in the way

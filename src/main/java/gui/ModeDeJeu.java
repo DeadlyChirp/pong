@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
@@ -17,7 +16,7 @@ import javafx.scene.image.ImageView;
 
 //Menu pour les différents modes de jeu. On implémentera plus tard les modes de jeu interne aux 1vs1, 1vsBot ou 2vs2.
 
-public class ModeDeJeu extends Application {
+public class ModeDeJeu {
     public Pane root;
     public Scene gameScene;
 
@@ -33,21 +32,21 @@ public class ModeDeJeu extends Application {
         imageView.setLayoutX(350);
         imageView.setLayoutY(10);
 
-        //Bouton Play
+        //Bouton 1vs1
         Button oneVSone = new Button("1 VS 1") ;
         oneVSone.setLayoutX(70);
         oneVSone.setLayoutY(570);
         oneVSone.setEffect(new ImageInput(new Image("file:src/Pictures/1vs1.png")));
         oneVSone.setSkin(new MyButtonSkin(oneVSone));
 
-        //Bouton Option
+        //Bouton 1vsBot
         Button oneVSBot = new Button("1 VS Bot");
         oneVSBot.setLayoutX(351);
         oneVSBot.setLayoutY(570);
         oneVSBot.setEffect(new ImageInput(new Image("file:src/Pictures/1vsbot.png")));
         oneVSBot.setSkin(new MyButtonSkin(oneVSBot));
 
-        //Bouton quitter
+        //Bouton 2vs2
         Button twoVStwo = new Button("2 VS 2");
         twoVStwo.setLayoutX(660);
         twoVStwo.setLayoutY(570);
@@ -89,8 +88,7 @@ public class ModeDeJeu extends Application {
             a.start(primaryStage);
         });
         
-        primaryStage.setScene(gameScene);
-        primaryStage.show(); 
+
 
     }
 

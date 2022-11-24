@@ -1,40 +1,13 @@
 package gui;
+
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.event.Event;
-import javafx.stage.Stage;
-import javafx.scene.*;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
-import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
 
 import javafx.scene.control.TextField;
 
@@ -115,9 +88,9 @@ public class Commande extends Application{
         save.setOnAction(evl -> {
             App.setCommandes(com);
             Pane root1 = new Pane();
-                    gameScene.setRoot(root1);
-                    Menu a = new Menu(root1, gameScene);
-                    a.start(primaryStage);
+            gameScene.setRoot(root1);
+            Menu a = new Menu(root1, gameScene);
+            a.start(primaryStage);
         });
         save.setLayoutX(550);
         save.setLayoutY(570);

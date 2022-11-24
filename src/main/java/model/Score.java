@@ -34,8 +34,16 @@ public class Score {
         s1.setText(String.valueOf(Integer.valueOf(s1.getText())+1));
     }
 
+    public void descreaseScore2() { // added
+        if(!s2.getText().equals("0")) s2.setText(String.valueOf(Integer.valueOf(s1.getText())-1));
+    }
+
     public void addScore2(){
         s2.setText(String.valueOf(Integer.valueOf(s2.getText())+1));
+    }
+
+    public void descreaseScore1() {//done
+        if (!s1.getText().equals("0")) s1.setText(String.valueOf(Integer.valueOf(s1.getText())-1));
     }
 
     public int endGame() {

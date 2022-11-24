@@ -1,73 +1,21 @@
 package gui;
 import java.util.*;
-import javafx.event.EventHandler;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
-import javafx.event.ActionEvent;
-import javafx.application.Application;
-import javafx.event.Event;
 import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import java.util.Optional;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
-
-
-import javafx.application.Application;
-import javafx.event.Event;
-import javafx.stage.Stage;
-import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.effect.ImageInput;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.Scene;
-import model.Court;
-import model.RacketController;
-import java.io.InputStream;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.stage.Stage;
-
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.stage.Stage;
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner;
-
 
 /*********************************************************************************************************************** */
 
 
 //Menu pour les différents modes de jeu interne. Il reste timer mode, fire mode et un autre mode à implémenter
 
-public class ModeDeJeuInt extends Application {
+public class ModeDeJeuInt {
 
     public Pane root;
     public Scene gameScene;
@@ -152,15 +100,51 @@ public class ModeDeJeuInt extends Application {
         });
 
         scoreMode.setOnAction(ev1 -> {
-            Pane root1 = new Pane();
-            gameScene.setRoot(root1);
-            App a = new App(root1, gameScene); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
-            a.start(primaryStage);
+
+            ArrayList<Integer> limiteS = new ArrayList<Integer>();
+            limiteS.add(2);
+            limiteS.add(4);
+            limiteS.add(6);
+            limiteS.add(8);
+
+            ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(2, limiteS);
+            limiteScore.initOwner(primaryStage);
+            limiteScore.setTitle("Limite de Score");
+            limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");
+            limiteScore.setContentText("Nombre : ");
+
+            Optional<Integer> limitScore = limiteScore.showAndWait();
+
+            limitScore.ifPresent(limite -> {
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
+                a.start(primaryStage);
+            });   
         });
 
         speedmode.setOnAction(ev1->{
 
-            //Utilser pour speedmode de Samy
+            ArrayList<Integer> limiteS = new ArrayList<Integer>();
+            limiteS.add(2);
+            limiteS.add(4);
+            limiteS.add(6);
+            limiteS.add(8);
+
+            ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(2, limiteS);
+            limiteScore.initOwner(primaryStage);
+            limiteScore.setTitle("Limite de Score");
+            limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");
+            limiteScore.setContentText("Nombre : ");
+
+            Optional<Integer> limitScore = limiteScore.showAndWait();
+
+            limitScore.ifPresent(limite -> {
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
+                a.startSpeed(primaryStage);
+            });   
         });
 
         lifemode.setOnAction(ev1->{
@@ -174,7 +158,49 @@ public class ModeDeJeuInt extends Application {
         });
 
         obstaclemode.setOnAction(ev1->{
-
+            TextInputDialog dialog = new TextInputDialog("1");
+            dialog.initOwner(primaryStage);
+            dialog.setTitle("Choix Du Score");
+            dialog.setHeaderText("Vous Pouvez choisir le nombre de points à atteindre !");
+            dialog.setContentText("Veuillez entrer un score valide : \n" + 
+            "Tapez 'infini' si vous voulez pas de limite !");
+            dialog.setResizable(false);
+            
+            int limit = 0 ; 
+            Optional<String> result = dialog.showAndWait() ; 
+            if (result.isPresent()){
+                if (result.get().equals("infini")){
+                    limit = -1 ; 
+                }else{
+                    try {
+                        limit = Integer.valueOf(result.get().strip()) ; 
+                    } catch (NumberFormatException e) {
+                       dialog.setContentText("Veuillez entrer un nombre !");
+                       limit = 0 ; 
+                    }
+                }
+                if (limit == -1 || limit >0) {
+                    TextInputDialog di = new TextInputDialog() ; 
+                    di.setTitle("Choix Des Options");
+                    di.initOwner(primaryStage);
+                    GridPane gp = new GridPane() ;
+                    gp.add(new Label("Veuillez choisir vos options de jeu"), 0, 0);
+                    CheckBox vitesse = new CheckBox("Vitese") ; 
+                    gp.add(vitesse, 0, 1);
+                    di.getDialogPane().setContent(gp);
+                    if (di.showAndWait().isPresent()) {
+                        Pane root1 = new Pane() ; 
+                        gameScene.setRoot(root1);
+                        App app = new App(root1, gameScene, limit) ; 
+                        if (vitesse.isSelected()){             
+                            app.startObstacles(primaryStage, true);
+                        }else{
+                            app.startObstacles(primaryStage, false);
+                        }
+                    }
+                }
+            }
+                        
             //Utilser obstaclemode de Samy
         });
 
@@ -186,8 +212,9 @@ public class ModeDeJeuInt extends Application {
             dialogManche.setTitle("Limite de la partie");
             dialogManche.setHeaderText("Veuillez choisir un nombre de manches");
             dialogManche.setContentText("Nombre : ");
+    
+            Optional<Integer> ecouteManche = dialogManche.showAndWait();
 
-            Optional<String> ecouteManche = dialogManche.showAndWait();
             ecouteManche.ifPresent(limit -> {
                 boolean b = false;
                 while(!b) {
@@ -213,35 +240,16 @@ public class ModeDeJeuInt extends Application {
     
                 Optional<String> ecouteDuree = dialogDuree.showAndWait();
                 ecouteDuree.ifPresent(time -> {
-
-                boolean c = false;
-                while(!c) {
-                    try {
-                        Integer.valueOf(time);
-                        c = true;
-                     } catch (NumberFormatException e) {
-                        Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Erreur de saisie");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Vous devez saisir un chiffre.");
-                        alert.showAndWait();
-                        return;
-                     }
-                }
-    
-                Pane root1 = new Pane();
-                gameScene.setRoot(root1);
-                App a = new App(root1, gameScene);
-                a.startTimer(primaryStage, Integer.valueOf(limit), Integer.valueOf(time));
+                    Pane root1 = new Pane();
+                    gameScene.setRoot(root1);
+                    App a = new App(root1, gameScene, -1);
+                    a.startTimer(primaryStage, limit, time);
                 });
             
             });
         
         });
         
-       
-        primaryStage.setScene(gameScene);
-        primaryStage.show(); 
         }
 
 }
