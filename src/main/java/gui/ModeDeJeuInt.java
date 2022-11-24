@@ -2,7 +2,6 @@ package gui;
 import java.util.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -159,7 +158,49 @@ public class ModeDeJeuInt {
         });
 
         obstaclemode.setOnAction(ev1->{
-
+            TextInputDialog dialog = new TextInputDialog("1");
+            dialog.initOwner(primaryStage);
+            dialog.setTitle("Choix Du Score");
+            dialog.setHeaderText("Vous Pouvez choisir le nombre de points à atteindre !");
+            dialog.setContentText("Veuillez entrer un score valide : \n" + 
+            "Tapez 'infini' si vous voulez pas de limite !");
+            dialog.setResizable(false);
+            
+            int limit = 0 ; 
+            Optional<String> result = dialog.showAndWait() ; 
+            if (result.isPresent()){
+                if (result.get().equals("infini")){
+                    limit = -1 ; 
+                }else{
+                    try {
+                        limit = Integer.valueOf(result.get().strip()) ; 
+                    } catch (NumberFormatException e) {
+                       dialog.setContentText("Veuillez entrer un nombre !");
+                       limit = 0 ; 
+                    }
+                }
+                if (limit == -1 || limit >0) {
+                    TextInputDialog di = new TextInputDialog() ; 
+                    di.setTitle("Choix Des Options");
+                    di.initOwner(primaryStage);
+                    GridPane gp = new GridPane() ;
+                    gp.add(new Label("Veuillez choisir vos options de jeu"), 0, 0);
+                    CheckBox vitesse = new CheckBox("Vitese") ; 
+                    gp.add(vitesse, 0, 1);
+                    di.getDialogPane().setContent(gp);
+                    if (di.showAndWait().isPresent()) {
+                        Pane root1 = new Pane() ; 
+                        gameScene.setRoot(root1);
+                        App app = new App(root1, gameScene, limit) ; 
+                        if (vitesse.isSelected()){             
+                            app.startObstacles(primaryStage, true);
+                        }else{
+                            app.startObstacles(primaryStage, false);
+                        }
+                    }
+                }
+            }
+                        
             //Utilser obstaclemode de Samy
         });
 
