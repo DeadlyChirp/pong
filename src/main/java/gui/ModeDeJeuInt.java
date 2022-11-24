@@ -180,41 +180,59 @@ public class ModeDeJeuInt extends Application {
 
 
         timermode.setOnAction(ev1->{
-            ArrayList<Integer> duree = new ArrayList<Integer>();
-            duree.add(5);
-            duree.add(15);
-            duree.add(30);
-            duree.add(60);
-            duree.add(120);
-    
-            ArrayList<Integer> manche = new ArrayList<Integer>();
-            manche.add(2);
-            manche.add(10);
-            manche.add(15);
-            manche.add(20);
-    
-    
-            ChoiceDialog<Integer> dialogManche = new ChoiceDialog<Integer>(2, manche);
+            
+            TextInputDialog dialogManche = new TextInputDialog();
             dialogManche.initOwner(primaryStage);
             dialogManche.setTitle("Limite de la partie");
             dialogManche.setHeaderText("Veuillez choisir un nombre de manches");
             dialogManche.setContentText("Nombre : ");
-    
-            Optional<Integer> ecouteManche = dialogManche.showAndWait();
+
+            Optional<String> ecouteManche = dialogManche.showAndWait();
             ecouteManche.ifPresent(limit -> {
-                ChoiceDialog<Integer> dialogDuree = new ChoiceDialog<Integer>(15, duree);
+                boolean b = false;
+                while(!b) {
+                    try {
+                        Integer.valueOf(limit);
+                        b = true;
+                     } catch (NumberFormatException e) {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Erreur de saisie");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Vous devez saisir un chiffre.");
+                        alert.showAndWait();
+                        return;
+                     }
+                }
+
+
+                TextInputDialog dialogDuree = new TextInputDialog();
                 dialogDuree.initOwner(primaryStage);
                 dialogDuree.setTitle("Mode Timer");
                 dialogDuree.setHeaderText("Veuillez choisir la durée de chaque manche");
                 dialogDuree.setContentText("durée : ");
     
-                Optional<Integer> ecouteDuree = dialogDuree.showAndWait();
+                Optional<String> ecouteDuree = dialogDuree.showAndWait();
                 ecouteDuree.ifPresent(time -> {
+
+                boolean c = false;
+                while(!c) {
+                    try {
+                        Integer.valueOf(time);
+                        c = true;
+                     } catch (NumberFormatException e) {
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Erreur de saisie");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Vous devez saisir un chiffre.");
+                        alert.showAndWait();
+                        return;
+                     }
+                }
     
                 Pane root1 = new Pane();
                 gameScene.setRoot(root1);
                 App a = new App(root1, gameScene);
-                a.startTimer(primaryStage, limit, time);
+                a.startTimer(primaryStage, Integer.valueOf(limit), Integer.valueOf(time));
                 });
             
             });

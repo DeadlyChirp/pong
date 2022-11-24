@@ -174,7 +174,7 @@ public class App extends Application {
     }
     
     //pour le timer de timermode
-    public void startTimer(Stage primaryStage, int limit, int t)  {
+    public void startTimer(Stage primaryStage, int nbManche, int t)  {
 
         class Player implements RacketController {
             State state = State.IDLE;
@@ -189,7 +189,7 @@ public class App extends Application {
         BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background bGround = new Background(bImg);
         root.setBackground(bGround);
-        var court = new TimeMode(playerA, playerB, 1000, 600, limit, t);
+        var court = new TimeMode(playerA, playerB, 1000, 600, nbManche, t);
         var gameView = new GameView(court, root, 1);
 
          //Pour le menu de pause
@@ -269,6 +269,7 @@ public class App extends Application {
             Menu a = new Menu(root1, gameScene);
             if(court instanceof TimeMode) {
                 court.closeTimer();
+                court.resetNbManche();
             }
             a.start(primaryStage);
         });
