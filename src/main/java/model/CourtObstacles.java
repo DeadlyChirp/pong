@@ -20,6 +20,18 @@ public class CourtObstacles extends Court {
         }  
     }
 
+    public void refresh () {
+        for (Obstacle x : obstacles) {
+            gameView.destroyObst(x);
+        }
+        for (int i = 0 ; i<obstacles.length ; i++) {
+            obstacles[i] = genObstacle(this, i) ; 
+            gameView.addObst(obstacles[i]);
+        }
+        reset();
+        getScore().reset();
+    }
+
     public Obstacle[] getObstacles () {
         return this.obstacles ; 
     }

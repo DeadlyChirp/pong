@@ -136,6 +136,8 @@ public class GameView {
             gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter, t.getTmp()); 
             return ;          
         }
+        
+        gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
 
         if (court instanceof CourtObstacles) {
             ((CourtObstacles)court).setGameView(this);
@@ -145,9 +147,6 @@ public class GameView {
             }
             return ; 
         }
-
-        gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
-
     }
 
     public void addObst (Obstacle obst) {//done
