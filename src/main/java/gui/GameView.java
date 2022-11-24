@@ -168,7 +168,6 @@ public class GameView {
             }
             return ; 
         }
-         gameRoot.getChildren().addAll( court.getScore().getS2(), court.getScore().getS1(), zoneDeJeu, l1, l2, racketA, racketB, ball, inter);
     }
 
     public void addObst (Obstacle obst) {//done
