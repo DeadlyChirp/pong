@@ -40,9 +40,9 @@ public class Bot implements RacketController {
             }
     }
 
-    public void play (double posX , double nextBallX , double width) {
+    public void play (double posX , double posY ,  double nextBallY , double nextBallX , double width) {
         Random rm = new Random() ; 
-        if (posX <= width/2) {// on bouge aleatoirement
+        if (posX <= width/2 || nextBallX <= posX) {// on bouge aleatoirement
             renvoieBalle = false ; 
             calculRenvoieBalle = false ; 
             moveRandomDirection(rm);
@@ -50,7 +50,7 @@ public class Bot implements RacketController {
         }
         
         if (renvoieBalle) {// on doit renvoyer la balle
-            switch(calculDirection(posX , nextBallX)) {
+            switch(calculDirection(posY , nextBallY)) {
                 case -1 :
                     state = State.GOING_DOWN ; 
                     break ; 
