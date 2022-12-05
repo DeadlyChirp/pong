@@ -1,23 +1,15 @@
 package gui;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import model.Court; //plus tard pour paramétrer taille, etc
-import model.CourtObstacles;
-import model.CourtSpeed;
-import javafx.stage.Stage;
-import javafx.scene.image.ImageView;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import model.RacketController;
-import javafx.scene.layout.*;
+import javafx.scene.control.Button;
 import javafx.scene.effect.ImageInput;
-import model.TimeMode;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import model.*;
 
-
-
-//*************************************TEST*********** */
-import java.io.File; 
+import java.io.File;
 
 //***************************************************** */
 
@@ -31,28 +23,32 @@ public class App {
     public Scene gameScene;
     public int limite;
 
-    App(Pane root, Scene a, int limite){
+    App(Pane root, Scene a, int limite) {
         App.root = root;
         gameScene = a;
-        this.limite=limite;
+        this.limite = limite;
+    }
+
+    App(Pane root, Scene a){
+        App.root = root;
+        gameScene = a;
     }
 
     public static String[] commandes = {"A", "Q", "P", "M"};
 
-    public static void setCommandes(String[] s){
+    public static void setCommandes(String[] s) {
         commandes[0] = s[0];
         commandes[1] = s[1];
         commandes[2] = s[2];
         commandes[3] = s[3];
     }
 
-    public static Button Quitter= new Button("Quitter") ;
-    public static Button Reprendre= new Button("Reprendre") ;
-    public static Button Recommencer= new Button("Recommencer") ;
+    public static Button Quitter = new Button("Quitter");
+    public static Button Reprendre = new Button("Reprendre");
+    public static Button Recommencer = new Button("Recommencer");
+    public static ImageView PauseImage;
 
-
-
-    public void start(Stage primaryStage)  {
+    public void start(Stage primaryStage) {
 
                     class Player implements RacketController {
                         State state = State.IDLE;
@@ -177,7 +173,7 @@ public class App {
     }
     
     //pour le timer de timermode
-    public void startTimer(Stage primaryStage, int limit, int t)  {
+    public void startTimer(Stage primaryStage, int nbManche, int t)  {
 
         class Player implements RacketController {
             State state = State.IDLE;
@@ -192,7 +188,7 @@ public class App {
         BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         Background bGround = new Background(bImg);
         root.setBackground(bGround);
-        var court = new TimeMode(playerA, playerB, 1000, 600, limit, t);
+        var court = new TimeMode(playerA, playerB, 1000, 600, nbManche, t);
         var gameView = new GameView(court, root, 1);
 
          //Pour le menu de pause
@@ -549,4 +545,76 @@ public class App {
         });			
 
     }
+    public void startFire(Stage primaryStage) {
+        var playerA = new FPlayer();
+        var playerB = new FPlayer();
+        Image img = new Image("file:src/Pictures/fond.png");
+        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background bGround = new Background(bImg);
+        root.setBackground(bGround);
+        var court = new FireMode(playerA, playerB, 1000, 600 , limite);
+        var gameView = new GameView(court, root, 1);
+
+        //Pour le menu de pause
+        Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
+        PauseImage = new ImageView(image2);
+        PauseImage.setX(290);
+        PauseImage.setY(200);
+
+        Quitter.setLayoutX(320);
+        Quitter.setLayoutY(350);
+        Quitter.setMinSize(80, 80);
+        Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
+        Quitter.setSkin(new MyButtonSkin(Quitter));
+
+        Reprendre.setLayoutX(485);
+        Reprendre.setLayoutY(350);
+        Reprendre.setMinSize(80, 80);
+        Reprendre.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
+        Reprendre.setSkin(new MyButtonSkin(Reprendre));
+
+        Recommencer.setLayoutX(695);
+        Recommencer.setLayoutY(350);
+        Recommencer.setMinSize(80, 80);
+        Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
+        Recommencer.setSkin(new MyButtonSkin(Recommencer));
+
+        gameView.animate();
+
+        //Action du bouton Quitter
+        Quitter.setOnAction(ev1 -> {
+            Pane root1 = new Pane();
+            gameScene.setRoot(root1);
+            Menu a = new Menu(root1, gameScene);
+            a.start(primaryStage);
+        });
+
+        //Action du bouton Reprendre
+        Reprendre.setOnAction(ev1 -> {
+            root.getChildren().removeAll(PauseImage, Quitter, Reprendre, Recommencer);
+            GameView.pause = false;
+        });
+
+        //Action du bouton Recommencer
+        Recommencer.setOnAction(ev1 -> {
+            Quitter.setLayoutX(320);
+            Recommencer.setLayoutX(695);
+            Recommencer.setLayoutY(350);
+            Quitter.setLayoutY(350);
+            root.getChildren().remove(PauseImage);
+            if (GameView.finGame) {
+                root.getChildren().remove(root.getChildren().size() - 3);
+                root.getChildren().remove(root.getChildren().size() - 3);
+            }
+
+            root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
+            court.refresh();
+            GameView.pause = false;
+            GameView.finGame = false;
+        });
+
+        court.setGameView(gameView);
+        court.setKeyEvent(gameScene);
+    }
 }
+
