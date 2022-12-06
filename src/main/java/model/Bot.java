@@ -1,16 +1,35 @@
 package model;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Bot implements RacketController {
     private State state ;
     private int difficulte ; 
     private boolean renvoieBalle ; 
     private boolean calculRenvoieBalle ; 
+    private boolean letToTimer ; 
+    private javax.swing.Timer timer ;   
+    private Court court ; 
 
-    Bot (int difficulte) {
+    public Bot (int difficulte) {
         this.difficulte = difficulte ; 
+        timer = new javax.swing.Timer(1000+(new Random()).nextInt(500), ev -> {
+            if (letToTimer || court.getBallX() <= court.getWidth()/2 ) {// on bouge aleatoirement
+                renvoieBalle = false ; 
+                calculRenvoieBalle = false ; 
+                letToTimer = false ; 
+                moveRandomDirection(new Random());
+                return ; 
+            }
+        });
+        timer.start();  
         this.state = State.IDLE ; 
+    }
+
+    public void setCourt (Court court) {
+        this.court = court ; 
     }
 
     @Override
@@ -18,39 +37,37 @@ public class Bot implements RacketController {
         return state ; 
     }
 
-    private int calculDirection (double posY , double nextBallY) {
-        if (nextBallY > posY) return -1 ; // la balle se dirige vers le bas
-        if (nextBallY < posY) return 1 ; // la balle se dirige vers le haut
+    private int calculDirection (double posY) {
+        timer.setDelay(1000+(new Random()).nextInt(500)); 
+        if (posY <= court.getRacketB()) return 1 ; 
+        if (posY >= court.getRacketB() + court.getRacketSize()) return -1 ; 
         return 0 ; // la balle reste immobile
     }
 
     private void moveRandomDirection (Random rm) {
-        int direction = rm.nextInt(100) ; 
-            if (direction < 10) {
+        int direction = rm.nextInt(3) ; 
+            switch(direction) {
+                case 0 :
                 state = State.IDLE ; 
-                return ; 
-            }
-            if (direction >= 10 && direction < 50 ) {
-                state = State.GOING_UP ; 
-                return ; 
-            }
-            if (direction >= 50) {
+                    break; 
+                case 1 : 
                 state = State.GOING_DOWN ; 
-                return ; 
+                    break ; 
+                case 2 :
+                    state = State.GOING_UP ; 
+                    break ; 
             }
     }
 
-    public void play (double posX , double posY ,  double nextBallY , double nextBallX , double width) {
+    public void play (double posY ,  double nextBallY , double width) {
         Random rm = new Random() ; 
-        if (posX <= width/2 || nextBallX <= posX) {// on bouge aleatoirement
+        if (court.getBallX() <= court.getWidth()/2 ) {// on bouge aleatoirement
             renvoieBalle = false ; 
             calculRenvoieBalle = false ; 
-            moveRandomDirection(rm);
-            return ; 
         }
         
         if (renvoieBalle) {// on doit renvoyer la balle
-            switch(calculDirection(posY , nextBallY)) {
+            switch(calculDirection(nextBallY)) {
                 case -1 :
                     state = State.GOING_DOWN ; 
                     break ; 
@@ -83,6 +100,6 @@ public class Bot implements RacketController {
             return ; 
         }
     
-        moveRandomDirection(rm);
+        letToTimer = true ; 
     }
 }
