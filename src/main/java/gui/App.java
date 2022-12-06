@@ -2,6 +2,7 @@ package gui;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +11,9 @@ import javafx.stage.Stage;
 import model.*;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Optional;
+import javafx.scene.image.ImageView;
 
 //***************************************************** */
 
@@ -47,6 +51,8 @@ public class App {
     public static Button Reprendre = new Button("Reprendre");
     public static Button Recommencer = new Button("Recommencer");
     public static ImageView PauseImage;
+    static Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
+    public static ImageView imageV = new ImageView(image2);
 
     public void start(Stage primaryStage) {
 
@@ -320,8 +326,6 @@ public class App {
 
 
         //Pour le menu de pause
-        Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
-        ImageView imageV = new ImageView(image2);
         imageV.setX(290);
         imageV.setY(200);
         
@@ -546,75 +550,105 @@ public class App {
 
     }
     public void startFire(Stage primaryStage) {
-        var playerA = new FPlayer();
-        var playerB = new FPlayer();
-        Image img = new Image("file:src/Pictures/fond.png");
-        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        root.setBackground(bGround);
-        var court = new FireMode(playerA, playerB, 1000, 600 , limite);
-        var gameView = new GameView(court, root, 1);
-
-        //Pour le menu de pause
-        Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
-        PauseImage = new ImageView(image2);
-        PauseImage.setX(290);
-        PauseImage.setY(200);
-
-        Quitter.setLayoutX(320);
-        Quitter.setLayoutY(350);
-        Quitter.setMinSize(80, 80);
-        Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
-        Quitter.setSkin(new MyButtonSkin(Quitter));
-
-        Reprendre.setLayoutX(485);
-        Reprendre.setLayoutY(350);
-        Reprendre.setMinSize(80, 80);
-        Reprendre.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
-        Reprendre.setSkin(new MyButtonSkin(Reprendre));
-
-        Recommencer.setLayoutX(695);
-        Recommencer.setLayoutY(350);
-        Recommencer.setMinSize(80, 80);
-        Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
-        Recommencer.setSkin(new MyButtonSkin(Recommencer));
-
-        gameView.animate();
-
-        //Action du bouton Quitter
-        Quitter.setOnAction(ev1 -> {
-            Pane root1 = new Pane();
-            gameScene.setRoot(root1);
-            Menu a = new Menu(root1, gameScene);
-            a.start(primaryStage);
-        });
-
-        //Action du bouton Reprendre
-        Reprendre.setOnAction(ev1 -> {
-            root.getChildren().removeAll(PauseImage, Quitter, Reprendre, Recommencer);
-            GameView.pause = false;
-        });
-
-        //Action du bouton Recommencer
-        Recommencer.setOnAction(ev1 -> {
-            Quitter.setLayoutX(320);
-            Recommencer.setLayoutX(695);
-            Recommencer.setLayoutY(350);
-            Quitter.setLayoutY(350);
-            root.getChildren().remove(PauseImage);
-            if (GameView.finGame) {
-                root.getChildren().remove(root.getChildren().size() - 3);
-                root.getChildren().remove(root.getChildren().size() - 3);
+            ArrayList<String> firePopA = new ArrayList<String>();
+             firePopA.add("COMPRIS");
+             firePopA.add("PAS COMPRIS");       
+            ChoiceDialog<String> firePop = new ChoiceDialog<String>("COMPRIS", firePopA);
+            firePop.initOwner(primaryStage);
+            firePop.setTitle("Touche du Fire Mode");
+            firePop.setHeaderText("TOUCHE DU J1 : A , Q et D  |  TOUCHE DU J2 : P , M et Entrer (A, Q, P et M par defaut)");
+            firePop.setContentText("Vous allez devoir jouer pour obtenir des points, \n Quand la balle touche votre raquette c'est 1 points \n Quand vous marquez un goal, c'est 5 points \n Dans le menu shop, vous choisissez vos power-up et confirmez avec D ou Entrer");
+            firePop.setResizable(false);
+            Optional<String> fireok = firePop.showAndWait();
+            if(fireok.isEmpty()){
+                Pane root1 = new Pane();
+                gameScene.setRoot(root1);
+                ModeDeJeu a = new ModeDeJeu(root1, gameScene);
+                a.start(primaryStage);
             }
 
-            root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
-            court.refresh();
-            GameView.pause = false;
-            GameView.finGame = false;
-        });
+            if (fireok.isPresent()){
+                if(fireok.get().equals("COMPRIS")){
+                    var playerA = new FPlayer();
+                    var playerB = new FPlayer();
+                    Image img = new Image("file:src/Pictures/fondFire.png");
+                    BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+                    Background bGround = new Background(bImg);
+                    root.setBackground(bGround);
+                    var court = new FireMode(playerA, playerB, 1000, 600 , limite);
+                    var gameView = new GameView(court, root, 1);
 
-        court.setGameView(gameView);
-        court.setKeyEvent(gameScene);
-    }
-}
+                    //Pour le menu de pause
+                    imageV.setX(290);
+                    imageV.setY(200);
+
+                    Quitter.setLayoutX(320);
+                    Quitter.setLayoutY(350);
+                    Quitter.setMinSize(80, 80);
+                    Quitter.setEffect(new ImageInput(new Image("file:src/Pictures/retourM.png")));
+                    Quitter.setSkin(new MyButtonSkin(Quitter));
+
+                    Reprendre.setLayoutX(485);
+                    Reprendre.setLayoutY(350);
+                    Reprendre.setMinSize(80, 80);
+                    Reprendre.setEffect(new ImageInput(new Image("file:src/Pictures/play.png")));
+                    Reprendre.setSkin(new MyButtonSkin(Reprendre));
+
+                    Recommencer.setLayoutX(695);
+                    Recommencer.setLayoutY(350);
+                    Recommencer.setMinSize(80, 80);
+                    Recommencer.setEffect(new ImageInput(new Image("file:src/Pictures/recommencer.png")));
+                    Recommencer.setSkin(new MyButtonSkin(Recommencer));
+
+                    gameView.animate();
+
+                    //Action du bouton Quitter
+                    Quitter.setOnAction(ev1 -> {
+                        Pane root1 = new Pane();
+                        gameScene.setRoot(root1);
+                        Menu a = new Menu(root1, gameScene);
+                        a.start(primaryStage);
+                    });
+
+                    //Action du bouton Reprendre
+                    Reprendre.setOnAction(ev1 -> {
+                        root.getChildren().removeAll(PauseImage, Quitter, Reprendre, Recommencer);
+                        GameView.pause = false;
+                    });
+
+                    //Action du bouton Recommencer
+                    Recommencer.setOnAction(ev1 -> {
+                        Quitter.setLayoutX(320);
+                        Recommencer.setLayoutX(695);
+                        Recommencer.setLayoutY(350);
+                        Quitter.setLayoutY(350);
+                        root.getChildren().remove(PauseImage);
+                        if (GameView.finGame) {
+                            root.getChildren().remove(root.getChildren().size() - 3);
+                            root.getChildren().remove(root.getChildren().size() - 3);
+                        }
+
+                        root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
+                        court.refresh();
+                        GameView.pause = false;
+                        GameView.finGame = false;
+                    });
+
+                    court.setGameView(gameView);
+                    court.setKeyEvent(gameScene);
+                }
+                if(fireok.get().equals("PAS COMPRIS")){
+                    Pane root1 = new Pane();
+                    gameScene.setRoot(root1);
+                    ModeDeJeu a = new ModeDeJeu(root1, gameScene);
+                    a.start(primaryStage);
+                }
+
+                }
+            }
+
+            
+            
+        }
+
 

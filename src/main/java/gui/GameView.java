@@ -1,5 +1,5 @@
 package gui;
-import javafx.scene.text.*;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.Group;
@@ -19,7 +19,6 @@ import model.*;
 import model.CourtObstacles.Obstacle;
 
 import java.awt.*;
-import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -128,11 +127,22 @@ public class GameView {
                 zoneDeJeu.setHeight(court.getHeight());
                 zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
                 //Player1
-                court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+                
+                if(court instanceof FireMode fireMode){
+                    court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+                    court.getScore().getS1().setFill(Color.WHITE);
+                }else{
+                    court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+                }
                 court.getScore().getS1().setX(1030);
                 court.getScore().getS1().setY(95);
                 //Player2
-                court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+                if(court instanceof FireMode fireMode){
+                    court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+                    court.getScore().getS2().setFill(Color.WHITE);
+                }else{
+                    court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+                }
                 court.getScore().getS2().setX(130);
                 court.getScore().getS2().setY(95);
 
@@ -242,6 +252,7 @@ public class GameView {
 
         selectionAIndex = 0;
         selectionBIndex = 0;
+        
 
         selectionA.setX(A_POINTS[selectionAIndex].x);
         selectionA.setY(A_POINTS[selectionAIndex].y);
@@ -249,7 +260,7 @@ public class GameView {
         selectionA.setHeight(120);
         selectionA.setStroke(Color.valueOf("#BE3455")); // vert
         selectionA.setStrokeWidth(5);
-        selectionA.setFill(null);
+        selectionA.setFill(Color.WHITE);
 
         selectionB.setX(B_POINTS[selectionBIndex].x);
         selectionB.setY(B_POINTS[selectionBIndex].y);
@@ -257,15 +268,13 @@ public class GameView {
         selectionB.setHeight(120);
         selectionB.setStroke(Color.valueOf("#BE3455"));
         selectionB.setStrokeWidth(5);
-        selectionB.setFill(null);
+        selectionB.setFill(Color.WHITE);
 
         if (court instanceof FireMode fireMode) {
             pause = true;
 
-            Image image = new Image(new File("src/Pictures/fond1.gif").toURI().toString());
+            Image image = new Image("file:src/Pictures/MenuFmod.png");
             ImageView imageView = new ImageView(image);
-            imageView.setX(5);
-            imageView.setY(150);
 
             // Text
             Text sizeAText = new Text("Size");
@@ -373,21 +382,22 @@ public class GameView {
             );
 
             gameRoot.getScene().setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.W) {
+                String s  = event.getCode().toString();
+                if (s == App.commandes[0]) {
                     if (selectionAIndex > 0) {
                         selectionAIndex--;
 
                         selectionA.setX(A_POINTS[selectionAIndex].x);
                         selectionA.setY(A_POINTS[selectionAIndex].y);
                     }
-                } else if (event.getCode() == KeyCode.S) {
+                } else if (s == App.commandes[1]) {
                     if (selectionAIndex < 2) {
                         selectionAIndex++;
 
                         selectionA.setX(A_POINTS[selectionAIndex].x); // power
                         selectionA.setY(A_POINTS[selectionAIndex].y);
                     }
-                } else if (event.getCode() == KeyCode.D) {
+                } else if (s == KeyCode.D.toString()) {
                     switch (selectionAIndex) {
                         case 0:
                             if (fireMode.getPlayerA().increaseSizeLevel()) {
@@ -407,21 +417,21 @@ public class GameView {
                             }
                             break;
                     }
-                } else if (event.getCode() == KeyCode.UP) {
+                } else if (s == App.commandes[2]) {
                     if (selectionBIndex > 0) {
                         selectionBIndex--;
 
                         selectionB.setX(B_POINTS[selectionBIndex].x);
                         selectionB.setY(B_POINTS[selectionBIndex].y);
                     }
-                } else if (event.getCode() == KeyCode.DOWN) {
+                } else if (s == App.commandes[3]) {
                     if (selectionBIndex < 2) {
                         selectionBIndex++;
 
                         selectionB.setX(B_POINTS[selectionBIndex].x);
                         selectionB.setY(B_POINTS[selectionBIndex].y);
                     }
-                } else if (event.getCode() == KeyCode.RIGHT) {
+                } else if (event.getCode() == KeyCode.ENTER) {
                     switch (selectionBIndex) {
                         case 0:
                             if (fireMode.getPlayerB().increaseSizeLevel()) {

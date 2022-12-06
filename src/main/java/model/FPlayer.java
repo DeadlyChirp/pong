@@ -8,7 +8,7 @@ public class FPlayer implements RacketController {
     public static final int SPEED_COST = 5;
     public static final int POWER_COST = 3;
 
-    private State state;
+    State state;
     private double size;
     private double position;
     private double speed;
@@ -17,6 +17,7 @@ public class FPlayer implements RacketController {
     private int powerAmount;
     private int point;
     private final Text pointText;
+    public static boolean spec = true;
 
     public FPlayer() {
         state = State.IDLE;
@@ -31,6 +32,7 @@ public class FPlayer implements RacketController {
 
         reset();
     }
+
 
     @Override
     public State getState() {
@@ -134,4 +136,7 @@ public class FPlayer implements RacketController {
         powerAmount = 0;
         pointText.setText(String.valueOf(point));
     }
+
+    //ball collision using if statements
+
 }

@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class FireMode extends Court {
 
-    private final FPlayer playerA;
-    private final FPlayer playerB;
+    public final FPlayer playerA;
+    public final FPlayer playerB;
     private GameView gameView;
 
     public FireMode(FPlayer playerA, FPlayer playerB, double width, double height) {
@@ -34,37 +34,42 @@ public class FireMode extends Court {
     public void setKeyEvent(Scene gameScene) {
         //Switch pour les boutons de jeu, in-game.
         gameScene.setOnKeyPressed(ev -> {
-            if (ev.getCode() == KeyCode.W) {
+            String s = ev.getCode().toString();
+
+            if(s == App.commandes[0]){
                 playerA.setState(RacketController.State.GOING_UP);
-            } else if (ev.getCode() == KeyCode.S) {
+            } else if(s == App.commandes[1]){
                 playerA.setState(RacketController.State.GOING_DOWN);
-            } else if (ev.getCode() == KeyCode.UP) {
+            } else if(s == App.commandes[2]){
                 playerB.setState(RacketController.State.GOING_UP);
-            } else if (ev.getCode() == KeyCode.DOWN) {
+            } else if(s == App.commandes[3]){
                 playerB.setState(RacketController.State.GOING_DOWN);
-            } else if (ev.getCode() == KeyCode.ESCAPE) {
-                if (!GameView.pause && !GameView.finGame) {
-                    App.root.getChildren().add(App.PauseImage);
+            } else if(s == "ESCAPE"){
+                if(!GameView.pause && !GameView.finGame){
+                    App.root.getChildren().add(App.imageV);
                     App.root.getChildren().addAll(App.Quitter, App.Reprendre, App.Recommencer);
                     GameView.pause = true;
-                } else {
-                    if (!GameView.finGame) {
-                        App.root.getChildren().removeAll(App.PauseImage, App.Quitter, App.Reprendre, App.Recommencer);
-                        GameView.pause = false;
+            }else{
+                    if(!GameView.finGame){
+                        App.root.getChildren().removeAll(App.imageV, App.Quitter, App.Reprendre, App.Recommencer);
+                        GameView.pause = false ; 
                     }
                 }
-            }
+            }  
+            ev.consume();  
         });
 
         //Switch bouton in-game, uniquement pour les boutons de jeu.
         gameScene.setOnKeyReleased(ev -> {
-            if (ev.getCode() == KeyCode.W) {
+            String s = ev.getCode().toString();
+
+            if (s == App.commandes[0] ) {
                 if (playerA.getState() == RacketController.State.GOING_UP) playerA.setState(RacketController.State.IDLE);
-            } else if (ev.getCode() == KeyCode.S) {
+            } else if (s == App.commandes[1]) {
                 if (playerA.getState() == RacketController.State.GOING_DOWN) playerA.setState(RacketController.State.IDLE);
-            } else if (ev.getCode() == KeyCode.UP) {
+            } else if (s == App.commandes[2]) {
                 if (playerB.getState() == RacketController.State.GOING_UP) playerB.setState(RacketController.State.IDLE);
-            } else if (ev.getCode() == KeyCode.DOWN) {
+            } else if (s == App.commandes[3]) {
                 if (playerB.getState() == RacketController.State.GOING_DOWN) playerB.setState(RacketController.State.IDLE);
             }
         });
@@ -151,15 +156,15 @@ public class FireMode extends Court {
         double nextBallY = getBallY() + deltaT * getBallSpeedY();
 
         if (nextBallY < 0 || nextBallY > getHeight()) {
-            setBallSpeedY(-getBallSpeedY());
+            setBallSpeedY(-getBallSpeedY()); // Rebond sur les bords
             nextBallY = getBallY() + deltaT * getBallSpeedY();
             nextBallX = getBallX() + ((getBallSpeedX() < 0) ? -1 : +1) * deltaT * (new Random()).nextDouble(Math.abs(getBallSpeedX()));
         }
 
         if ((nextBallX < 0 && nextBallY > getRacketA() && nextBallY < getRacketA() + getRacketASize()) ||
-                (nextBallX > getWidth() && nextBallY > getRacketB() && nextBallY < getRacketB() + getRacketBSize())) {
+                (nextBallX > getWidth() && nextBallY > getRacketB() && nextBallY < getRacketB() + getRacketBSize())) { // collision
             setBallSpeedX(-getBallSpeedX());
-            increaseBallSpeed(15);
+            increaseBallSpeed(18);
             nextBallX = getBallX() + deltaT * getBallSpeedX();
             nextBallY = getBallY() + ((getBallSpeedY() < 0) ? -1 : +1) * deltaT * (new Random()).nextDouble(Math.abs(getBallSpeedY()));
 
@@ -217,8 +222,8 @@ public class FireMode extends Court {
             playerB.setState(RacketController.State.IDLE);
         }
 
-        setBallSpeedX((((int) (Math.random() * 10)) > 5) ? -120 : 120);
-        setBallSpeedY((((int) (Math.random() * 10)) > 5) ? -120 : 120);
+        setBallSpeedX((((int) (Math.random() * 15)) > 5) ? -120 : 120);
+        setBallSpeedY((((int) (Math.random() * 15)) > 5) ? -120 : 120);
         setBallX(getWidth() / 2);
         setBallY(getHeight() / 2);
     }

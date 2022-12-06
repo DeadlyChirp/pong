@@ -40,7 +40,7 @@ public boolean updateBall(double deltaT) {
             timer.cancel();
           }
           // first, compute possible next position if nothing stands in the way
-          double nextBallX = getBallX() + deltaT * getBallSpeedX();
+          double nextBallX = getBallX() + deltaT * getBallSpeedX(); // next position of the ball
           double nextBallY = getBallY() + deltaT * getBallSpeedY();
           double ballX = getBallX() ; 
           double ballY = getBallY() ; 
@@ -48,7 +48,7 @@ public boolean updateBall(double deltaT) {
           double ballSpeedY = getBallSpeedY() ; 
 
           // next, see if the ball would meet some obstacle
-          if (nextBallY < 0 || nextBallY > getHeight()) {
+          if (nextBallY < 0 || nextBallY > getHeight()) { // if the ball hits the top or bottom wall
               ballSpeedY = -ballSpeedY ;
               setBallSpeedY(ballSpeedY);
               nextBallY = ballY + deltaT * ballSpeedY ;

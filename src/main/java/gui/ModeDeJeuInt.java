@@ -149,7 +149,9 @@ public class ModeDeJeuInt {
                 App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
                 a.startSpeed(primaryStage);
             });   
-        });
+
+             });
+
 
         lifemode.setOnAction(ev1->{
 
