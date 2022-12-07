@@ -28,7 +28,9 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(limit);
-        ((Bot)playerB).setCourt(this);
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
     }
 
@@ -38,6 +40,9 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(-1); 
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
     }
 
@@ -111,7 +116,6 @@ public class Court {
                 if (racketA + racketSize > height) racketA = height - racketSize; 
                 break;
         }
-        ((Bot)playerB).play( ballY, ballY + deltaT * ballSpeedY, width);
         switch (playerB.getState()) {
             case GOING_UP:
                 racketB -= racketSpeed * deltaT;

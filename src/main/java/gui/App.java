@@ -2,7 +2,6 @@ package gui;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import model.Bot;
 import model.Court; //plus tard pour paramétrer taille, etc
 import model.CourtObstacles;
 import model.CourtSpeed;
@@ -68,7 +67,7 @@ public class App {
                         }
                     }
                     var playerA = new Player();
-                    var playerB = new Bot(3) ; 
+                    var playerB = new Player() ; 
                     Image img = new Image("file:src/Pictures/fond.png");
                     BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
                     Background bGround = new Background(bImg);
@@ -112,9 +111,9 @@ public class App {
                         } else if(s == commandes[1]){
                             playerA.state = RacketController.State.GOING_DOWN;
                         } else if(s == commandes[2]){
-                            //playerB.state = RacketController.State.GOING_UP;
+                            playerB.state = RacketController.State.GOING_UP;
                         } else if(s == commandes[3]){
-                            //playerB.state = RacketController.State.GOING_DOWN;
+                            playerB.state = RacketController.State.GOING_DOWN;
                         } else if(s == "ESCAPE"){
                             if(!GameView.pause && !GameView.finGame){
                                 root.getChildren().add(imageV);
