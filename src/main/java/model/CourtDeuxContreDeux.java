@@ -10,6 +10,10 @@ public class CourtDeuxContreDeux extends Court{
     private double racketC; // m
     private double racketD; // m
 
+    //Création d'une deuxieme balle    
+    private double ballX2, ballY2; // position de la balle
+    private double ballSpeedX2, ballSpeedY2; 
+
     public CourtDeuxContreDeux(RacketController playerA, RacketController playerB, RacketController playerC, RacketController playerD, double width, double height, int limit) {
     	super(playerA, playerB, width, height,limit);
         this.playerC = playerC;
@@ -30,6 +34,8 @@ public class CourtDeuxContreDeux extends Court{
     public void setRacketD(double r) {this.racketD = r;}    
     public double getRacketC() {return racketC;}    
     public double getRacketD() {return racketD;}
+    public double getBallX2() {return ballX2;}    
+    public double getBallY2() {return ballY2;}
 
     public void update(double deltaT) {
     	super.update(deltaT);
@@ -56,7 +62,7 @@ public class CourtDeuxContreDeux extends Court{
 	            racketD += getRacketSpeed() * deltaT;
 	            if (racketD + getRacketSize() > getHeight()) racketD = getHeight() - getRacketSize();
 	            break;
-    }
+        }
     }
 
 
@@ -66,10 +72,17 @@ public class CourtDeuxContreDeux extends Court{
     public boolean updateBall(double deltaT) {
         double nextBallX = getBallX() + deltaT * getBallSpeedX();
         double nextBallY = getBallY() + deltaT * getBallSpeedY();
+        double nextBallX2 = ballX2 + deltaT * ballSpeedX2;
+        double nextBallY2 = ballY2 + deltaT * ballSpeedY2;
         if (nextBallY < 0 || nextBallY > getHeight()) {
             setBallSpeedY(-getBallSpeedY());
             nextBallY = getBallY() + deltaT * getBallSpeedY();
             nextBallX = getBallX() + ((getBallSpeedX()<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(getBallSpeedX())); 
+        }
+        if (nextBallY2 < 0 || nextBallY2 > getHeight()) {
+            ballSpeedY2 = -ballSpeedY2;
+            nextBallY2 = ballY2 + deltaT * ballSpeedY2;
+            nextBallX2 = ballX2 + ((ballSpeedX2<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedX2)); 
         }
         if ((nextBallX < 0 && nextBallY > getRacketA() && nextBallY < getRacketA() + getRacketSize())
         		|| (nextBallX < 0 && nextBallY > racketC && nextBallY < racketC + getRacketSize())
@@ -77,14 +90,14 @@ public class CourtDeuxContreDeux extends Court{
                 || (nextBallX > getWidth() && nextBallY > racketD && nextBallY < racketD + getRacketSize())) {
             setBallSpeedX(-getBallSpeedX());
             nextBallX = getBallX() + deltaT * getBallSpeedX();
-        } else if (nextBallX < 0) {
+        }else if (nextBallX < 0) {
             getScore().addScore1();
             if (getScore().endGame() == 1){
                 GameView.finGame = true ;
                 GameView.endGame(1);
             }
             return true;
-        } else if (nextBallX > getWidth()) {
+        }else if (nextBallX > getWidth()) {
             getScore().addScore2();
             if (getScore().endGame() == 1){
                 GameView.finGame = true ;
@@ -92,6 +105,29 @@ public class CourtDeuxContreDeux extends Court{
             }
             return true;
         }
+        if ((nextBallX2 < 0 && nextBallY2 > getRacketA() && nextBallY2 < getRacketA() + getRacketSize())
+                || (nextBallX2 < 0 && nextBallY2 > racketC && nextBallY2 < racketC + getRacketSize())
+                || (nextBallX2 > getWidth() && nextBallY2 > getRacketB() && nextBallY2 < getRacketB() + getRacketSize())
+                || (nextBallX2 > getWidth() && nextBallY2 > racketD && nextBallY2 < racketD + getRacketSize())) {
+            ballSpeedX2 = -ballSpeedX2;
+            nextBallX2 = ballX2 + deltaT * ballSpeedX2;
+        }else if (nextBallX2 < 0) {
+            getScore().addScore1();
+            if (getScore().endGame() == 1){
+                GameView.finGame = true ;
+                GameView.endGame(1);
+            }
+            return true;
+        }else if (nextBallX2 > getWidth()) {
+            getScore().addScore2();
+            if (getScore().endGame() == 1){
+                GameView.finGame = true ;
+                GameView.endGame(2);
+            }
+            return true;
+        }
+        ballX2 = nextBallX2;
+        ballY2 = nextBallY2;
         setBallX(nextBallX);
         setBallY(nextBallY);
         return false;
@@ -100,6 +136,10 @@ public class CourtDeuxContreDeux extends Court{
     public void reset() {
     	super.reset();
         this.racketC = getHeight() / 4;
-        this.racketD = getHeight() / 4;
+        this.racketD = getHeight() / 4;        
+        this.ballSpeedX2 = (((int)(Math.random()*10))>5)?-200:200;
+        this.ballSpeedY2 = (((int)(Math.random()*10))>5)?200:-200;
+        this.ballX2 = getWidth() / 2;
+        this.ballY2 = getHeight() / 4;
     }
 }

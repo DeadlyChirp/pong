@@ -15,6 +15,7 @@ public class GameViewDeuxContreDeux extends GameView {
 	
 	private CourtDeuxContreDeux court;
     private final Rectangle racketC, racketD;
+    private final Circle ball2;
 
     public GameViewDeuxContreDeux(CourtDeuxContreDeux court, Pane root, double scale) {
         super(court,root,scale);
@@ -34,8 +35,15 @@ public class GameViewDeuxContreDeux extends GameView {
 		
 		racketD.setX(court.getWidth() * scale + getMargin());
 		racketD.setY(court.getRacketD() * scale + getInTerface() + getMargin()/2);
+
+        ball2 = new Circle();
+        ball2.setRadius(court.getBallRadius());
+        ball2.setFill(Color.LIGHTBLUE);
+
+        ball2.setCenterX(court.getBallX() * scale + getMargin());
+        ball2.setCenterY(court.getBallY() * scale + getInTerface() +  getMargin()/2);
 		    
-        getGameRoot().getChildren().addAll(racketC, racketD);
+        getGameRoot().getChildren().addAll(racketC, racketD, ball2);
     }
 
     public void animate() {
@@ -56,6 +64,8 @@ public class GameViewDeuxContreDeux extends GameView {
                     racketD.setY(court.getRacketD() * getScale() + getMargin()/2 + getInTerface());
                     getBall().setCenterX(getCourt().getBallX() * getScale() + getMargin());
                     getBall().setCenterY(getCourt().getBallY() * getScale() + getMargin()/2 + getInTerface());
+                    ball2.setCenterX(court.getBallX2() * getScale() + getMargin());
+                    ball2.setCenterY(court.getBallY2() * getScale() + getMargin()/2 + getInTerface());
                 }else{
                     last = 0;
                 }    
