@@ -10,36 +10,26 @@ public class CourtDeuxContreDeux extends Court{
     private double racketC; // m
     private double racketD; // m
 
+    public CourtDeuxContreDeux(RacketController playerA, RacketController playerB, RacketController playerC, RacketController playerD, double width, double height, int limit) {
+    	super(playerA, playerB, width, height,limit);
+        this.playerC = playerC;
+        this.playerD = playerD;
+        reset();
+    }
+
     public CourtDeuxContreDeux(RacketController playerA, RacketController playerB, RacketController playerC, RacketController playerD, double width, double height) {
-    	super(playerA, playerB, width, height);
+        super(playerA, playerB, width, height);
         this.playerC = playerC;
         this.playerD = playerD;
         reset();
     }
     
-    public RacketController getPlayerC() {
-        return playerC;
-    }
-    
-    public RacketController getPlayerD() {
-        return playerD;
-    }
-    
-    public void setRacketC(double r) {
-        this.racketC = r;
-    }
-    
-    public void setRacketD(double r) {
-        this.racketD = r;
-    }
-    
-    public double getRacketC() {
-        return racketC;
-    }
-    
-    public double getRacketD() {
-        return racketD;
-    }
+    public RacketController getPlayerC() {return playerC;}    
+    public RacketController getPlayerD() {return playerD;}    
+    public void setRacketC(double r) {this.racketC = r;}    
+    public void setRacketD(double r) {this.racketD = r;}    
+    public double getRacketC() {return racketC;}    
+    public double getRacketD() {return racketD;}
 
     public void update(double deltaT) {
     	super.update(deltaT);
@@ -74,10 +64,8 @@ public class CourtDeuxContreDeux extends Court{
      * @return true if a player lost
      */
     public boolean updateBall(double deltaT) {
-        // first, compute possible next position if nothing stands in the way
         double nextBallX = getBallX() + deltaT * getBallSpeedX();
         double nextBallY = getBallY() + deltaT * getBallSpeedY();
-        // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > getHeight()) {
             setBallSpeedY(-getBallSpeedY());
             nextBallY = getBallY() + deltaT * getBallSpeedY();
