@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -305,7 +304,7 @@ public class GameView {
             sizeAText.setX(110);
             sizeAText.setY(240);
 
-            Text sizeCostAText = new Text("Cost: " + FPlayer.SIZE_COST);
+            Text sizeCostAText = new Text("Cost: " + FPlayer.SIZE_COSTP1);
             sizeCostAText.setStyle("-fx-font: 24 arial;");
             sizeCostAText.setX(120);
             sizeCostAText.setY(280);
@@ -321,7 +320,7 @@ public class GameView {
             speedAText.setX(110);
             speedAText.setY(400);
 
-            Text speedCostAText = new Text("Cost: " + FPlayer.SPEED_COST);
+            Text speedCostAText = new Text("Cost: " + FPlayer.SPEED_COSTP1);
             speedCostAText.setStyle("-fx-font: 24 arial;");
             speedCostAText.setX(120);
             speedCostAText.setY(440);
@@ -337,7 +336,7 @@ public class GameView {
             powerAText.setX(110);
             powerAText.setY(560);
 
-            Text powerCostAText = new Text("Cost: " + FPlayer.POWER_COST);
+            Text powerCostAText = new Text("Cost: " + FPlayer.POWER_COSTP1);
             powerCostAText.setStyle("-fx-font: 24 arial;");
             powerCostAText.setX(120);
             powerCostAText.setY(600);
@@ -353,7 +352,7 @@ public class GameView {
             sizeBText.setX(900);
             sizeBText.setY(240);
 
-            Text sizeCostBText = new Text("Cost: " + FPlayer.SIZE_COST);
+            Text sizeCostBText = new Text("Cost: " + FPlayer.SIZE_COSTP2);
             sizeCostBText.setStyle("-fx-font: 24 arial;");
             sizeCostBText.setX(910);
             sizeCostBText.setY(280);
@@ -369,7 +368,7 @@ public class GameView {
             speedBText.setX(900);
             speedBText.setY(400);
 
-            Text speedCostBText = new Text("Cost: " + FPlayer.SPEED_COST);
+            Text speedCostBText = new Text("Cost: " + FPlayer.SPEED_COSTP2);
             speedCostBText.setStyle("-fx-font: 24 arial;");
             speedCostBText.setX(910);
             speedCostBText.setY(440);
@@ -385,7 +384,7 @@ public class GameView {
             powerBText.setX(900);
             powerBText.setY(560);
 
-            Text powerCostBText = new Text("Cost: " + FPlayer.POWER_COST);
+            Text powerCostBText = new Text("Cost: " + FPlayer.POWER_COSTP2);
             powerCostBText.setStyle("-fx-font: 24 arial;");
             powerCostBText.setX(910);
             powerCostBText.setY(600);
@@ -424,19 +423,19 @@ public class GameView {
                 } else if (s == KeyCode.D.toString()) {
                     switch (selectionAIndex) {
                         case 0:
-                            if (fireMode.getPlayerA().increaseSizeLevel()) {
+                            if (fireMode.getPlayerA().increaseSizeLevelP1()) {
                                 sizeLvAText.setText("Level: " + fireMode.getPlayerA().getSizeLevel());
                             }
                             break;
 
                         case 1:
-                            if (fireMode.getPlayerA().increaseSpeedLevel()) {
+                            if (fireMode.getPlayerA().increaseSpeedLevelP1()) {
                                 speedLvAText.setText("Level: " + fireMode.getPlayerA().getSpeedLevel());
                             }
                             break;
 
                         case 2:
-                            if (fireMode.getPlayerA().increasePowerAmount()) {
+                            if (fireMode.getPlayerA().increasePowerAmountP1()) {
                                 powerAmountAText.setText("Level: " + fireMode.getPlayerA().getPowerAmount());
                             }
                             break;
@@ -458,25 +457,20 @@ public class GameView {
                 } else if (event.getCode() == KeyCode.ENTER) {
                     switch (selectionBIndex) {
                         case 0:
-                            if (fireMode.getPlayerB().increaseSizeLevel()) {
+                            if (fireMode.getPlayerB().increaseSizeLevelP2()) {
                                 sizeLvBText.setText("Level: " + fireMode.getPlayerB().getSizeLevel());
-                                   if(fireMode.getPlayerB().getSizeLevel() > 2) {
-                                       //change racketB to an image
-                                        Image imglvl2 = new Image("src/Pictures/racketBlvl2.jpg");
-                                        racketB.setFill(new ImagePattern(imglvl2));
-
-                                   }
+                                //SKIN FOR PLAYER B
                             }
                             break;
 
                         case 1:
-                            if (fireMode.getPlayerB().increaseSpeedLevel()) {
+                            if (fireMode.getPlayerB().increaseSpeedLevelP2()) {
                                 speedLvBText.setText("Level: " + fireMode.getPlayerB().getSpeedLevel());
                             }
                             break;
 
                         case 2:
-                            if (fireMode.getPlayerB().increasePowerAmount()) {
+                            if (fireMode.getPlayerB().increasePowerAmountP2()) {
                                 powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
                             }
                             break;

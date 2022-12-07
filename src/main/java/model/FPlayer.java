@@ -4,9 +4,13 @@ import javafx.scene.text.Text;
 
 public class FPlayer implements RacketController {
 
-    public static int SIZE_COST = 7;
-    public static int SPEED_COST = 5;
-    public static int POWER_COST = 3;
+    public static int SIZE_COSTP1 = 7;
+    public static int SPEED_COSTP1 = 5;
+    public static int POWER_COSTP1 = 3;
+
+    public static int SIZE_COSTP2 = 7;
+    public static int SPEED_COSTP2 = 5;
+    public static int POWER_COSTP2 = 3;
 
     State state;
     private double size;
@@ -51,32 +55,31 @@ public class FPlayer implements RacketController {
         return sizeLevel;
     }
 
-    public boolean increaseSizeLevel() {
-        if (point < SIZE_COST) {
+    public boolean increaseSizeLevelP1() {
+        if (point < SIZE_COSTP1) {
             return false;
         }
 
-        decreasePoint(SIZE_COST);
+        decreasePoint(SIZE_COSTP1);
         size = size + 15;
-        SIZE_COST = SIZE_COST + 2;
+        SIZE_COSTP1 = SIZE_COSTP1 + 2;
+        sizeLevel++;
+        return true;
+
+    }
+    public boolean increaseSizeLevelP2() {
+        if (point < SIZE_COSTP2) {
+            return false;
+        }
+
+        decreasePoint(SIZE_COSTP2);
+        size = size + 15;
+        SIZE_COSTP2 = SIZE_COSTP2 + 2;
         sizeLevel++;
         return true;
 
     }
 
-    //increaseSizelevel but return int
-    public int increaseSizeLevel2() {
-        if (point < SIZE_COST) {
-            return 0;
-        }
-
-        decreasePoint(SIZE_COST);
-        size = size + 15;
-        SIZE_COST = SIZE_COST + 2;
-        sizeLevel++;
-        return sizeLevel;
-
-    }
 
     public double getSpeed() {
         return speed;
@@ -86,14 +89,26 @@ public class FPlayer implements RacketController {
         return speedLevel;
     }
 
-    public boolean increaseSpeedLevel() {
-        if (point < SPEED_COST) {
+    public boolean increaseSpeedLevelP1() {
+        if (point < SPEED_COSTP1) {
             return false;
         }
 
-        decreasePoint(SPEED_COST);
+        decreasePoint(SPEED_COSTP1);
         speed = speed + 15;
-        SPEED_COST = SPEED_COST + 2;
+        SPEED_COSTP1 = SPEED_COSTP1 + 2;
+        speedLevel++;
+
+        return true;
+    }
+    public boolean increaseSpeedLevelP2() {
+        if (point < SPEED_COSTP2) {
+            return false;
+        }
+
+        decreasePoint(SPEED_COSTP2);
+        speed = speed + 15;
+        SPEED_COSTP2 = SPEED_COSTP2 + 2;
         speedLevel++;
 
         return true;
@@ -103,14 +118,25 @@ public class FPlayer implements RacketController {
         return powerAmount;
     }
 
-    public boolean increasePowerAmount() {
-        if (point < POWER_COST) {
+    public boolean increasePowerAmountP1() {
+        if (point < POWER_COSTP1) {
             return false;
         }
 
-        decreasePoint(POWER_COST);
+        decreasePoint(POWER_COSTP1);
         powerAmount = powerAmount + 1;
-        POWER_COST = POWER_COST + 2;
+        POWER_COSTP1 = POWER_COSTP1 + 2;
+        powerAmount++;
+        return true;
+    }
+    public boolean increasePowerAmountP2() {
+        if (point < POWER_COSTP2) {
+            return false;
+        }
+
+        decreasePoint(POWER_COSTP2);
+        powerAmount = powerAmount + 1;
+        POWER_COSTP2 = POWER_COSTP2 + 2;
         powerAmount++;
         return true;
     }
