@@ -3,7 +3,6 @@ package model;
 import gui.App;
 import gui.GameView;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 
 import java.util.Random;
 
@@ -36,13 +35,13 @@ public class FireMode extends Court {
         gameScene.setOnKeyPressed(ev -> {
             String s = ev.getCode().toString();
 
-            if(s == App.commandes[0]){
+            if(s == App.commandes[0]){ //Player A
                 playerA.setState(RacketController.State.GOING_UP);
-            } else if(s == App.commandes[1]){
+            } else if(s == App.commandes[1]){ //Player A
                 playerA.setState(RacketController.State.GOING_DOWN);
-            } else if(s == App.commandes[2]){
+            } else if(s == App.commandes[2]){   //Player B
                 playerB.setState(RacketController.State.GOING_UP);
-            } else if(s == App.commandes[3]){
+            } else if(s == App.commandes[3]){  //Player B
                 playerB.setState(RacketController.State.GOING_DOWN);
             } else if(s == "ESCAPE"){
                 if(!GameView.pause && !GameView.finGame){
@@ -63,7 +62,7 @@ public class FireMode extends Court {
         gameScene.setOnKeyReleased(ev -> {
             String s = ev.getCode().toString();
 
-            if (s == App.commandes[0] ) {
+            if (s == App.commandes[0] ) { //Player A
                 if (playerA.getState() == RacketController.State.GOING_UP) playerA.setState(RacketController.State.IDLE);
             } else if (s == App.commandes[1]) {
                 if (playerA.getState() == RacketController.State.GOING_DOWN) playerA.setState(RacketController.State.IDLE);

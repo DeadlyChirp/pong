@@ -1,18 +1,16 @@
 package gui;
-import java.util.*;
+
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
-import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import javafx.scene.image.ImageView;
 
 /*********************************************************************************************************************** */
 
@@ -160,11 +158,11 @@ public class ModeDeJeuInt {
 
         firemode.setOnAction(ev1-> {
                     ArrayList<Integer> limiteS = new ArrayList<Integer>();
-                    limiteS.add(2);
+                    limiteS.add(4);
                     limiteS.add(6);
                     limiteS.add(8);
 
-                    ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(2, limiteS);
+                    ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(6, limiteS);
                     limiteScore.initOwner(primaryStage);
                     limiteScore.setTitle("Limite de Score");
                     limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");

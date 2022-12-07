@@ -69,7 +69,7 @@ public class GameView {
             racketA = new Rectangle();
             racketA.setHeight(court.getRacketSize() * scale);
             racketA.setWidth(racketThickness);
-            racketA.setFill(Color.valueOf("#375745"));
+            racketA.setFill(Color.valueOf("#375745")); //Couleur de la raquette
 
             racketA.setX(margin - racketThickness);
             racketA.setY(court.getRacketA() * scale + inTerface + margin/2);
@@ -112,7 +112,7 @@ public class GameView {
                 l1.setStroke(Color.valueOf("#375745"));
                 l1.setStrokeWidth(5);
 
-                Line l2 = new Line();
+                Line l2 = new Line(); //ligne du milieu
                 l2.setStartX(margin/2);
                 l2.setStartY(inTerface + margin/2 + court.getHeight() + ball.getRadius());
                 l2.setEndX(margin + margin/2 + court.getWidth());
@@ -129,8 +129,8 @@ public class GameView {
                 //Player1
                 
                 if(court instanceof FireMode fireMode){
-                    court.getScore().getS1().setStyle("-fx-font: 60 arial;");
-                    court.getScore().getS1().setFill(Color.WHITE);
+                    court.getScore().getS1().setStyle("-fx-font: 60 arial;"); //taille du texte
+                    court.getScore().getS1().setFill(Color.WHITE); //couleur du texte
                 }else{
                     court.getScore().getS1().setStyle("-fx-font: 60 arial;");
                 }
@@ -147,6 +147,21 @@ public class GameView {
                 court.getScore().getS2().setY(95);
 
         if (court instanceof FireMode fireMode) {
+
+            Text p1 = new Text();
+            p1.setText("Coins P1");
+            p1.setStyle("-fx-font: 20 arial;");
+            p1.setFill(Color.YELLOW);
+            p1.setX(300);
+            p1.setY(45);
+
+            Text p2 = new Text();
+            p2.setText("Coins P2");
+            p2.setStyle("-fx-font: 20 arial;");
+            p2.setFill(Color.YELLOW);
+            p2.setX(800);
+            p2.setY(45);
+
             fireMode.getPlayerA().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #FFD700;");
             fireMode.getPlayerA().getPointText().setX(330);
             fireMode.getPlayerA().getPointText().setY(95);
@@ -155,8 +170,16 @@ public class GameView {
             fireMode.getPlayerB().getPointText().setX(830);
             fireMode.getPlayerB().getPointText().setY(95);
 
-            gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText());
+            racketA.setFill(Color.valueOf("#9400d3"));
+            racketB.setFill(Color.valueOf("#f5400a"));
+            ball.setFill(Color.valueOf("#7fff00"));
+
+            //fill racketB with a gradient
+
+
+            gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2);
         }
+
 
         if (court instanceof TimeMode) {
             TimeMode t = (TimeMode)court;
@@ -179,9 +202,6 @@ public class GameView {
             t.getNbManche().setStyle("-fx-font: 40 arial;");
             t.getNbManche().setX(855);
             t.getNbManche().setY(95);
-
-
-
 
             t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
     
@@ -253,12 +273,12 @@ public class GameView {
         selectionAIndex = 0;
         selectionBIndex = 0;
         
-
+        //Color menu boxx
         selectionA.setX(A_POINTS[selectionAIndex].x);
         selectionA.setY(A_POINTS[selectionAIndex].y);
         selectionA.setWidth(250);
         selectionA.setHeight(120);
-        selectionA.setStroke(Color.valueOf("#BE3455")); // vert
+        selectionA.setStroke(Color.valueOf("#1a34ff"));
         selectionA.setStrokeWidth(5);
         selectionA.setFill(Color.WHITE);
 
@@ -266,17 +286,18 @@ public class GameView {
         selectionB.setY(B_POINTS[selectionBIndex].y);
         selectionB.setWidth(250);
         selectionB.setHeight(120);
-        selectionB.setStroke(Color.valueOf("#BE3455"));
+        selectionB.setStroke(Color.valueOf("#f5400a"));
         selectionB.setStrokeWidth(5);
         selectionB.setFill(Color.WHITE);
 
         if (court instanceof FireMode fireMode) {
-            pause = true;
+            pause = true; //pause game
 
             Image image = new Image("file:src/Pictures/MenuFmod.png");
             ImageView imageView = new ImageView(image);
 
-            // Text
+
+            //Box menu buy
             Text sizeAText = new Text("Size");
             sizeAText.setStyle("-fx-font: 48 arial;");
             sizeAText.setX(110);
@@ -379,6 +400,7 @@ public class GameView {
                                           sizeBText, sizeCostBText, sizeLvBText,
                                           speedBText, speedCostBText, speedLvBText,
                                           powerBText, powerCostBText, powerAmountBText
+
             );
 
             gameRoot.getScene().setOnKeyPressed(event -> {
@@ -436,6 +458,7 @@ public class GameView {
                         case 0:
                             if (fireMode.getPlayerB().increaseSizeLevel()) {
                                 sizeLvBText.setText("Level: " + fireMode.getPlayerB().getSizeLevel());
+
                             }
                             break;
 

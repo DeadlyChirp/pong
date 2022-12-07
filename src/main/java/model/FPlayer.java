@@ -4,9 +4,9 @@ import javafx.scene.text.Text;
 
 public class FPlayer implements RacketController {
 
-    public static final int SIZE_COST = 7;
-    public static final int SPEED_COST = 5;
-    public static final int POWER_COST = 3;
+    public static int SIZE_COST = 7;
+    public static int SPEED_COST = 5;
+    public static int POWER_COST = 3;
 
     State state;
     private double size;
@@ -63,6 +63,20 @@ public class FPlayer implements RacketController {
 
     }
 
+    //increaseSizelevel but return int
+    public int increaseSizeLevel2() {
+        if (point < SIZE_COST) {
+            return 0;
+        }
+
+        decreasePoint(SIZE_COST);
+        size = size + 15;
+        SIZE_COST = SIZE_COST + 2;
+        sizeLevel++;
+        return sizeLevel;
+
+    }
+
     public double getSpeed() {
         return speed;
     }
@@ -77,7 +91,8 @@ public class FPlayer implements RacketController {
         }
 
         decreasePoint(SPEED_COST);
-        speed = speed + 20;
+        speed = speed + 15;
+        SPEED_COST = SPEED_COST + 2;
         speedLevel++;
 
         return true;
@@ -94,6 +109,8 @@ public class FPlayer implements RacketController {
 
         decreasePoint(POWER_COST);
         powerAmount = powerAmount + 1;
+        POWER_COST = POWER_COST + 2;
+        powerAmount++;
         return true;
     }
 
@@ -136,6 +153,8 @@ public class FPlayer implements RacketController {
         powerAmount = 0;
         pointText.setText(String.valueOf(point));
     }
+
+
 
     //ball collision using if statements
 
