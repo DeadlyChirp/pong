@@ -147,9 +147,9 @@ public class App {
                         } else if(s == commandes[1]){
                             if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
                         } else if(s == commandes[2]){
-                            //if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
+                            if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
                         } else if(s == commandes[3]){
-                           // if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
+                            if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                         }
                     });
 
