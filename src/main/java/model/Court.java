@@ -28,6 +28,9 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(limit);
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
     }
 
@@ -37,6 +40,9 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(-1); 
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
     }
 
