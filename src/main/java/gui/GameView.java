@@ -21,9 +21,9 @@ public class GameView {
 
    
     // class parameters
-    private final Court court;
+    private Court court;
     private final Pane gameRoot; // main node of the game
-    private final double scale;
+    private double scale;
     private final double margin = 100.0, racketThickness = 10.0, inTerface = 100.0; // pixels
     public static String theme ; 
 
@@ -34,9 +34,6 @@ public class GameView {
     public static boolean pause ;
 
     int Timer = 60; //2sec
-
-
-
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -228,13 +225,10 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if(!pause && !finGame){
-
                     if (last == 0) { // ignore the first tick, just compute the first deltaT
                         last = now;
                         return;
                     }
-                    
-                    
                     court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
                     racketA.setY(court.getRacketA() * scale + margin/2 + inTerface);
@@ -248,4 +242,16 @@ public class GameView {
             }
         }.start();
     }
+
+    public Circle getBall() { return this.ball; }
+    public Pane getGameRoot() { return gameRoot;}
+    public Court getCourt() { return court;}
+    public Rectangle getRacketA() { return racketA;}
+    public Rectangle getRacketB() { return racketB;}
+    public double getRacketThickness() { return racketThickness;}
+    public double getMargin() { return margin;}
+    public double getInTerface() { return inTerface;}
+    public double getScale() {return scale;}
+    public void setCourt(Court c) { this.court = c;}
+    public void setScale(double d) { this.scale = d;}
 }
