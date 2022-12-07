@@ -8,7 +8,7 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // size of the application
-    private double racketSpeed = 300.0; // m/s
+    private double racketSpeed = 300.0; //
     private double racketSize = 100.0; // m
     private double ballRadius = 10.0; // ball radius/ size
     // instance state
@@ -141,7 +141,7 @@ public class Court {
             nextBallX = ballX + ((ballSpeedX<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedX)); 
         }
 
-        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)  || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) { 
+        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)  || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
             ballSpeedX = -ballSpeedX; 
             nextBallX = ballX + deltaT * ballSpeedX ;
             nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 

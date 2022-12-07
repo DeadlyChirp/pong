@@ -58,6 +58,7 @@ public class FPlayer implements RacketController {
 
         decreasePoint(SIZE_COST);
         size = size + 15;
+        SIZE_COST = SIZE_COST + 2;
         sizeLevel++;
         return true;
 

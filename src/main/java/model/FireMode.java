@@ -236,4 +236,5 @@ public class FireMode extends Court {
         setBallSpeedX(getBallSpeedX() - Math.signum(getBallSpeedX()) * n);
         setBallSpeedY(getBallSpeedY() - Math.signum(getBallSpeedY()) * n);
     }
+
 }

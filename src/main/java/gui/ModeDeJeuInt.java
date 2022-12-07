@@ -161,6 +161,7 @@ public class ModeDeJeuInt {
                     limiteS.add(4);
                     limiteS.add(6);
                     limiteS.add(8);
+                    limiteS.add(10);
 
                     ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(6, limiteS);
                     limiteScore.initOwner(primaryStage);

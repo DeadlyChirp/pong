@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -34,11 +35,12 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double margin = 100.0, racketThickness = 10.0, inTerface = 100.0; // pixels
+    private final double margin = 100.0, racketThickness = 10.0
+            , inTerface = 100.0; // pixels
     public static String theme ; 
 
     // children of the game main node
-    private final Rectangle racketA, racketB;
+    private final Rectangle racketA, racketB; // rackets
     private final Circle ball;
     public static boolean finGame;
     public static boolean pause ;
@@ -458,7 +460,12 @@ public class GameView {
                         case 0:
                             if (fireMode.getPlayerB().increaseSizeLevel()) {
                                 sizeLvBText.setText("Level: " + fireMode.getPlayerB().getSizeLevel());
+                                   if(fireMode.getPlayerB().getSizeLevel() > 2) {
+                                       //change racketB to an image
+                                        Image imglvl2 = new Image("src/Pictures/racketBlvl2.jpg");
+                                        racketB.setFill(new ImagePattern(imglvl2));
 
+                                   }
                             }
                             break;
 
