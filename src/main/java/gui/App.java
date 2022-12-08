@@ -49,6 +49,12 @@ public class App {
 
     public static String[] commandes = {"A", "Q", "P", "M", "E", "R", "J", "K"};
 
+    public static void mettreNull(Court court, GameView gameView) {
+        court.mettreScoreNull();
+        court = null;
+        gameView = null;
+    }
+
     public static void setCommandes(String[] s){
         commandes[0] = s[0];
         commandes[1] = s[1];
@@ -159,6 +165,7 @@ public class App {
 
                     //Action du bouton Quitter
                     Quitter.setOnAction(ev1 -> {
+                        mettreNull(court, gameView);
                         Pane root1 = new Pane();
                         gameScene.setRoot(root1);
                         Menu a = new Menu(root1, gameScene);
@@ -329,6 +336,7 @@ public class App {
                 
             //Action du bouton Quitter
                 Quitter.setOnAction(ev1 -> {
+                    mettreNull(court, gameView);
                     Pane root1 = new Pane();
                     gameScene.setRoot(root1);
                     Menu a = new Menu(root1, gameScene);
@@ -452,6 +460,7 @@ public class App {
 
         //Action du bouton Quitter
         Quitter.setOnAction(ev1 -> {
+            mettreNull(court, gameView);
             Pane root1 = new Pane();
             gameScene.setRoot(root1);
             Menu a = new Menu(root1, gameScene);
@@ -580,6 +589,7 @@ public class App {
 
         //Action du bouton Quitter
         Quitter.setOnAction(ev1 -> {
+            mettreNull(court, gameView);
             Pane root1 = new Pane();
         gameScene.setRoot(root1);
         Menu a = new Menu(root1, gameScene);
@@ -704,6 +714,7 @@ public class App {
 
         //Action du bouton Quitter
         Quitter.setOnAction(ev1 -> {
+            mettreNull(court, gameView);
             Pane root1 = new Pane();
             gameScene.setRoot(root1);
             Menu a = new Menu(root1, gameScene);

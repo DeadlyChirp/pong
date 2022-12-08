@@ -46,6 +46,10 @@ public class Court {
         reset();
     }
 
+    public void mettreScoreNull() {
+        score = null;
+    }
+
     public void setBallX (double ballX) {
         this.ballX = ballX ; 
     }
@@ -151,14 +155,14 @@ public class Court {
             ballSpeedX = -ballSpeedX; 
             nextBallX = ballX + deltaT * ballSpeedX ;
             nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
-        }else if (nextBallX < 0) { 
+        }else if (score != null && nextBallX < 0) { 
             score.addScore1();
             if (score.endGame() == 1){
                 GameView.finGame = true ;
                 GameView.endGame(1);
             }
             return true;
-        }else if (nextBallX > width) { 
+        }else if (score != null && nextBallX > width) { 
             score.addScore2();
             if (score.endGame() == 1){
                 GameView.finGame = true ;
