@@ -8,7 +8,7 @@ import javafx.scene.text.*;
 public class TimeMode extends Court {
 
   private Text tmp;
-  private Timer timer;
+  private static Timer timer;
   private int limit;
   private Score scoreFinal;
   private Score scoreManche;
@@ -40,7 +40,7 @@ public boolean updateBall(double deltaT) {
             timer.cancel();
           }
           // first, compute possible next position if nothing stands in the way
-          double nextBallX = getBallX() + deltaT * getBallSpeedX(); // next position of the ball
+          double nextBallX = getBallX() + deltaT * getBallSpeedX();
           double nextBallY = getBallY() + deltaT * getBallSpeedY();
           double ballX = getBallX() ; 
           double ballY = getBallY() ; 
@@ -48,7 +48,7 @@ public boolean updateBall(double deltaT) {
           double ballSpeedY = getBallSpeedY() ; 
 
           // next, see if the ball would meet some obstacle
-          if (nextBallY < 0 || nextBallY > getHeight()) { // if the ball hits the top or bottom wall
+          if (nextBallY < 0 || nextBallY > getHeight()) {
               ballSpeedY = -ballSpeedY ;
               setBallSpeedY(ballSpeedY);
               nextBallY = ballY + deltaT * ballSpeedY ;
@@ -60,10 +60,10 @@ public boolean updateBall(double deltaT) {
               setBallSpeedX(ballSpeedX);
               nextBallX = ballX + deltaT * ballSpeedX ;
               nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
-          }else if (nextBallX < 0) { 
+          }else if (getScore() != null && nextBallX < 0) {
               getScore().addScore1();
               return true;
-          }else if (nextBallX > getWidth()) { 
+          }else if (getScore() != null && nextBallX > getWidth()) {
               getScore().addScore2();
               return true;
           }
@@ -114,8 +114,8 @@ public boolean updateBall(double deltaT) {
   }
 
 
-  public void closeTimer() {
-    timer.cancel();
+  public static void closeTimer() {
+    if (timer != null) timer.cancel();
   }
 
   public Text getTmp() {

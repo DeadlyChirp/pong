@@ -32,23 +32,19 @@ public class GameView {
 
    
     // class parameters
-    private final Court court;
+    private Court court;
     private final Pane gameRoot; // main node of the game
-    private final double scale;
-    private final double margin = 100.0, racketThickness = 10.0
-            , inTerface = 100.0; // pixels
+    private double scale;
+    private final double margin = 100.0, racketThickness = 10.0, inTerface = 100.0; // pixels
     public static String theme ; 
 
     // children of the game main node
-    private final Rectangle racketA, racketB; // rackets
+    private final Rectangle racketA, racketB;
     private final Circle ball;
     public static boolean finGame;
     public static boolean pause ;
 
     int Timer = 60; //2sec
-
-
-
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -71,7 +67,7 @@ public class GameView {
             racketA = new Rectangle();
             racketA.setHeight(court.getRacketSize() * scale);
             racketA.setWidth(racketThickness);
-            racketA.setFill(Color.valueOf("#375745")); //Couleur de la raquette
+            racketA.setFill(Color.valueOf("#375745"));
 
             racketA.setX(margin - racketThickness);
             racketA.setY(court.getRacketA() * scale + inTerface + margin/2);
@@ -114,7 +110,7 @@ public class GameView {
                 l1.setStroke(Color.valueOf("#375745"));
                 l1.setStrokeWidth(5);
 
-                Line l2 = new Line(); //ligne du milieu
+                Line l2 = new Line();
                 l2.setStartX(margin/2);
                 l2.setStartY(inTerface + margin/2 + court.getHeight() + ball.getRadius());
                 l2.setEndX(margin + margin/2 + court.getWidth());
@@ -128,6 +124,13 @@ public class GameView {
                 zoneDeJeu.setWidth(court.getWidth());
                 zoneDeJeu.setHeight(court.getHeight());
                 zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
+        court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+        court.getScore().getS1().setX(1030);
+        court.getScore().getS1().setY(95);
+        //Player2
+        court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+        court.getScore().getS2().setX(130);
+        court.getScore().getS2().setY(95);
                 //Player1
                 
                 if(court instanceof FireMode fireMode){
@@ -212,6 +215,9 @@ public class GameView {
             t.getNbManche().setStyle("-fx-font: 40 arial;");
             t.getNbManche().setX(855);
             t.getNbManche().setY(95);
+
+
+
 
             t.getTmp().setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
     
@@ -449,12 +455,25 @@ public class GameView {
                         case 0:
                             if (fireMode.getPlayerA().increaseSizeLevelP1()) {
                                 sizeLvAText.setText("Level: " + fireMode.getPlayerA().getSizeLevel());
+                                if (fireMode.getPlayerA().getSizeLevel() == 2) {
+                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
+                                    racketA.setFill(lvl1);
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) {
+                                    ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
+                                    racketA.setFill(lvl2);
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) {
+                                    ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
+                                    racketA.setFill(lvl3);
+                                }
                             }
                             break;
 
                         case 1:
                             if (fireMode.getPlayerA().increaseSpeedLevelP1()) {
                                 speedLvAText.setText("Level: " + fireMode.getPlayerA().getSpeedLevel());
+                                //verify that if size level is 2 and if speed level is to then change image of racket else change image of racket
+
+
                             }
                             break;
 
@@ -506,13 +525,7 @@ public class GameView {
                         case 2:
                             if (fireMode.getPlayerB().increasePowerAmountP2()) {
                                 powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
-//                                if (fireMode.getPlayerB().getSizeLevel() == 2 && fireMode.getPlayerB().getPowerAmount() == 2) {
-//                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/racketPWlvl1.png"));
-//                                    racketB.setFill(lvl1);
-//                                } else if (fireMode.getPlayerB().getPowerAmount() == 2) {
-//                                    ImagePattern pw1 = new ImagePattern(new Image("file:src/Pictures/Pwlvl1.png"));
-//                                    racketB.setFill(pw1);
-//                                }
+//                                
                             }
                             break;
                     }
@@ -562,7 +575,6 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if(!pause && !finGame){
-
                     if (last == 0) { // ignore the first tick, just compute the first deltaT
                         last = now;
                         return;
@@ -586,4 +598,16 @@ public class GameView {
             }
         }.start();
     }
+
+    public Circle getBall() { return this.ball; }
+    public Pane getGameRoot() { return gameRoot;}
+    public Court getCourt() { return court;}
+    public Rectangle getRacketA() { return racketA;}
+    public Rectangle getRacketB() { return racketB;}
+    public double getRacketThickness() { return racketThickness;}
+    public double getMargin() { return margin;}
+    public double getInTerface() { return inTerface;}
+    public double getScale() {return scale;}
+    public void setCourt(Court c) { this.court = c;}
+    public void setScale(double d) { this.scale = d;}
 }

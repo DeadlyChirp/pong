@@ -8,7 +8,7 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // size of the application
-    private double racketSpeed = 300.0; //
+    private double racketSpeed = 300.0; // m/s
     private double racketSize = 100.0; // m
     private double ballRadius = 10.0; // ball radius/ size
     // instance state
@@ -28,6 +28,9 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(limit);
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
     }
 
@@ -37,7 +40,14 @@ public class Court {
         this.width = width;
         this.height = height;
         this.score = new Score(-1); 
+        try {
+            ((Bot)playerB).setCourt(this);
+        } catch (Exception e) {}
         reset();
+    }
+
+    public void mettreScoreNull() {
+        score = null;
     }
 
     public void setBallX (double ballX) {
@@ -145,14 +155,14 @@ public class Court {
             ballSpeedX = -ballSpeedX; 
             nextBallX = ballX + deltaT * ballSpeedX ;
             nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
-        }else if (nextBallX < 0) { 
+        }else if (score != null && nextBallX < 0) {
             score.addScore1();
             if (score.endGame() == 1){
                 GameView.finGame = true ;
                 GameView.endGame(1);
             }
             return true;
-        }else if (nextBallX > width) { 
+        }else if (score != null && nextBallX > width) {
             score.addScore2();
             if (score.endGame() == 1){
                 GameView.finGame = true ;

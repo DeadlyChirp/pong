@@ -102,14 +102,14 @@ public class CourtObstacles extends Court {
                 setBallSpeedX(-getBallSpeedX());
                 nextBallX = getBallX() + getBallSpeedX()*deltaT ;
                 nextBallY = getBallY() + ((getBallSpeedY()<0)?-1:+1)*deltaT * rm.nextDouble(Math.abs(2*getBallSpeedY()));
-            }else if (nextBallX < 0) {
+            }else if (getScore() != null && nextBallX < 0) {
                     getScore().addScore1();
                     if (getScore().endGame() != -1) {
                         GameView.finGame = true ; 
                         GameView.endGame(1);
                     }
                     return true ; 
-            }else if (nextBallX > getWidth()) {
+            }else if (getScore() != null && nextBallX > getWidth()) {
                     getScore().addScore2();
                     if (getScore().endGame() != -1) {
                         GameView.finGame = true ; 

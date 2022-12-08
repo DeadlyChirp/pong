@@ -1,16 +1,18 @@
 package gui;
-
-import javafx.scene.Scene;
+import java.util.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.Optional;
+import javafx.scene.image.ImageView;
 
 /*********************************************************************************************************************** */
 
@@ -147,9 +149,7 @@ public class ModeDeJeuInt {
                 App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
                 a.startSpeed(primaryStage);
             });   
-
-             });
-
+        });
 
         lifemode.setOnAction(ev1->{
 

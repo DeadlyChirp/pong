@@ -6,7 +6,6 @@ public class Score {
     private Text s1;
     private Text s2;
 
-
     private int limitePoint;
 
     public Text getS1(){
