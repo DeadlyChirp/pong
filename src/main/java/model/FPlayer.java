@@ -36,30 +36,23 @@ public class FPlayer implements RacketController {
 
         reset();
     }
-
-
     @Override
     public State getState() {
         return state;
     }
-
     public void setState(State state) {
         this.state = state;
     }
-
     public double getSize() {
         return size;
     }
-
     public int getSizeLevel() {
         return sizeLevel;
     }
-
     public boolean increaseSizeLevelP1() {
         if (point < SIZE_COSTP1) {
             return false;
         }
-
         decreasePoint(SIZE_COSTP1);
         size = size + 15;
         SIZE_COSTP1 = SIZE_COSTP1 + 2;
@@ -71,7 +64,6 @@ public class FPlayer implements RacketController {
         if (point < SIZE_COSTP2) {
             return false;
         }
-
         decreasePoint(SIZE_COSTP2);
         size = size + 15;
         SIZE_COSTP2 = SIZE_COSTP2 + 2;

@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
@@ -171,11 +172,19 @@ public class GameView {
             fireMode.getPlayerB().getPointText().setX(830);
             fireMode.getPlayerB().getPointText().setY(95);
 
-            racketA.setFill(Color.valueOf("#9400d3"));
+            racketA.setFill(Color.valueOf("#9400d3")); //Couleur de la raquette
             racketB.setFill(Color.valueOf("#f5400a"));
             ball.setFill(Color.valueOf("#7fff00"));
 
-            //fill racketB with a gradient
+            //resize racketA and racketB thickness
+            racketA.setWidth(racketThickness * 2.5);
+            racketB.setWidth(racketThickness * 2.5);
+
+            //move racketA to the left of the screen
+            racketA.setX(margin - racketThickness * 2.5);
+
+
+
 
 
             gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2);
@@ -273,13 +282,13 @@ public class GameView {
 
         selectionAIndex = 0;
         selectionBIndex = 0;
-        
+
         //Color menu boxx
         selectionA.setX(A_POINTS[selectionAIndex].x);
         selectionA.setY(A_POINTS[selectionAIndex].y);
         selectionA.setWidth(250);
         selectionA.setHeight(120);
-        selectionA.setStroke(Color.valueOf("#1a34ff"));
+        selectionA.setStroke(Color.valueOf("#1a34ff")); //blue
         selectionA.setStrokeWidth(5);
         selectionA.setFill(Color.WHITE);
 
@@ -287,7 +296,7 @@ public class GameView {
         selectionB.setY(B_POINTS[selectionBIndex].y);
         selectionB.setWidth(250);
         selectionB.setHeight(120);
-        selectionB.setStroke(Color.valueOf("#f5400a"));
+        selectionB.setStroke(Color.valueOf("#f5400a")); //red
         selectionB.setStrokeWidth(5);
         selectionB.setFill(Color.WHITE);
 
@@ -296,6 +305,14 @@ public class GameView {
 
             Image image = new Image("file:src/Pictures/MenuFmod.png");
             ImageView imageView = new ImageView(image);
+            //Box menu buy A
+            Text coinsA = new Text("Coins : ");
+            coinsA.setStyle("-fx-font: 40 arial;");
+            coinsA.setFill(Color.YELLOW);
+            coinsA.setX(110);
+            coinsA.setY(100);
+
+
 
 
             //Box menu buy
@@ -346,7 +363,14 @@ public class GameView {
             powerAmountAText.setX(210);
             powerAmountAText.setY(600);
 
-            //
+            //Buy player B
+            Text coinsB = new Text("Coins : ");
+            coinsB.setStyle("-fx-font: 40 arial;");
+            coinsB.setFill(Color.YELLOW);
+            coinsB.setX(930);
+            coinsB.setY(100);
+
+
             Text sizeBText = new Text("Size");
             sizeBText.setStyle("-fx-font: 48 arial;");
             sizeBText.setX(900);
@@ -460,6 +484,16 @@ public class GameView {
                             if (fireMode.getPlayerB().increaseSizeLevelP2()) {
                                 sizeLvBText.setText("Level: " + fireMode.getPlayerB().getSizeLevel());
                                 //SKIN FOR PLAYER B
+                                if (fireMode.getPlayerB().getSizeLevel() == 2) {
+                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
+                                    racketB.setFill(lvl1);
+                                } else if (fireMode.getPlayerB().getSizeLevel() == 3) {
+                                    ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
+                                    racketB.setFill(lvl2);
+                                } else if (fireMode.getPlayerB().getSizeLevel() == 4) {
+                                    ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
+                                    racketB.setFill(lvl3);
+                                }
                             }
                             break;
 
@@ -472,6 +506,13 @@ public class GameView {
                         case 2:
                             if (fireMode.getPlayerB().increasePowerAmountP2()) {
                                 powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
+//                                if (fireMode.getPlayerB().getSizeLevel() == 2 && fireMode.getPlayerB().getPowerAmount() == 2) {
+//                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/racketPWlvl1.png"));
+//                                    racketB.setFill(lvl1);
+//                                } else if (fireMode.getPlayerB().getPowerAmount() == 2) {
+//                                    ImagePattern pw1 = new ImagePattern(new Image("file:src/Pictures/Pwlvl1.png"));
+//                                    racketB.setFill(pw1);
+//                                }
                             }
                             break;
                     }
@@ -526,8 +567,6 @@ public class GameView {
                         last = now;
                         return;
                     }
-                    
-                    
                     court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
 
