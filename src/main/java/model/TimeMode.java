@@ -8,7 +8,7 @@ import javafx.scene.text.*;
 public class TimeMode extends Court {
 
   private Text tmp;
-  private Timer timer;
+  private static Timer timer;
   private int limit;
   private Score scoreFinal;
   private Score scoreManche;
@@ -114,8 +114,8 @@ public boolean updateBall(double deltaT) {
   }
 
 
-  public void closeTimer() {
-    timer.cancel();
+  public static void closeTimer() {
+    if (timer != null) timer.cancel();
   }
 
   public Text getTmp() {
