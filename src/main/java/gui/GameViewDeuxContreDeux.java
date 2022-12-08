@@ -1,14 +1,9 @@
 package gui;
-import javafx.scene.text.*;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Line;
 import model.*;
 
 public class GameViewDeuxContreDeux extends GameView {
