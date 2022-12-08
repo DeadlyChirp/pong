@@ -60,10 +60,10 @@ public boolean updateBall(double deltaT) {
               setBallSpeedX(ballSpeedX);
               nextBallX = ballX + deltaT * ballSpeedX ;
               nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
-          }else if (nextBallX < 0) { 
+          }else if (getScore() != null && nextBallX < 0) { 
               getScore().addScore1();
               return true;
-          }else if (nextBallX > getWidth()) { 
+          }else if (getScore() != null && nextBallX > getWidth()) { 
               getScore().addScore2();
               return true;
           }
