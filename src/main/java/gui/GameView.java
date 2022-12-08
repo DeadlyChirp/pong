@@ -276,7 +276,7 @@ public class GameView {
     private Text sizeLvAText, speedLvAText, powerAmountAText, sizeLvBText, speedLvBText, powerAmountBText;
     private int selectionAIndex, selectionBIndex;
     public void upgradeRacket() { //thanh
-        if (finGame) {
+        if (finGame || gameRoot.getScene() == null) {
             return;
         }
 
