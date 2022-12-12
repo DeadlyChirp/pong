@@ -1,17 +1,29 @@
 package gui;
-import javafx.scene.text.*;
+
 import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Line;
-import model.Court;
-import model.CourtObstacles.Obstacle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import model.*;
+import model.CourtObstacles.Obstacle;
+
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /* ------------------------------------------------------------------------------------------------------*/
 
@@ -32,6 +44,7 @@ public class GameView {
     private final Circle ball;
     public static boolean finGame;
     public static boolean pause ;
+    private final LinkedList<Trail> trails;
 
     int Timer = 60; //2sec
 
@@ -76,6 +89,7 @@ public class GameView {
             ball.setCenterX(court.getBallX() * scale + margin);
             ball.setCenterY(court.getBallY() * scale + inTerface +  margin/2);
 
+        trails = new LinkedList<>();
 
         //Affichage de l'interface
 
@@ -113,14 +127,87 @@ public class GameView {
                 zoneDeJeu.setWidth(court.getWidth());
                 zoneDeJeu.setHeight(court.getHeight());
                 zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
-                //Player1
-                court.getScore().getS1().setStyle("-fx-font: 60 arial;");
-                court.getScore().getS1().setX(1030);
-                court.getScore().getS1().setY(95);
-                //Player2
-                court.getScore().getS2().setStyle("-fx-font: 60 arial;");
-                court.getScore().getS2().setX(130);
-                court.getScore().getS2().setY(95);
+        //Player1
+        court.getScore().getS1().setStyle("-fx-font: 60 arial;");
+        court.getScore().getS1().setX(1030);
+        court.getScore().getS1().setY(95);
+        //Player2
+        court.getScore().getS2().setStyle("-fx-font: 60 arial;");
+        court.getScore().getS2().setX(130);
+        court.getScore().getS2().setY(95);
+
+        if (court instanceof FireMode fireMode) {
+
+            Text p1 = new Text();
+            p1.setText("Coins P1");
+            p1.setStyle("-fx-font: 20 arial;");
+            p1.setFill(Color.valueOf("#ff5252"));
+            p1.setX(300);
+            p1.setY(45);
+
+            Text p2 = new Text();
+            p2.setText("Coins P2");
+            p2.setStyle("-fx-font: 20 arial;");
+            p2.setFill(Color.valueOf("#189ad3"));
+            p2.setX(800);
+            p2.setY(45);
+
+            Text p1Skill = new Text();
+            p1Skill.setText("Power");
+            p1Skill.setStyle("-fx-font: 20 arial;");
+            p1Skill.setFill(Color.valueOf("#ff5252"));
+            p1Skill.setX(500);
+            p1Skill.setY(45);
+
+            Text p2Skill = new Text();
+            p2Skill.setText("Power P2");
+            p2Skill.setStyle("-fx-font: 20 arial;");
+            p2Skill.setFill(Color.valueOf("#189ad3"));
+            p2Skill.setX(600);
+            p2Skill.setY(45);
+
+
+            fireMode.getPlayerA().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #ff5252;");
+            fireMode.getPlayerA().getPointText().setX(330);
+            fireMode.getPlayerA().getPointText().setY(95);
+
+            fireMode.getPlayerB().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #189ad3;");
+            fireMode.getPlayerB().getPointText().setX(830);
+            fireMode.getPlayerB().getPointText().setY(95);
+
+            fireMode.getPlayerA().getPowerAmountText().setStyle("-fx-font: 60 arial;-fx-fill: #ff5252 ;");
+            fireMode.getPlayerA().getPowerAmountText().setX(530);
+            fireMode.getPlayerA().getPowerAmountText().setY(95);
+
+            fireMode.getPlayerB().getPowerAmountText().setStyle("-fx-font: 60 arial;-fx-fill: #189ad3;");
+            fireMode.getPlayerB().getPowerAmountText().setX(630);
+            fireMode.getPlayerB().getPowerAmountText().setY(95);
+
+            racketA.setFill(Color.valueOf("#ff5252")); //Couleur de la raquette
+            racketB.setFill(Color.valueOf("#189ad3"));
+
+            //resize racketA and racketB thickness
+            racketA.setWidth(racketThickness * 2.5);
+            racketB.setWidth(racketThickness * 2.5);
+
+            //move racketA to the left of the screen
+            racketA.setX(margin - racketThickness * 2.5);
+            //set racketA Y position
+
+            Image image = new Image("file:src/Pictures/fireball3.gif");
+            //set image to ballShape
+            ball.setFill(new ImagePattern(image));
+
+
+
+
+
+
+
+
+            gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2, p1Skill,p2Skill, fireMode.getPlayerB().getPowerAmountText(),fireMode.getPlayerA().getPowerAmountText());
+        }
+
 
         if (court instanceof TimeMode) {
             TimeMode t = (TimeMode)court;
@@ -203,6 +290,284 @@ public class GameView {
     }
 
 
+    private static final Point[] A_POINTS = new Point[] {new Point(100, 180), new Point(100, 340), new Point(100, 500)};
+    private static final Point[] B_POINTS = new Point[] {new Point(890, 180), new Point(890, 340), new Point(890, 500)};
+    private Rectangle selectionA = new Rectangle();
+    private Rectangle selectionB = new Rectangle();
+    private Text sizeLvAText, speedLvAText, powerAmountAText, sizeLvBText, speedLvBText, powerAmountBText;
+    private int selectionAIndex, selectionBIndex;
+    public void upgradeRacket() { //thanh
+        if (finGame || gameRoot.getScene() == null) {
+            return;
+        }
+
+        selectionAIndex = 0;
+        selectionBIndex = 0;
+
+        //Color menu boxx
+        selectionA.setX(A_POINTS[selectionAIndex].x);
+        selectionA.setY(A_POINTS[selectionAIndex].y);
+        selectionA.setWidth(250);
+        selectionA.setHeight(120);
+        selectionA.setStroke(Color.valueOf("#1a34ff")); //blue
+        selectionA.setStrokeWidth(5);
+        selectionA.setFill(Color.WHITE);
+
+        selectionB.setX(B_POINTS[selectionBIndex].x);
+        selectionB.setY(B_POINTS[selectionBIndex].y);
+        selectionB.setWidth(250);
+        selectionB.setHeight(120);
+        selectionB.setStroke(Color.valueOf("#f5400a")); //red
+        selectionB.setStrokeWidth(5);
+        selectionB.setFill(Color.WHITE);
+
+        if (court instanceof FireMode fireMode) {
+            pause = true; //pause game
+
+            Image image = new Image("file:src/Pictures/MenuFmod.png");
+            ImageView imageView = new ImageView(image);
+            //Box menu buy A
+            Text coinsA = new Text("Coins : ");
+            coinsA.setStyle("-fx-font: 40 arial;");
+            coinsA.setFill(Color.YELLOW);
+            coinsA.setX(110);
+            coinsA.setY(100);
+
+
+
+
+            //Box menu buy
+            Text sizeAText = new Text("Size");
+            sizeAText.setStyle("-fx-font: 48 arial;");
+            sizeAText.setX(110);
+            sizeAText.setY(240);
+
+            Text sizeCostAText = new Text("Cost: " + FPlayer.SIZE_COSTP1);
+            sizeCostAText.setStyle("-fx-font: 24 arial;");
+            sizeCostAText.setX(120);
+            sizeCostAText.setY(280);
+
+            sizeLvAText = new Text("Level: " + fireMode.getPlayerA().getSizeLevel());
+            sizeLvAText.setStyle("-fx-font: 24 arial;");
+            sizeLvAText.setX(210);
+            sizeLvAText.setY(280);
+
+            //
+            Text speedAText = new Text("Speed");
+            speedAText.setStyle("-fx-font: 48 arial;");
+            speedAText.setX(110);
+            speedAText.setY(400);
+
+            Text speedCostAText = new Text("Cost: " + FPlayer.SPEED_COSTP1);
+            speedCostAText.setStyle("-fx-font: 24 arial;");
+            speedCostAText.setX(120);
+            speedCostAText.setY(440);
+
+            speedLvAText = new Text("Level: " + fireMode.getPlayerA().getSpeedLevel());
+            speedLvAText.setStyle("-fx-font: 24 arial;");
+            speedLvAText.setX(210);
+            speedLvAText.setY(440);
+
+            //
+            Text powerAText = new Text("Power"); // power
+            powerAText.setStyle("-fx-font: 48 arial;"); // power
+            powerAText.setX(110);
+            powerAText.setY(560);
+
+            Text powerCostAText = new Text("Cost: " + FPlayer.POWER_COSTP1);
+            powerCostAText.setStyle("-fx-font: 24 arial;");
+            powerCostAText.setX(120);
+            powerCostAText.setY(600);
+
+            powerAmountAText = new Text("Amount: " + fireMode.getPlayerA().getPowerAmount());
+            powerAmountAText.setStyle("-fx-font: 24 arial;");
+            powerAmountAText.setX(210);
+            powerAmountAText.setY(600);
+
+            //Buy player B
+            Text coinsB = new Text("Coins : ");
+            coinsB.setStyle("-fx-font: 40 arial;");
+            coinsB.setFill(Color.YELLOW);
+            coinsB.setX(930);
+            coinsB.setY(100);
+
+
+            Text sizeBText = new Text("Size");
+            sizeBText.setStyle("-fx-font: 48 arial;");
+            sizeBText.setX(900);
+            sizeBText.setY(240);
+
+            Text sizeCostBText = new Text("Cost: " + FPlayer.SIZE_COSTP2);
+            sizeCostBText.setStyle("-fx-font: 24 arial;");
+            sizeCostBText.setX(910);
+            sizeCostBText.setY(280);
+
+            sizeLvBText = new Text("Level: " + fireMode.getPlayerB().getSizeLevel());
+            sizeLvBText.setStyle("-fx-font: 24 arial;");
+            sizeLvBText.setX(1000);
+            sizeLvBText.setY(280);
+
+            //
+            Text speedBText = new Text("Speed");
+            speedBText.setStyle("-fx-font: 48 arial;");
+            speedBText.setX(900);
+            speedBText.setY(400);
+
+            Text speedCostBText = new Text("Cost: " + FPlayer.SPEED_COSTP2);
+            speedCostBText.setStyle("-fx-font: 24 arial;");
+            speedCostBText.setX(910);
+            speedCostBText.setY(440);
+
+            speedLvBText = new Text("Level: " + fireMode.getPlayerB().getSpeedLevel());
+            speedLvBText.setStyle("-fx-font: 24 arial;");
+            speedLvBText.setX(1000);
+            speedLvBText.setY(440);
+
+            //
+            Text powerBText = new Text("Power");
+            powerBText.setStyle("-fx-font: 48 arial;");
+            powerBText.setX(900);
+            powerBText.setY(560);
+
+            Text powerCostBText = new Text("Cost: " + FPlayer.POWER_COSTP2);
+            powerCostBText.setStyle("-fx-font: 24 arial;");
+            powerCostBText.setX(910);
+            powerCostBText.setY(600);
+
+            powerAmountBText = new Text("Amount: " + fireMode.getPlayerB().getPowerAmount());
+            powerAmountBText.setStyle("-fx-font: 24 arial;");
+            powerAmountBText.setX(1000);
+            powerAmountBText.setY(600);
+
+            gameRoot.getChildren().addAll(imageView, selectionA, selectionB,
+                                          sizeAText, sizeCostAText, sizeLvAText,
+                                          speedAText, speedCostAText, speedLvAText,
+                                          powerAText, powerCostAText, powerAmountAText,
+                                          sizeBText, sizeCostBText, sizeLvBText,
+                                          speedBText, speedCostBText, speedLvBText,
+                                          powerBText, powerCostBText, powerAmountBText
+
+            );
+
+            gameRoot.getScene().setOnKeyPressed(event -> {
+                String s  = event.getCode().toString();
+                if (s == App.commandes[0]) {
+                    if (selectionAIndex > 0) {
+                        selectionAIndex--;
+
+                        selectionA.setX(A_POINTS[selectionAIndex].x);
+                        selectionA.setY(A_POINTS[selectionAIndex].y);
+                    }
+                } else if (s == App.commandes[1]) {
+                    if (selectionAIndex < 2) {
+                        selectionAIndex++;
+
+                        selectionA.setX(A_POINTS[selectionAIndex].x); // power
+                        selectionA.setY(A_POINTS[selectionAIndex].y);
+                    }
+                } else if (s == KeyCode.D.toString()) {
+                    switch (selectionAIndex) {
+                        case 0:
+                            if (fireMode.getPlayerA().increaseSizeLevelP1()) {
+                                sizeLvAText.setText("Level: " + fireMode.getPlayerA().getSizeLevel());
+                                if (fireMode.getPlayerA().getSizeLevel() == 2) {
+                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
+                                    racketA.setFill(lvl1);
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) {
+                                    ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
+                                    racketA.setFill(lvl2);
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) {
+                                    ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
+                                    racketA.setFill(lvl3);
+                                }
+                            }
+                            break;
+
+                        case 1:
+                            if (fireMode.getPlayerA().increaseSpeedLevelP1()) {
+                                speedLvAText.setText("Level: " + fireMode.getPlayerA().getSpeedLevel());
+                                //verify that if size level is 2 and if speed level is to then change image of racket else change image of racket
+
+
+                            }
+                            break;
+
+                        case 2:
+                            if (fireMode.getPlayerA().increasePowerAmountP1()) {
+                                powerAmountAText.setText("Level: " + fireMode.getPlayerA().getPowerAmount());
+                            }
+                            break;
+                    }
+                } else if (s == App.commandes[2]) { //UP p2
+                    if (selectionBIndex > 0) {
+                        selectionBIndex--;
+
+                        selectionB.setX(B_POINTS[selectionBIndex].x);
+                        selectionB.setY(B_POINTS[selectionBIndex].y);
+                    }
+                } else if (s == App.commandes[3]) { //Down p2
+                    if (selectionBIndex < 2) {
+                        selectionBIndex++;
+
+                        selectionB.setX(B_POINTS[selectionBIndex].x);
+                        selectionB.setY(B_POINTS[selectionBIndex].y);
+                    }
+                } else if (event.getCode() == KeyCode.ENTER) {
+                    switch (selectionBIndex) {
+                        case 0:
+                            if (fireMode.getPlayerB().increaseSizeLevelP2()) {
+                                sizeLvBText.setText("Level: " + fireMode.getPlayerB().getSizeLevel());
+                                //SKIN FOR PLAYER B
+                                if (fireMode.getPlayerB().getSizeLevel() == 2) {
+                                    ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
+                                    racketB.setFill(lvl1);
+                                } else if (fireMode.getPlayerB().getSizeLevel() == 3) {
+                                    ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
+                                    racketB.setFill(lvl2);
+                                } else if (fireMode.getPlayerB().getSizeLevel() == 4) {
+                                    ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
+                                    racketB.setFill(lvl3);
+                                }
+                            }
+                            break;
+
+                        case 1:
+                            if (fireMode.getPlayerB().increaseSpeedLevelP2()) {
+                                speedLvBText.setText("Level: " + fireMode.getPlayerB().getSpeedLevel());
+                            }
+                            break;
+
+                        case 2:
+                            if (fireMode.getPlayerB().increasePowerAmountP2()) {
+                                powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
+//
+                            }
+                            break;
+                    }
+                }
+            });
+
+            ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
+            Runnable task = () -> {
+                fireMode.setKeyEvent(gameRoot.getScene());
+
+                Platform.runLater(() -> {
+                    gameRoot.getChildren().removeAll(imageView, selectionA, selectionB,
+                                                     sizeAText, sizeCostAText, sizeLvAText,
+                                                     speedAText, speedCostAText, speedLvAText,
+                                                     powerAText, powerCostAText, powerAmountAText,
+                                                     sizeBText, sizeCostBText, sizeLvBText,
+                                                     speedBText, speedCostBText, speedLvBText,
+                                                     powerBText, powerCostBText, powerAmountBText
+                    );
+                });
+
+                pause = false;
+            };
+            ses.schedule(task, 8, TimeUnit.SECONDS);
+            ses.shutdown();
+        }
+    }
 
     public static void endGame (int player) {
         Image fin = new Image((player==1)?"file:src/Pictures/WinJ22.png":(player ==2)?"file:src/Pictures/WinJ11.png":"file:src/Pictures/egalite.png");
@@ -231,12 +596,31 @@ public class GameView {
                     }
                     court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
+
+                    if (court instanceof FireMode fireMode) {
+                        for (Trail trail : trails) {
+                            trail.tick();
+                        }
+                        Circle ballShape = new Circle();
+                        ballShape.setRadius(fireMode.getBallRadius());
+                        ballShape.setCenterX(fireMode.getBallX() * scale + margin);
+                        ballShape.setCenterY(fireMode.getBallY() * scale + margin / 2 + inTerface);
+                        Image image = new Image("file:src/Pictures/SmokeTraill.gif");
+                        //set image to ballShape
+                        ballShape.setFill(Color.TRANSPARENT);
+                        gameRoot.getChildren().addAll(ballShape);
+                        Trail ballTrail = new Trail(ballShape, image, 0.15f, trail1 -> {
+                            gameRoot.getChildren().removeAll(trail1.getShape());
+                            Platform.runLater(() -> trails.remove(trail1));
+                        });
+                        trails.add(ballTrail);
+                    }
                     racketA.setY(court.getRacketA() * scale + margin/2 + inTerface);
                     racketB.setY(court.getRacketB() * scale + margin/2 + inTerface);
                     ball.setCenterX(court.getBallX() * scale + margin);
-                    ball.setCenterY(court.getBallY() * scale + margin/2 + inTerface);
-                }else{
-                    last = 0 ; 
+                    ball.setCenterY(court.getBallY() * scale + margin / 2 + inTerface);
+                } else {
+                    last = 0;
                 }
                 Timer--;
             }

@@ -8,6 +8,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.Scene;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import java.util.ArrayList;
 import java.util.Optional;
 import javafx.scene.image.ImageView;
 
@@ -153,47 +159,68 @@ public class ModeDeJeuInt {
             //Utilser lifemode d'Emir
         });
 
-        firemode.setOnAction(ev1->{
+        firemode.setOnAction(ev1-> {
+                    ArrayList<Integer> limiteS = new ArrayList<Integer>();
+                    limiteS.add(4);
+                    limiteS.add(6);
+                    limiteS.add(8);
+                    limiteS.add(15);
 
-            //Utilser firemode de Thanh
-        });
+                    ChoiceDialog<Integer> limiteScore = new ChoiceDialog<Integer>(6, limiteS);
+                    limiteScore.initOwner(primaryStage);
+                    limiteScore.setTitle("Limite de Score");
+                    limiteScore.setHeaderText("Veuillez choisir un nombre points maximum");
+                    limiteScore.setContentText("Nombre : ");
+
+                    Optional<Integer> limitScore = limiteScore.showAndWait();
+
+                    limitScore.ifPresent(limite -> {
+                        Pane root1 = new Pane();
+                        gameScene.setRoot(root1);
+                        App a = new App(root1, gameScene, limite); //Appel de la classe App classique qui permet de lancer le mode de score (définir la limite du score au début)
+                        a.startFire(primaryStage);
+                        //dialog to choose
+
+                    });
+                });
+
 
         obstaclemode.setOnAction(ev1->{
             TextInputDialog dialog = new TextInputDialog("1");
             dialog.initOwner(primaryStage);
             dialog.setTitle("Choix Du Score");
             dialog.setHeaderText("Vous Pouvez choisir le nombre de points à atteindre !");
-            dialog.setContentText("Veuillez entrer un score valide : \n" + 
+            dialog.setContentText("Veuillez entrer un score valide : \n" +
             "Tapez 'infini' si vous voulez pas de limite !");
             dialog.setResizable(false);
-            
-            int limit = 0 ; 
-            Optional<String> result = dialog.showAndWait() ; 
+
+            int limit = 0 ;
+            Optional<String> result = dialog.showAndWait() ;
             if (result.isPresent()){
                 if (result.get().equals("infini")){
-                    limit = -1 ; 
+                    limit = -1 ;
                 }else{
                     try {
-                        limit = Integer.valueOf(result.get().strip()) ; 
+                        limit = Integer.valueOf(result.get().strip()) ;
                     } catch (NumberFormatException e) {
                        dialog.setContentText("Veuillez entrer un nombre !");
-                       limit = 0 ; 
+                       limit = 0 ;
                     }
                 }
                 if (limit == -1 || limit >0) {
-                    TextInputDialog di = new TextInputDialog() ; 
+                    TextInputDialog di = new TextInputDialog() ;
                     di.setTitle("Choix Des Options");
                     di.initOwner(primaryStage);
                     GridPane gp = new GridPane() ;
                     gp.add(new Label("Veuillez choisir vos options de jeu"), 0, 0);
-                    CheckBox vitesse = new CheckBox("Vitese") ; 
+                    CheckBox vitesse = new CheckBox("Vitese") ;
                     gp.add(vitesse, 0, 1);
                     di.getDialogPane().setContent(gp);
                     if (di.showAndWait().isPresent()) {
-                        Pane root1 = new Pane() ; 
+                        Pane root1 = new Pane() ;
                         gameScene.setRoot(root1);
-                        App app = new App(root1, gameScene, limit) ; 
-                        if (vitesse.isSelected()){             
+                        App app = new App(root1, gameScene, limit) ;
+                        if (vitesse.isSelected()){
                             app.startObstacles(primaryStage, true);
                         }else{
                             app.startObstacles(primaryStage, false);
@@ -201,19 +228,19 @@ public class ModeDeJeuInt {
                     }
                 }
             }
-                        
+
             //Utilser obstaclemode de Samy
         });
 
 
         timermode.setOnAction(ev1->{
-            
+
             TextInputDialog dialogManche = new TextInputDialog();
             dialogManche.initOwner(primaryStage);
             dialogManche.setTitle("Limite de la partie");
             dialogManche.setHeaderText("Veuillez choisir un nombre de manches");
             dialogManche.setContentText("Nombre : ");
-    
+
             Optional<String> ecouteManche = dialogManche.showAndWait();
 
             ecouteManche.ifPresent(limit -> {
@@ -246,7 +273,7 @@ public class ModeDeJeuInt {
                 dialogDuree.setTitle("Mode Timer");
                 dialogDuree.setHeaderText("Veuillez choisir la durée de chaque manche");
                 dialogDuree.setContentText("durée : ");
-    
+
                 Optional<String> ecouteDuree = dialogDuree.showAndWait();
                 ecouteDuree.ifPresent(time -> {
                     boolean d = false;
@@ -276,12 +303,12 @@ public class ModeDeJeuInt {
                     App a = new App(root1, gameScene);
                     a.startTimer(primaryStage, Integer.valueOf(limit), Integer.valueOf(time));
                 });
-            
+
             });
-        
+
         });
-        
-        
+
+
 
     }
 }
