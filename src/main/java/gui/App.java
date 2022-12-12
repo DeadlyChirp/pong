@@ -5,14 +5,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
+import model.Court; //plus tard pour paramétrer taille, etc
+import model.CourtDeuxContreDeux;
+import model.CourtObstacles;
+import model.CourtSpeed;
+import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import model.RacketController;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import model.TimeMode;
+
+
+
+//*************************************TEST*********** */
 
 //***************************************************** */
 
@@ -355,7 +367,7 @@ public class App {
                     GameView.finGame = false;
                 });
             });
-        };
+        }
     }
     }
 
@@ -742,8 +754,8 @@ public class App {
             ChoiceDialog<String> firePop = new ChoiceDialog<String>("COMPRIS", firePopA);
             firePop.initOwner(primaryStage);
             firePop.setTitle("Touche du Fire Mode");
-            firePop.setHeaderText("TOUCHE DU J1 : A , Q et D  |  TOUCHE DU J2 : P , M et Entrer (A, Q, P et M par defaut)");
-            firePop.setContentText("Vous allez devoir jouer pour obtenir des points, \n Quand la balle touche votre raquette c'est 1 points \n Quand vous marquez un goal, c'est 5 points \n Dans le menu shop, vous choisissez vos power-up et confirmez avec D ou Entrer");
+            firePop.setHeaderText("TOUCHE DU J1 : A , Q et D (D = Acheter + Activer Skill)  |  TOUCHE DU J2 : P , M et Entrer (Enter = Acheter + Activer Skill )");
+            firePop.setContentText("Vous allez devoir jouer pour obtenir des points, \n Quand la balle touche votre raquette c'est 1 points \n Quand vous marquez un goal, c'est 5 points \n");
             firePop.setResizable(false);
             Optional<String> fireok = firePop.showAndWait();
             if(fireok.isEmpty()){
@@ -832,5 +844,3 @@ public class App {
                 }
             }
 }
-
-

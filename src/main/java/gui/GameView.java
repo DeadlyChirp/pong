@@ -20,6 +20,7 @@ import model.*;
 import model.CourtObstacles.Obstacle;
 
 import java.awt.*;
+import java.util.LinkedList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +44,7 @@ public class GameView {
     private final Circle ball;
     public static boolean finGame;
     public static boolean pause ;
+    private final LinkedList<Trail> trails;
 
     int Timer = 60; //2sec
 
@@ -87,6 +89,7 @@ public class GameView {
             ball.setCenterX(court.getBallX() * scale + margin);
             ball.setCenterY(court.getBallY() * scale + inTerface +  margin/2);
 
+        trails = new LinkedList<>();
 
         //Affichage de l'interface
 
@@ -124,6 +127,7 @@ public class GameView {
                 zoneDeJeu.setWidth(court.getWidth());
                 zoneDeJeu.setHeight(court.getHeight());
                 zoneDeJeu.setFill(Color.valueOf("#aeb8b2"));
+        //Player1
         court.getScore().getS1().setStyle("-fx-font: 60 arial;");
         court.getScore().getS1().setX(1030);
         court.getScore().getS1().setY(95);
@@ -131,53 +135,56 @@ public class GameView {
         court.getScore().getS2().setStyle("-fx-font: 60 arial;");
         court.getScore().getS2().setX(130);
         court.getScore().getS2().setY(95);
-                //Player1
-                
-                if(court instanceof FireMode fireMode){
-                    court.getScore().getS1().setStyle("-fx-font: 60 arial;"); //taille du texte
-                    court.getScore().getS1().setFill(Color.WHITE); //couleur du texte
-                }else{
-                    court.getScore().getS1().setStyle("-fx-font: 60 arial;");
-                }
-                court.getScore().getS1().setX(1030);
-                court.getScore().getS1().setY(95);
-                //Player2
-                if(court instanceof FireMode fireMode){
-                    court.getScore().getS2().setStyle("-fx-font: 60 arial;");
-                    court.getScore().getS2().setFill(Color.WHITE);
-                }else{
-                    court.getScore().getS2().setStyle("-fx-font: 60 arial;");
-                }
-                court.getScore().getS2().setX(130);
-                court.getScore().getS2().setY(95);
 
         if (court instanceof FireMode fireMode) {
 
             Text p1 = new Text();
             p1.setText("Coins P1");
             p1.setStyle("-fx-font: 20 arial;");
-            p1.setFill(Color.YELLOW);
+            p1.setFill(Color.valueOf("#ff5252"));
             p1.setX(300);
             p1.setY(45);
 
             Text p2 = new Text();
             p2.setText("Coins P2");
             p2.setStyle("-fx-font: 20 arial;");
-            p2.setFill(Color.YELLOW);
+            p2.setFill(Color.valueOf("#189ad3"));
             p2.setX(800);
             p2.setY(45);
 
-            fireMode.getPlayerA().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #FFD700;");
+            Text p1Skill = new Text();
+            p1Skill.setText("Coins P1");
+            p1Skill.setStyle("-fx-font: 20 arial;");
+            p1Skill.setFill(Color.valueOf("#ff5252"));
+            p1Skill.setX(500);
+            p1Skill.setY(45);
+
+            Text p2Skill = new Text();
+            p2Skill.setText("Coins P2");
+            p2Skill.setStyle("-fx-font: 20 arial;");
+            p2Skill.setFill(Color.valueOf("#189ad3"));
+            p2Skill.setX(600);
+            p2Skill.setY(45);
+
+
+            fireMode.getPlayerA().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #ff5252;");
             fireMode.getPlayerA().getPointText().setX(330);
             fireMode.getPlayerA().getPointText().setY(95);
 
-            fireMode.getPlayerB().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #FFD700;");
+            fireMode.getPlayerB().getPointText().setStyle("-fx-font: 60 arial;-fx-fill: #189ad3;");
             fireMode.getPlayerB().getPointText().setX(830);
             fireMode.getPlayerB().getPointText().setY(95);
 
-            racketA.setFill(Color.valueOf("#9400d3")); //Couleur de la raquette
-            racketB.setFill(Color.valueOf("#f5400a"));
-            ball.setFill(Color.valueOf("#7fff00"));
+            fireMode.getPlayerA().getPowerAmountText().setStyle("-fx-font: 60 arial;-fx-fill: #ff5252 ;");
+            fireMode.getPlayerA().getPowerAmountText().setX(530);
+            fireMode.getPlayerA().getPowerAmountText().setY(95);
+
+            fireMode.getPlayerB().getPowerAmountText().setStyle("-fx-font: 60 arial;-fx-fill: #189ad3;");
+            fireMode.getPlayerB().getPowerAmountText().setX(630);
+            fireMode.getPlayerB().getPowerAmountText().setY(95);
+
+            racketA.setFill(Color.valueOf("#ff5252")); //Couleur de la raquette
+            racketB.setFill(Color.valueOf("#189ad3"));
 
             //resize racketA and racketB thickness
             racketA.setWidth(racketThickness * 2.5);
@@ -187,10 +194,18 @@ public class GameView {
             racketA.setX(margin - racketThickness * 2.5);
 
 
+            Image image = new Image("file:src/Pictures/fireball3.gif");
+            //set image to ballShape
+            ball.setFill(new ImagePattern(image));
 
 
 
-            gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2);
+
+
+
+
+
+            gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2, p1Skill,p2Skill, fireMode.getPlayerB().getPowerAmountText(),fireMode.getPlayerA().getPowerAmountText());
         }
 
 
@@ -483,14 +498,14 @@ public class GameView {
                             }
                             break;
                     }
-                } else if (s == App.commandes[2]) {
+                } else if (s == App.commandes[2]) { //UP p2
                     if (selectionBIndex > 0) {
                         selectionBIndex--;
 
                         selectionB.setX(B_POINTS[selectionBIndex].x);
                         selectionB.setY(B_POINTS[selectionBIndex].y);
                     }
-                } else if (s == App.commandes[3]) {
+                } else if (s == App.commandes[3]) { //Down p2
                     if (selectionBIndex < 2) {
                         selectionBIndex++;
 
@@ -525,7 +540,7 @@ public class GameView {
                         case 2:
                             if (fireMode.getPlayerB().increasePowerAmountP2()) {
                                 powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
-//                                
+//
                             }
                             break;
                     }
@@ -583,16 +598,29 @@ public class GameView {
                     last = now;
 
                     if (court instanceof FireMode fireMode) {
-                        racketA.setHeight(fireMode.getRacketASize() * scale);
-                        racketB.setHeight(fireMode.getRacketBSize() * scale);
+                        for (Trail trail : trails) {
+                            trail.tick();
+                        }
+                        Circle ballShape = new Circle();
+                        ballShape.setRadius(fireMode.getBallRadius());
+                        ballShape.setCenterX(fireMode.getBallX() * scale + margin);
+                        ballShape.setCenterY(fireMode.getBallY() * scale + margin / 2 + inTerface);
+                        Image image = new Image("file:src/Pictures/SmokeTraill.gif");
+                        //set image to ballShape
+                        ballShape.setFill(Color.TRANSPARENT);
+                        gameRoot.getChildren().addAll(ballShape);
+                        Trail ballTrail = new Trail(ballShape, image, 0.15f, trail1 -> {
+                            gameRoot.getChildren().removeAll(trail1.getShape());
+                            Platform.runLater(() -> trails.remove(trail1));
+                        });
+                        trails.add(ballTrail);
                     }
-
                     racketA.setY(court.getRacketA() * scale + margin/2 + inTerface);
                     racketB.setY(court.getRacketB() * scale + margin/2 + inTerface);
                     ball.setCenterX(court.getBallX() * scale + margin);
-                    ball.setCenterY(court.getBallY() * scale + margin/2 + inTerface);
-                }else{
-                    last = 0 ; 
+                    ball.setCenterY(court.getBallY() * scale + margin / 2 + inTerface);
+                } else {
+                    last = 0;
                 }
                 Timer--;
             }

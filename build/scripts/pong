@@ -114,11 +114,7 @@ case "$( uname )" in                #(
   NONSTOP* )        nonstop=true ;;
 esac
 
-<<<<<<< HEAD
 CLASSPATH=$APP_HOME/lib/pong-1.0-SNAPSHOT.jar:$APP_HOME/lib/javafx-controls-17-win.jar:$APP_HOME/lib/javafx-graphics-17-win.jar:$APP_HOME/lib/javafx-graphics-17.jar:$APP_HOME/lib/javafx-base-17-win.jar:$APP_HOME/lib/javafx-base-17.jar
-=======
-CLASSPATH=$APP_HOME/lib/pong-1.0-SNAPSHOT.jar:$APP_HOME/lib/javafx-controls-17-linux.jar:$APP_HOME/lib/javafx-graphics-17-linux.jar:$APP_HOME/lib/javafx-graphics-17.jar:$APP_HOME/lib/javafx-base-17-linux.jar:$APP_HOME/lib/javafx-base-17.jar
->>>>>>> fafa20b7e00708dfcf49913bb228aefc2970c827
 
 
 # Determine the Java command to use to start the JVM.
@@ -205,11 +201,7 @@ fi
 
 set -- \
         -classpath "$CLASSPATH" \
-<<<<<<< HEAD
-        gui.Menu \
-=======
-        gui.Testmenu \
->>>>>>> fafa20b7e00708dfcf49913bb228aefc2970c827
+        gui.Start \
         "$@"
 
 # Stop when "xargs" is not available.

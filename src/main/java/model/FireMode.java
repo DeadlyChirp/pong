@@ -3,13 +3,14 @@ package model;
 import gui.App;
 import gui.GameView;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 
 import java.util.Random;
 
 public class FireMode extends Court {
 
-    public final FPlayer playerA;
-    public final FPlayer playerB;
+    private final FPlayer playerA;
+    private final FPlayer playerB;
     private GameView gameView;
 
     public FireMode(FPlayer playerA, FPlayer playerB, double width, double height) {
@@ -34,15 +35,18 @@ public class FireMode extends Court {
         //Switch pour les boutons de jeu, in-game.
         gameScene.setOnKeyPressed(ev -> {
             String s = ev.getCode().toString();
-
             if(s == App.commandes[0]){ //Player A
                 playerA.setState(RacketController.State.GOING_UP);
-            } else if(s == App.commandes[1]){ //Player A
+            } else if(s == App.commandes[1]) { //Player A
                 playerA.setState(RacketController.State.GOING_DOWN);
+            } else if (ev.getCode() == KeyCode.D) {
+                    playerA.usePower();
             } else if(s == App.commandes[2]){   //Player B
                 playerB.setState(RacketController.State.GOING_UP);
-            } else if(s == App.commandes[3]){  //Player B
+            } else if(s == App.commandes[3]) {  //Player B
                 playerB.setState(RacketController.State.GOING_DOWN);
+            } else if (ev.getCode() == KeyCode.ENTER) {
+            playerB.usePower();
             } else if(s == "ESCAPE"){
                 if(!GameView.pause && !GameView.finGame){
                     App.root.getChildren().add(App.imageV);
@@ -169,8 +173,30 @@ public class FireMode extends Court {
 
             if (nextBallY > getRacketA() && nextBallY < getRacketA() + getRacketASize()) {
                 playerA.increasePoint();
+
+                if (playerA.isPower()) {
+                    increaseBallSpeed(99);
+                    playerA.setPower(false);
+                    playerA.setPowering(true);
+                }
+
+                if (playerB.isPowering()) {
+                    decreaseBallSpeed(99);
+                    playerB.setPowering(false);
+                }
             } else if (nextBallY > getRacketB() && nextBallY < getRacketB() + getRacketBSize()) {
                 playerB.increasePoint();
+
+                if (playerB.isPower()) {
+                    increaseBallSpeed(99);
+                    playerB.setPower(false);
+                    playerB.setPowering(true);
+                }
+
+                if (playerA.isPowering()) {
+                    decreaseBallSpeed(99);
+                    playerA.setPowering(false);
+                }
             }
         } else if (nextBallX < 0) {
             getScore().addScore1();
@@ -221,8 +247,8 @@ public class FireMode extends Court {
             playerB.setState(RacketController.State.IDLE);
         }
 
-        setBallSpeedX((((int) (Math.random() * 15)) > 5) ? -120 : 120);
-        setBallSpeedY((((int) (Math.random() * 15)) > 5) ? -120 : 120);
+        setBallSpeedX((((int) (Math.random() * 15)) > 5) ? -140 : 140);
+        setBallSpeedY((((int) (Math.random() * 15)) > 5) ? 100 : -100);
         setBallX(getWidth() / 2);
         setBallY(getHeight() / 2);
     }

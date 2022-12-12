@@ -19,9 +19,11 @@ public class FPlayer implements RacketController {
     private int sizeLevel;
     private int speedLevel;
     private int powerAmount;
+    private boolean isPower;
+    private boolean isPowering;
     private int point;
     private final Text pointText;
-    public static boolean spec = true;
+    private final Text powerAmountText;
 
     public FPlayer() {
         state = State.IDLE;
@@ -32,10 +34,14 @@ public class FPlayer implements RacketController {
         sizeLevel = 1;
         speedLevel = 1;
         powerAmount = 0;
+        isPower = false;
+        isPowering = false;
         pointText = new Text(String.valueOf(point));
+        powerAmountText = new Text(String.valueOf(powerAmount));
 
         reset();
     }
+
     @Override
     public State getState() {
         return state;
@@ -118,7 +124,7 @@ public class FPlayer implements RacketController {
         decreasePoint(POWER_COSTP1);
         powerAmount = powerAmount + 1;
         POWER_COSTP1 = POWER_COSTP1 + 2;
-        powerAmount++;
+        powerAmountText.setText(String.valueOf(powerAmount));
         return true;
     }
     public boolean increasePowerAmountP2() {
@@ -129,8 +135,34 @@ public class FPlayer implements RacketController {
         decreasePoint(POWER_COSTP2);
         powerAmount = powerAmount + 1;
         POWER_COSTP2 = POWER_COSTP2 + 2;
-        powerAmount++;
+        powerAmountText.setText(String.valueOf(powerAmount));
         return true;
+    }
+    public boolean usePower() {
+        if (powerAmount > 0 && !isPower) {
+            isPower = true;
+            powerAmount--;
+            powerAmountText.setText(String.valueOf(powerAmount));
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isPower() {
+        return isPower;
+    }
+
+    public void setPower(boolean power) {
+        isPower = power;
+    }
+
+    public boolean isPowering() {
+        return isPowering;
+    }
+
+    public void setPowering(boolean powering) {
+        isPowering = powering;
     }
 
     public double getPosition() {
@@ -163,6 +195,10 @@ public class FPlayer implements RacketController {
         return pointText;
     }
 
+    public Text getPowerAmountText() {
+        return powerAmountText;
+    }
+
     public void reset() {
         point = 0;
         size = 80;
@@ -170,6 +206,8 @@ public class FPlayer implements RacketController {
         sizeLevel = 1;
         speedLevel = 1;
         powerAmount = 0;
+        isPower = false;
+        isPowering = false;
         pointText.setText(String.valueOf(point));
     }
 
