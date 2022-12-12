@@ -153,14 +153,14 @@ public class GameView {
             p2.setY(45);
 
             Text p1Skill = new Text();
-            p1Skill.setText("Coins P1");
+            p1Skill.setText("Power");
             p1Skill.setStyle("-fx-font: 20 arial;");
             p1Skill.setFill(Color.valueOf("#ff5252"));
             p1Skill.setX(500);
             p1Skill.setY(45);
 
             Text p2Skill = new Text();
-            p2Skill.setText("Coins P2");
+            p2Skill.setText("Power P2");
             p2Skill.setStyle("-fx-font: 20 arial;");
             p2Skill.setFill(Color.valueOf("#189ad3"));
             p2Skill.setX(600);
@@ -192,7 +192,7 @@ public class GameView {
 
             //move racketA to the left of the screen
             racketA.setX(margin - racketThickness * 2.5);
-
+            //set racketA Y position
 
             Image image = new Image("file:src/Pictures/fireball3.gif");
             //set image to ballShape
@@ -470,17 +470,17 @@ public class GameView {
                         case 0:
                             if (fireMode.getPlayerA().increaseSizeLevelP1()) {
                                 sizeLvAText.setText("Level: " + fireMode.getPlayerA().getSizeLevel());
-                                if (fireMode.getPlayerA().getSizeLevel() == 2) { //size lvl 1
+                                if (fireMode.getPlayerA().getSizeLevel() == 2) {
                                     ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
                                     racketA.setFill(lvl1);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) { //size lvl 2
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) {
                                     ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
                                     racketA.setFill(lvl2);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) { //size lvl3
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) {
                                     ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
                                     racketA.setFill(lvl3);
                                 }
-                                }
+                            }
                             break;
 
                         case 1:
