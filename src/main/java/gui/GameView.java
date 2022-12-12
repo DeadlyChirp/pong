@@ -470,17 +470,17 @@ public class GameView {
                         case 0:
                             if (fireMode.getPlayerA().increaseSizeLevelP1()) {
                                 sizeLvAText.setText("Level: " + fireMode.getPlayerA().getSizeLevel());
-                                if (fireMode.getPlayerA().getSizeLevel() == 2) {
+                                if (fireMode.getPlayerA().getSizeLevel() == 2) { //size lvl 1
                                     ImagePattern lvl1 = new ImagePattern(new Image("file:src/Pictures/Racketlvl1.png"));
                                     racketA.setFill(lvl1);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) {
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 3) { //size lvl 2
                                     ImagePattern lvl2 = new ImagePattern(new Image("file:src/Pictures/Racketlvl2.png"));
                                     racketA.setFill(lvl2);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) {
+                                } else if (fireMode.getPlayerA().getSizeLevel() == 4) { //size lvl3
                                     ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
                                     racketA.setFill(lvl3);
                                 }
-                            }
+                                }
                             break;
 
                         case 1:
