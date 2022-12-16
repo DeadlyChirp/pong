@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Plus de fichier binaire">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/FPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/FPlayer.java" afterDir="false" />
-    </list>
+    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Reduire la vitesse de la raquette de 220 à 130 pour que les joueurs&#10;achètent plus speed dans la boutique" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671171977849</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Reduire la vitesse de la raquette de 220 à 130 pour que les joueurs&#10;achètent plus speed dans la boutique">
+      <created>1671172985026</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671172985026</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,6 +121,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Plus de fichier binaire" />
-    <option name="LAST_COMMIT_MESSAGE" value="Plus de fichier binaire" />
+    <MESSAGE value="Reduire la vitesse de la raquette de 220 à 130 pour que les joueurs&#10;achètent plus speed dans la boutique" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reduire la vitesse de la raquette de 220 à 130 pour que les joueurs&#10;achètent plus speed dans la boutique" />
   </component>
 </project>
