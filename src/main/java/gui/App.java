@@ -833,6 +833,9 @@ public class App {
                         }
                         playerA.reset();
                         playerB.reset();
+                        //Reset powerAmount
+                        playerA.getPowerAmountText().setText("0");
+                        playerB.getPowerAmountText().setText("0");
 
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.refresh();
