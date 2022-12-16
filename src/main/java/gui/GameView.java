@@ -200,6 +200,7 @@ public class GameView {
 
 
 
+
             gameRoot.getChildren().addAll(fireMode.getPlayerA().getPointText(), fireMode.getPlayerB().getPointText(), p1,p2, p1Skill,p2Skill, fireMode.getPlayerB().getPowerAmountText(),fireMode.getPlayerA().getPowerAmountText());
         }
 
@@ -602,7 +603,7 @@ public class GameView {
                         ballShape.setCenterY(fireMode.getBallY() * scale + margin / 2 + inTerface);
                         ballShape.setFill(Color.valueOf("#ff002e"));
                         gameRoot.getChildren().addAll(ballShape);
-                        Trail ballTrail = new Trail(ballShape, Color.valueOf("#ff002e"), 0.03f, trail1 -> {
+                        Trail ballTrail = new Trail(ballShape, Color.valueOf("#ff002e"), 0.025f, trail1 -> {
                             gameRoot.getChildren().removeAll(trail1.getShape());
                             Platform.runLater(() -> trails.remove(trail1));
                         });

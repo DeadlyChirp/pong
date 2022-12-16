@@ -68,6 +68,8 @@ public class App {
     static Image image2 = new Image(new File("src/Pictures/pause1.gif").toURI().toString());
     public static ImageView imageV = new ImageView(image2);
 
+
+
     public void start(Stage primaryStage)  {
 
                     class Player implements RacketController {

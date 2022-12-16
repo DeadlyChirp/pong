@@ -1,12 +1,10 @@
 package model;
 
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
 public class Trail {
 
-    protected Image image;
     protected Color color;
     protected float alpha;
     protected float life;
