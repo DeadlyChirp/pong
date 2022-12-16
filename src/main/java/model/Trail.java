@@ -2,7 +2,6 @@ package model;
 
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Shape;
 
 public class Trail {
@@ -14,9 +13,9 @@ public class Trail {
     protected Shape shape;
     protected TrailListener listener;
 
-    public Trail(Shape shape, Image image, float life, TrailListener listener) {
+    public Trail(Shape shape, Color color, float life, TrailListener listener) {
         this.shape = shape;
-        this.image = image;
+        this.color = color;
         this.alpha = 0.8f;
         this.life = life;
         this.listener = listener;
@@ -24,7 +23,7 @@ public class Trail {
     public void tick() {
         if (alpha > life) {
             alpha = alpha - life;
-            shape.setFill(new ImagePattern(image));
+            shape.setFill(Color.color(color.getRed(), color.getGreen(), color.getBlue(), alpha));
 
         } else {
             if (listener != null) {

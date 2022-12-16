@@ -88,7 +88,7 @@ public class ModeDeJeu {
             a.start(primaryStage);
         });
         
-        twoVStwo.setOnAction(ev1 -> {
+        twoVStwo.setOnAction(ev1 -> {    
             Pane root1 = new Pane();
             gameScene.setRoot(root1);
             App a = new App(root1, gameScene);

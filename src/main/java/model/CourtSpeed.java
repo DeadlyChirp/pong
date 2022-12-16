@@ -26,14 +26,14 @@ public class CourtSpeed extends Court {
             super.setBallSpeedX(-super.getBallSpeedX()*1.05);
             nextBallX = super.getBallX() + deltaT * super.getBallSpeedX();
             nextBallY = getBallY() +  ((getBallSpeedY()<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(getBallSpeedY())); 
-        } else if (super.getScore() != null && nextBallX < 0) {
+        } else if (super.getScore() != null && nextBallX < 0) { 
             super.getScore().addScore1();
             if (super.getScore().endGame() != -1){
                 GameView.finGame = true ;
                 GameView.endGame(1);
             }
             return true;
-        }else if (super.getScore() != null && nextBallX > super.getWidth()) {
+        }else if (super.getScore() != null && nextBallX > super.getWidth()) { 
             super.getScore().addScore2();
             if (super.getScore().endGame() != -1){
                 GameView.finGame = true ;

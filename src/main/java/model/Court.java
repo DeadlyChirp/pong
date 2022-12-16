@@ -15,7 +15,7 @@ public class Court {
     private double racketA; // playerOnePos.Y
     private double racketB; // playerOnePos.Y
     private double ballX, ballY; // position de la balle
-    private double ballSpeedX , ballSpeedY ; 
+    private double ballSpeedX , ballSpeedY ;
     private Score score;
 
     public Score getScore(){
@@ -39,7 +39,7 @@ public class Court {
         this.playerB = playerB;
         this.width = width;
         this.height = height;
-        this.score = new Score(-1); 
+        this.score = new Score(-1);
         try {
             ((Bot)playerB).setCourt(this);
         } catch (Exception e) {}
@@ -51,31 +51,31 @@ public class Court {
     }
 
     public void setBallX (double ballX) {
-        this.ballX = ballX ; 
+        this.ballX = ballX ;
     }
 
     public void setBallY (double ballY) {
-        this.ballY = ballY ; 
+        this.ballY = ballY ;
     }
 
     public double getBallSpeedX () {
-        return ballSpeedX ; 
+        return ballSpeedX ;
     }
 
     public double getBallSpeedY () {
-        return ballSpeedY ; 
+        return ballSpeedY ;
     }
 
     public void setBallSpeedX (double ballSpeedX) {
-        this.ballSpeedX = ballSpeedX ; 
+        this.ballSpeedX = ballSpeedX ;
     }
 
     public void setBallSpeedY (double ballSpeedY) {
-        this.ballSpeedY = ballSpeedY ; 
+        this.ballSpeedY = ballSpeedY ;
     }
 
     public double getRacketSpeed () {
-        return this.racketSpeed ; 
+        return this.racketSpeed ;
     }
 
     public double getWidth() {
@@ -110,14 +110,14 @@ public class Court {
 
         switch (playerA.getState()) {
             case GOING_UP:
-                racketA -= racketSpeed * deltaT; 
-                if (racketA < 0.0) racketA = 0.0; 
+                racketA -= racketSpeed * deltaT;
+                if (racketA < 0.0) racketA = 0.0;
                 break;
             case IDLE:
                 break;
             case GOING_DOWN:
                 racketA += racketSpeed * deltaT;
-                if (racketA + racketSize > height) racketA = height - racketSize; 
+                if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
         }
         switch (playerB.getState()) {
@@ -139,22 +139,22 @@ public class Court {
     /**
      * @return true if a player lost
      */
-    
+
     public boolean updateBall(double deltaT) {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
-            ballSpeedY = -ballSpeedY; 
+            ballSpeedY = -ballSpeedY;
             nextBallY = ballY + deltaT * ballSpeedY ;
-            nextBallX = ballX + ((ballSpeedX<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedX)); 
+            nextBallX = ballX + ((ballSpeedX<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedX));
         }
 
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)  || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
-            ballSpeedX = -ballSpeedX; 
+            ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX ;
-            nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY)); 
+            nextBallY = ballY +  ((ballSpeedY<0)?-1:+1)*deltaT * (new Random()).nextDouble(Math.abs(ballSpeedY));
         }else if (score != null && nextBallX < 0) {
             score.addScore1();
             if (score.endGame() == 1){
@@ -174,14 +174,13 @@ public class Court {
         ballY = nextBallY;
         return false;
     }
-    
 
     public double getBallRadius() {
         return ballRadius;
     }
 
     public void refresh () {
-        score.reset(); 
+        score.reset();
         reset();
     }
 
