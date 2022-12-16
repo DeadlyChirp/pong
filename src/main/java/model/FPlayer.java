@@ -208,6 +208,12 @@ public class FPlayer implements RacketController {
         powerAmount = 0;
         isPower = false;
         isPowering = false;
+        SIZE_COSTP1 = 7;
+        SPEED_COSTP1 = 5;
+        POWER_COSTP1 = 3;
+        SIZE_COSTP2 = 7;
+        SPEED_COSTP2 = 5;
+        POWER_COSTP2 = 3;
         pointText.setText(String.valueOf(point));
     }
 

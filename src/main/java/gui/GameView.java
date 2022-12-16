@@ -194,9 +194,6 @@ public class GameView {
             racketA.setX(margin - racketThickness * 2.5);
             //set racketA Y position
 
-            Image image = new Image("file:src/Pictures/fireball3.gif");
-            //set image to ballShape
-            ball.setFill(new ImagePattern(image));
 
 
 
@@ -605,11 +602,9 @@ public class GameView {
                         ballShape.setRadius(fireMode.getBallRadius());
                         ballShape.setCenterX(fireMode.getBallX() * scale + margin);
                         ballShape.setCenterY(fireMode.getBallY() * scale + margin / 2 + inTerface);
-                        Image image = new Image("file:src/Pictures/SmokeTraill.gif");
-                        //set image to ballShape
-                        ballShape.setFill(Color.TRANSPARENT);
+                        ballShape.setFill(Color.valueOf("#ff002e"));
                         gameRoot.getChildren().addAll(ballShape);
-                        Trail ballTrail = new Trail(ballShape, image, 0.15f, trail1 -> {
+                        Trail ballTrail = new Trail(ballShape, Color.valueOf("#ff002e"), 0.03f, trail1 -> {
                             gameRoot.getChildren().removeAll(trail1.getShape());
                             Platform.runLater(() -> trails.remove(trail1));
                         });

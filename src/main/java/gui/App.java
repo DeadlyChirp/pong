@@ -816,7 +816,7 @@ public class App {
 
                     //Action du bouton Reprendre
                     Reprendre.setOnAction(ev1 -> {
-                        root.getChildren().removeAll(PauseImage, Quitter, Reprendre, Recommencer);
+                        root.getChildren().removeAll(imageV, Quitter, Reprendre, Recommencer);
                         GameView.pause = false;
                     });
 
@@ -826,12 +826,13 @@ public class App {
                         Recommencer.setLayoutX(695);
                         Recommencer.setLayoutY(350);
                         Quitter.setLayoutY(350);
-                        root.getChildren().remove(PauseImage);
+                        root.getChildren().remove(imageV);
                         if (GameView.finGame) {
                             root.getChildren().remove(root.getChildren().size() - 3);
                             root.getChildren().remove(root.getChildren().size() - 3);
                         }
-
+                        playerA.reset();
+                        playerB.reset();
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.refresh();
                         GameView.pause = false;
