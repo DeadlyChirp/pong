@@ -7,6 +7,7 @@ import javafx.scene.effect.ImageInput;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.*;
 
@@ -836,6 +837,10 @@ public class App {
                         //Reset powerAmount
                         playerA.getPowerAmountText().setText("0");
                         playerB.getPowerAmountText().setText("0");
+
+                        //reset racketA image in GameView
+                        gameView.getRacketA().setFill(Color.valueOf("#ff5252"));
+                        gameView.getRacketB().setFill(Color.valueOf("#189ad3"));
 
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.refresh();
