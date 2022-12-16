@@ -192,8 +192,6 @@ public class GameView {
 
             //move racketA to the left of the screen
             racketA.setX(margin - racketThickness * 2.5);
-            //set racketA Y position
-
 
 
 
@@ -524,7 +522,7 @@ public class GameView {
                                 } else if (fireMode.getPlayerB().getSizeLevel() == 4) {
                                     ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
                                     racketB.setFill(lvl3);
-                                }
+                                } //if Recommencer in App.startFire()
                             }
                             break;
 

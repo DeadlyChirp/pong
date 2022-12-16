@@ -18,7 +18,7 @@ public class FPlayer implements RacketController {
     private double speed;
     private int sizeLevel;
     private int speedLevel;
-    private int powerAmount;
+    public int powerAmount;
     private boolean isPower;
     private boolean isPowering;
     private int point;
