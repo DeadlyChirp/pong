@@ -28,7 +28,7 @@ public class FPlayer implements RacketController {
     public FPlayer() {
         state = State.IDLE;
         size = 80;
-        speed = 220;
+        speed = 130;
         position = 0;
         point = 0;
         sizeLevel = 1;

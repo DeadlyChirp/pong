@@ -833,6 +833,7 @@ public class App {
                         }
                         playerA.reset();
                         playerB.reset();
+
                         root.getChildren().removeAll(Quitter, Reprendre, Recommencer);
                         court.refresh();
                         GameView.pause = false;
