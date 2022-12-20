@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Plus de fichier binaire">
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp31.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp33.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GameView.java" afterDir="false" />
-    </list>
+    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Plus de fichier binaire" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -124,7 +98,7 @@
       <workItem from="1671185506484" duration="3358000" />
       <workItem from="1671461656421" duration="866000" />
       <workItem from="1671482779584" duration="7648000" />
-      <workItem from="1671547515399" duration="4111000" />
+      <workItem from="1671547515399" duration="4822000" />
     </task>
     <task id="LOCAL-00001" summary="Plus de fichier binaire">
       <created>1671171977848</created>
@@ -147,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671326007535</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Plus de fichier binaire">
+      <created>1671554563666</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671554563666</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
