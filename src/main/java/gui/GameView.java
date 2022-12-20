@@ -475,172 +475,172 @@ public class GameView {
                                 } else if (fireMode.getPlayerA().getSizeLevel() == 4) {
                                     ImagePattern lvl3 = new ImagePattern(new Image("file:src/Pictures/Racketlvl3.png"));
                                     racketA.setFill(lvl3);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 2){
-                                    // sz 1 sp 1
-                                     ImagePattern szsp11 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp11.png"));
-                                     racketA.setFill(szsp11);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 3){
-                                    // sz 1 sp 2
-                                     ImagePattern szsp12 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp12.png"));
-                                     racketA.setFill(szsp12);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 4){
-                                    // sz 1 sp 3
-                                     ImagePattern szsp13 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp13.png"));
-                                     racketA.setFill(szsp13);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 2){
-                                    // sz 2 sp 1
-                                     ImagePattern szsp21 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp21.png"));
-                                     racketA.setFill(szsp21);
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3){
-                                    // sz 2 sp 2
-                                     ImagePattern szsp22 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp22.png"));
-                                     racketA.setFill(szsp22);
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4){
-                                    //sz 2 sp 3
-                                     ImagePattern szsp23 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp23.png"));
-                                     racketA.setFill(szsp23);
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 2){
-                                    //sz 3 sp 1
-                                     ImagePattern szsp31 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp31.png"));
-                                     racketA.setFill(szsp31);
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 3){
-                                    //sz 3 sp 2
-                                     ImagePattern szsp32 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp32.png"));
-                                     racketA.setFill(szsp32);
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 4){
-                                    //sz 3 sp 3
-                                     ImagePattern szsp33 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp33.png"));
-                                     racketA.setFill(szsp33);
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 1){
-                                    //sz 1 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 2){
-                                    //sz 1 pw 2
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 1 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 1){
-                                    //sz 2 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 2){
-                                    //sz 2 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 2 pw 3
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 1){
-                                    //sz 3 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 2){
-                                    //sz 3 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 3 pw 3
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 1 sp 1 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 1 sp 2 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 1 sp 3 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 2 sp 1 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 2 sp 2 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 2 sp 3 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 3 sp 1 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 3 sp 2 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
-                                    //sz 3 sp 3 pw 1
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
-                                    //sz 1 sp 1 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
-                                    //sz 1 sp 1 pw 3
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
-                                    //sz 2 sp 1 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
-                                    //sz 2 sp 1 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
-                                    //sz 3 sp 1 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
-                                    //sz 3 sp 1 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 2 ){
-                                    //sz 1 sp 2 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 2 ){
-                                    //sz 1 sp 3 pw 2
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 3 ){
-                                    //sz 1 sp 3 pw 3
-                                    //IMAGE DONE
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 3 ){
-                                    //sz 1 sp 2 pw 3
-                                    //IMAGE DONE
-                                }  else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 2){
-                                    //sz 2 sp 2 pw 2
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 2){
-                                    //sz 2 sp 3 pw 2
-
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 2 sp 2 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 2 sp 3 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 3 sp 2 pw 3
-                                    //IMAGE DONE
-                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
-                                    //sz 3 sp 3 pw 3
-                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 2){
+//                                    // sz 1 sp 1
+//                                     ImagePattern szsp11 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp11.png"));
+//                                     racketA.setFill(szsp11);
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 3){
+//                                    // sz 1 sp 2
+//                                     ImagePattern szsp12 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp12.png"));
+//                                     racketA.setFill(szsp12);
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel() == 4){
+//                                    // sz 1 sp 3
+//                                     ImagePattern szsp13 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp13.png"));
+//                                     racketA.setFill(szsp13);
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 2){
+//                                    // sz 2 sp 1
+//                                     ImagePattern szsp21 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp21.png"));
+//                                     racketA.setFill(szsp21);
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3){
+//                                    // sz 2 sp 2
+//                                     ImagePattern szsp22 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp22.png"));
+//                                     racketA.setFill(szsp22);
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4){
+//                                    //sz 2 sp 3
+//                                     ImagePattern szsp23 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp23.png"));
+//                                     racketA.setFill(szsp23);
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 2){
+//                                    //sz 3 sp 1
+//                                     ImagePattern szsp31 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp31.png"));
+//                                     racketA.setFill(szsp31);
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 3){
+//                                    //sz 3 sp 2
+//                                     ImagePattern szsp32 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp32.png"));
+//                                     racketA.setFill(szsp32);
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 4){
+//                                    //sz 3 sp 3
+//                                     ImagePattern szsp33 = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/szsp33.png"));
+//                                     racketA.setFill(szsp33);
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 1){
+//                                    //sz 1 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 2){
+//                                    //sz 1 pw 2
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 1 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 1){
+//                                    //sz 2 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 2){
+//                                    //sz 2 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 2 pw 3
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 1){
+//                                    //sz 3 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 2){
+//                                    //sz 3 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 3 pw 3
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 1 sp 1 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 1 sp 2 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 1 sp 3 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 2 sp 1 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 2 sp 2 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 2 sp 3 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 3 sp 1 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 3 sp 2 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 1 ){
+//                                    //sz 3 sp 3 pw 1
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
+//                                    //sz 1 sp 1 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
+//                                    //sz 1 sp 1 pw 3
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
+//                                    //sz 2 sp 1 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
+//                                    //sz 2 sp 1 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 2 ){
+//                                    //sz 3 sp 1 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel()== 2 && fireMode.getPlayerA().getPowerAmount() == 3 ){
+//                                    //sz 3 sp 1 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 2 ){
+//                                    //sz 1 sp 2 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 2 ){
+//                                    //sz 1 sp 3 pw 2
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 4 && fireMode.getPlayerA().getPowerAmount() == 3 ){
+//                                    //sz 1 sp 3 pw 3
+//                                    //IMAGE DONE
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 2 && fireMode.getPlayerA().getSpeedLevel()== 3 && fireMode.getPlayerA().getPowerAmount() == 3 ){
+//                                    //sz 1 sp 2 pw 3
+//                                    //IMAGE DONE
+//                                }  else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 2){
+//                                    //sz 2 sp 2 pw 2
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 2){
+//                                    //sz 2 sp 3 pw 2
+//
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 2 sp 2 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 3 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 2 sp 3 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 3 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 3 sp 2 pw 3
+//                                    //IMAGE DONE
+//                                } else if (fireMode.getPlayerA().getSizeLevel() == 4 && fireMode.getPlayerA().getSpeedLevel() == 4 && fireMode.getPlayerA().getPowerAmount() == 3){
+//                                    //sz 3 sp 3 pw 3
+//                                    //IMAGE DONE
                                 }
                             }
                             break;
