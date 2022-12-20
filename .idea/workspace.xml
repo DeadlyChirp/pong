@@ -4,14 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Reset Skins des raquettes apres rejouer">
+    <list default="true" id="b2fe0f8a-8342-49ed-9f52-6685261cef07" name="Changes" comment="Plus de fichier binaire">
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/pw3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/sp3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp22.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp23.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp31.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pictures/RacketSkinsFire/szsp33.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/GameView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,27 +88,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/Desktop/pong&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Admin/Desktop/pong/src/Pictures/RacketSkinsFire",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Desktop\pong\src\Pictures\RacketSkinsFire" />
       <recent name="$PROJECT_DIR$/src/main/java/model" />
     </key>
   </component>
@@ -103,6 +122,9 @@
       <option name="presentableId" value="Default" />
       <updated>1666207280869</updated>
       <workItem from="1671185506484" duration="3358000" />
+      <workItem from="1671461656421" duration="866000" />
+      <workItem from="1671482779584" duration="7648000" />
+      <workItem from="1671547515399" duration="4111000" />
     </task>
     <task id="LOCAL-00001" summary="Plus de fichier binaire">
       <created>1671171977848</created>
@@ -118,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671178446155</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Plus de fichier binaire">
+      <created>1671326007535</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1671326007535</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,10 +178,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Plus de fichier binaire" />
     <MESSAGE value="Reset PowerAmount à 0 quand on rejoue" />
     <MESSAGE value="Merge develop into Thanh" />
     <MESSAGE value="Enlever des images inutiles + Regler la longueur de l'effet de trainee de la balle" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enlever des images inutiles + Regler la longueur de l'effet de trainee de la balle" />
+    <MESSAGE value="Plus de fichier binaire" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plus de fichier binaire" />
   </component>
 </project>
