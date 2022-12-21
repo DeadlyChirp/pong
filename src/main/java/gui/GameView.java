@@ -561,13 +561,43 @@ public class GameView {
                         case 1:
                             if (fireMode.getPlayerB().increaseSpeedLevelP2()) {
                                 speedLvBText.setText("Level: " + fireMode.getPlayerB().getSpeedLevel());
+                                if ( fireMode.getPlayerB().getSpeedLevel() == 2){
+                                    //size 0 speed 1
+                                    ImagePattern sp1B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/sp1B.png"));
+                                    racketB.setFill(sp1B);
+
+                                } else if (fireMode.getPlayerA().getSpeedLevel() == 3){
+                                    //sz 0 sp 2
+                                    ImagePattern sp2B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/sp2B.png"));
+                                    racketB.setFill(sp2B);
+
+                                } else if ( fireMode.getPlayerA().getSpeedLevel() == 4) {
+                                    //size 0 speed 3
+                                    ImagePattern sp3B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/sp3B.png"));
+                                    racketB.setFill(sp3B);
+                                }
                             }
                             break;
 
                         case 2:
                             if (fireMode.getPlayerB().increasePowerAmountP2()) {
                                 powerAmountBText.setText("Level: " + fireMode.getPlayerB().getPowerAmount());
-//
+                                if ( fireMode.getPlayerB().getPowerAmount() == 1) {
+                                    //size 1 pw 1
+                                    ImagePattern pw1B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/pw1B.png"));
+                                    racketA.setFill(pw1B);
+
+                                } else if ( fireMode.getPlayerB().getPowerAmount() == 2) {
+                                    //size 1 pw 2
+                                    ImagePattern pw2B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/pw2B.png"));
+                                    racketB.setFill(pw2B);
+
+                                }else if ( fireMode.getPlayerB().getPowerAmount() == 3) {
+                                    //size 1 pw3
+                                    ImagePattern pw3B = new ImagePattern(new Image("file:src/Pictures/RacketSkinsFire/pw3B.png"));
+                                    racketB.setFill(pw3B);
+
+                                }
                             }
                             break;
                     }
