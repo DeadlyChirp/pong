@@ -653,7 +653,7 @@ public class GameView {
                     }
                     court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                     last = now;
-
+                    //effet de trainée de la balle
                     if (court instanceof FireMode fireMode) {
                         for (Trail trail : trails) {
                             trail.tick();
