@@ -1,5 +1,11 @@
 # What I did? Shop & Battle royale mode
 
+"Mode Boutique d'Améliorations": Dans ce mode de jeu unique pour Pong en Java, les joueurs ont la possibilité de visiter la Boutique d'Améliorations, où ils peuvent dépenser leurs précieuses pièces pour améliorer leur gameplay. Choisissez parmi différentes améliorations telles que la puissance, la taille et la vitesse de votre raquette, et ressentez le frisson de personnaliser votre style de jeu.
+
+"Améliorations Propulsées par les Pièces": Portez vos compétences au Pong au niveau supérieur en gagnant des pièces lors des matches. Accumulez suffisamment de pièces pour acheter des améliorations puissantes qui rendront vos coups de raquette plus forts, augmenteront leur taille et accéléreront leur vitesse. Investissez stratégiquement dans ces améliorations pour dominer vos adversaires.
+
+"Effets de Traînée ":  vos balles laissent derrière elles des effets de traînée fascinants. Regardez vos tirs prendre vie avec ces effets qui ajoutent une touche d'éclat à chaque coup.
+
 # Jeu de Pong
 
 ## Présentation
