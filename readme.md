@@ -1,3 +1,5 @@
+What I did? Shop & Battle royale mode
+
 # Jeu de Pong
 
 ## Présentation
